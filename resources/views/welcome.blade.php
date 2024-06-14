@@ -8,13 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/influencer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/brandOffer.css') }}">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -29,11 +31,54 @@
 
         <div class="container-fluid bg-light pt-3 d-flex justify-content-center  border-bottom">
             <div class="input-group mb-3 w-50">
-                <input type="text" class="form-control" placeholder="Search your brand.." aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="form-control" placeholder="Search your brand.."
+                    aria-label="Recipient's username" aria-describedby="button-addon2" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
                 <button class="btn searchbutton" type="button" id="button-addon2">Search</button>
             </div>
         </div>
     </header>
+    <!-- Full screen modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none;">
+                    {{-- <h5 class="modal-title" id="exampleModalLabel">Search Anything </h5> --}}
+                    <div class="d-flex ms-5 mt-5">
+                        <i class="bi bi-geo-alt-fill text-muted"></i>
+                        <p class="text-muted me-2">Select City</p>
+                        <select name="city" class="mb-3" id="" style="border: none">
+                            @foreach ($cities as $item)
+                                <b>
+                                    <option value="{{ $item->city }}">{{ $item->city }}</option>
+                                </b>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="button" class="btn-close me-5" data-bs-dismiss="modal" aria-label="Close">
+
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid pt-3 d-flex justify-content-center">
+                        <div class="input-group mb-3 w-50">
+                            <input type="text" class="form-control shadow-none" placeholder="Search Anything..."
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn searchbutton" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <img src="{{ asset('images/logo.png') }}" class="img-fluid logo " alt="Logo">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
     <main class="pb-5 mx-5">
 
         <div class="container-fluid pt-2">
@@ -59,7 +104,8 @@
                 @foreach ($posters as $poster)
                     <div class="col-md-3">
                         <a href="{{ route('brand.offer') }}/{{ $poster->id }}">
-                            <img src="{{ asset('brandCategoryPoster') }}/{{ $poster->poster }}" title="{{ $poster->categoryName }}" class="offerPhoto" alt="">
+                            <img src="{{ asset('brandCategoryPoster') }}/{{ $poster->poster }}"
+                                title="{{ $poster->categoryName }}" class="offerPhoto" alt="">
                         </a>
                     </div>
                 @endforeach
@@ -96,13 +142,13 @@
             <div class="row pt-2 px-4">
                 @foreach ($posters as $brand)
                     @foreach ($brand->brand as $card)
-                        @foreach ($card->users as $portfolio)
+                        @foreach ($card->users as $profilePic)
                             <div class="col-md-3">
+                                {{-- {{ $profilePic->profilePhoto }} --}}
+                                <img src="{{ asset('profile') }}/{{ $profilePic->profilePhoto }}"
+                                    onerror="this.onerror=null;this.src='{{ asset('images/default.jpg') }}';"
+                                    title="{{ $profilePic->name }}" class="offerPhoto" alt="">
 
-                                {{-- <a href="{{ route('brand.detail') }}/{{ $brand->id }}"> --}}
-                                <img src="{{ asset('profile') }}/{{ $portfolio->profilePhoto }}" onerror="this.onerror=null;this.src='{{ asset('images/default.jpg') }}';" title="{{ $portfolio->name }}" class="offerPhoto" alt="">
-                                {{-- <img src="{{ asset('images/default.jpg') }}" title="spcial" class="offerPhoto" alt=""> --}}
-                                {{-- </a> --}}
                             </div>
                         @endforeach
                     @endforeach
@@ -118,11 +164,13 @@
             <div id="menu">
                 <div id="nav">
                     <div id="prev">
-                        <i class="bi bi-chevron-left text-white p-2 bg-info" style=" border: 2px; border-top-right-radius: 50px;
+                        <i class="bi bi-chevron-left text-white p-2 bg-info"
+                            style=" border: 2px; border-top-right-radius: 50px;
                         border-bottom-right-radius: 50px;"></i>
                     </div>
                     <div id="next">
-                        <i class="bi bi-chevron-right text-white p-2 bg-info" style=" border: 2px; border-top-left-radius: 50px;
+                        <i class="bi bi-chevron-right text-white p-2 bg-info"
+                            style=" border: 2px; border-top-left-radius: 50px;
                         border-bottom-left-radius: 50px;"></i>
                     </div>
                 </div>
@@ -130,7 +178,8 @@
 
                     @foreach ($sliderPosters as $sliderPoster)
                         <li id="box1" class="list">
-                            <img src="{{ asset('brandCategoryPoster/' . $sliderPoster->poster) }}" class="h-100" style="object-fit: cover; width: 90%; border-radius: 10px" alt="">
+                            <img src="{{ asset('brandCategoryPoster/' . $sliderPoster->poster) }}" class="h-100"
+                                style="object-fit: cover; width: 90%; border-radius: 10px" alt="">
                         </li>
                     @endforeach
                     {{-- <li id="box2" class="list">
@@ -158,7 +207,8 @@
                     <div class="col-md-3">
                         <div class="card ">
                             <div class="d-inline-block position-relative">
-                                <img class="card-img-top" src="{{ asset('cardlogo') }}/{{ $brand->card->logo }}" style="object-fit: fit; height: 200px" alt="Title" />
+                                <img class="card-img-top" src="{{ asset('cardlogo') }}/{{ $brand->card->logo }}"
+                                    style="object-fit: fit; height: 200px" alt="Title" />
                                 <div class="position-absolute top-0 end-0 p-2">
                                     <i class="bi bi-heart"></i>
                                 </div>
@@ -191,7 +241,8 @@
             <div class="row text-center pt-2">
                 @foreach ($offers as $offer)
                     <div class="col-md-2">
-                        <img src="{{ asset('offerPhoto') }}/{{ $offer->offerPhoto }}" class="" style="object-fit: contain; width: 150px; height: 150px" alt="">
+                        <img src="{{ asset('offerPhoto') }}/{{ $offer->offerPhoto }}" class=""
+                            style="object-fit: contain; width: 150px; height: 150px" alt="">
                         <p class="fw-bold">{{ $offer->title }}</p>
                         <p>₹{{ $offer->offerPrice }}</p>
                     </div>
@@ -206,7 +257,8 @@
                         @foreach ($newBrands as $brand)
                             <div class="card swiper-slide">
                                 <div class="image-content">
-                                    <img src="{{ asset('cardlogo') }}/{{ $brand->card->logo }}" alt="" style="object-fit: fit; height: 200px" class="card-img">
+                                    <img src="{{ asset('cardlogo') }}/{{ $brand->card->logo }}" alt=""
+                                        style="object-fit: fit; height: 200px" class="card-img">
 
                                 </div>
                                 <div class="card-content">
@@ -241,11 +293,13 @@
             <div id="menu">
                 <div id="nav">
                     <div id="prev" class="prev">
-                        <i class="bi bi-chevron-left text-white p-2 bg-info" style=" border: 2px; border-top-right-radius: 50px;
+                        <i class="bi bi-chevron-left text-white p-2 bg-info"
+                            style=" border: 2px; border-top-right-radius: 50px;
                         border-bottom-right-radius: 50px;"></i>
                     </div>
                     <div id="next" class="next">
-                        <i class="bi bi-chevron-right text-white p-2 bg-info" style=" border: 2px; border-top-left-radius: 50px;
+                        <i class="bi bi-chevron-right text-white p-2 bg-info"
+                            style=" border: 2px; border-top-left-radius: 50px;
                         border-bottom-left-radius: 50px;"></i>
                     </div>
                 </div>
@@ -270,13 +324,15 @@
         <div class="container">
 
             <div class="row">
-                <div class="MultiCarousel" data-items="1,2,3,4" data-slide="3" id="MultiCarousel" data-interval="3000">
+                <div class="MultiCarousel" data-items="1,2,3,4" data-slide="3" id="MultiCarousel"
+                    data-interval="3000">
                     <div class="MultiCarousel-inner">
                         @foreach ($randomBrandPortfolio as $images)
                             @if ($images->card && $images->card->cardPortfolio)
                                 @foreach ($images->card->cardPortfolio as $portfolio)
                                     <div class="item">
-                                        <img src="{{ asset('cardimage') }}/{{ $portfolio->image }}" style="height: 250px; width: 280px" alt="">
+                                        <img src="{{ asset('cardimage') }}/{{ $portfolio->image }}"
+                                            style="height: 250px; width: 280px" alt="">
                                         {{-- <img src="{{ asset('images/default.jpg') }}" alt=""> --}}
                                     </div>
                                 @endforeach
@@ -351,7 +407,8 @@
                             </div>
                             <div class="card swiper-slide">
                                 <div class="image-content">
-                                    <img src="{{ asset('images/coupon2.webp') }}" alt="" class="card-img" style="object-fit: fill">
+                                    <img src="{{ asset('images/coupon2.webp') }}" alt="" class="card-img"
+                                        style="object-fit: fill">
 
                                 </div>
 
@@ -419,9 +476,13 @@
         @include('extra.homePageFooter')
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

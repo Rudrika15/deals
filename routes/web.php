@@ -5,6 +5,7 @@ use App\Http\Controllers\HomepageController;
 use App\Models\BrandCategory;
 use App\Models\BrandOffer;
 use App\Models\BrandWithCategory;
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,12 +41,38 @@ Route::get('/', function () {
     })->with('offer')->with('card')->take(4)->get();
 
     $offers = BrandOffer::inRandomOrder()->take(6)->get();
+    $cities = City::all();
 
     $randomBrandPortfolio = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
     })->with('card.cardPortfolio')->get();
-    return view('welcome', compact('offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio'));
+    return view('welcome', compact('offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
+Route::get('/search', function (Request $request) {
+    if ($request->ajax()) {
+        $query = $request->get('search');
+        $results = [];
+
+        $categories = BrandCategory::where('name', 'LIKE', "%{$query}%")->take(5)->get();
+        foreach ($categories as $category) {
+            $results[] = ['id' => $category->id, 'name' => $category->name, 'type' => 'category'];
+        }
+
+        $brands = User::whereHas('roles', function ($q) {
+            $q->where('name', 'Brand');
+        })->where('name', 'LIKE', "%{$query}%")->take(5)->get();
+        foreach ($brands as $brand) {
+            $results[] = ['id' => $brand->id, 'name' => $brand->name, 'type' => 'brand'];
+        }
+
+        $offers = BrandOffer::where('title', 'LIKE', "%{$query}%")->take(5)->get();
+        foreach ($offers as $offer) {
+            $results[] = ['id' => $offer->id, 'name' => $offer->title, 'type' => 'offer'];
+        }
+
+        return response()->json($results);
+    }
+})->name('search');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('/')->group(__DIR__ . '/admin/adminRoute.php');

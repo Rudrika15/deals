@@ -169,7 +169,7 @@ class HomepageController extends Controller
         // })->get('id');
         $category = BrandCategory::find($categoryId);
         $offers = BrandWithCategory::where('brandcategoryId', $categoryId)
-            ->with('brand.card.cardPortfolio')->with('offer')->get();
+            ->with('brand.card.cardPortfolio')->whereHas('brand.card.cardPortfolio')->with('offer')->get();
         $offerSlider = BrandOffer::all();
 
         $userCity = User::whereHas('roles', function ($q) {

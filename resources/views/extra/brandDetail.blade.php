@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/influencer.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/brandOffer.css') }}"> --}}
@@ -16,7 +17,8 @@
     <link rel="stylesheet" href="{{ asset('css/brandDetail.css') }}">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -31,7 +33,8 @@
 
         <div class="container-fluid bg-light pt-3 d-flex justify-content-center  border-bottom">
             <div class="input-group mb-3 w-50">
-                <input type="text" class="form-control" placeholder="Search your brand.." aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="form-control" placeholder="Search your brand.."
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
                 <button class="btn searchbutton" type="button" id="button-addon2">Search</button>
             </div>
         </div>
@@ -49,7 +52,8 @@
                                         <div class="">
                                             <h6 class="text-muted">{{ $brandCategory->categoryName }}</h6>
                                             <h2 class="fw-bold">{{ $brand->name }}</h2>
-                                            <small class="text-muted fw-bold">{{ $brand->card->address }}, {{ $brand->card->city }}</small>
+                                            <small class="text-muted fw-bold">{{ $brand->card->address }},
+                                                {{ $brand->card->city }}</small>
                                         </div>
                                         <div class="text-end">
                                             <small class="row ms-5">
@@ -59,7 +63,8 @@
                                                 <br>
                                                 <div class="col-md-12 text-end">
                                                     <div class="ms-auto border text-center rounded p-1 w-50 ">
-                                                        <img src="{{ asset('images/fevicon.png') }}" style="width: 20px;" alt="">
+                                                        <img src="{{ asset('images/fevicon.png') }}"
+                                                            style="width: 20px;" alt="">
                                                         <span class="text-black-50">|</span>
                                                         3/5
                                                     </div>
@@ -71,7 +76,8 @@
                                 <div class="col-md-7 ps-5 align-items-center">
                                     <div class="row">
                                         <div class="col-md-5 align-self-center">
-                                            <img src="{{ asset('cardlogo') }}/{{ $brand->card->logo }}" class="posterImage img-fluid" alt="">
+                                            <img src="{{ asset('cardlogo') }}/{{ $brand->card->logo }}"
+                                                class="posterImage img-fluid" alt="">
                                         </div>
                                         <div class="col-md-7">
                                             {{-- @foreach ($brand->card->cardPortfolio as $portfolio)
@@ -81,9 +87,12 @@
                                             @foreach ($brand->card->cardPortfolio as $key => $portfolio)
                                                 @if ($key === 0)
                                                     <div class="image-container">
-                                                        <img src="{{ url('cardimage/' . $portfolio->image) }}" class="img-fluid main-image" alt="">
+                                                        <img src="{{ url('cardimage/' . $portfolio->image) }}"
+                                                            class="img-fluid main-image" alt="">
 
-                                                        <button class="view-slider-btn btn btn-sm" style="position: absolute; bottom: 55px; left: 87%; transform: translateX(-50%); background-color: rgba(201, 201, 201, 0.9); color: white;">View all images</button>
+                                                        <button class="view-slider-btn btn btn-sm"
+                                                            style="position: absolute; bottom: 55px; left: 87%; transform: translateX(-50%); background-color: rgba(201, 201, 201, 0.9); color: white;">View
+                                                            all images</button>
                                                     </div>
                                                 @endif
                                             @endforeach
@@ -91,21 +100,34 @@
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
-                                                            <div id="imageSlider" class="carousel slide" data-ride="carousel">
+                                                            <div id="imageSlider" class="carousel slide"
+                                                                data-ride="carousel">
                                                                 <div class="carousel-inner">
                                                                     @foreach ($brand->card->cardPortfolio as $key => $portfolio)
                                                                         @if ($key !== 0)
-                                                                            <div class="carousel-item @if ($key === 1) active @endif align-items-center text-center">
-                                                                                <img src="{{ url('cardimage/' . $portfolio->image) }}" class="img-fluid" style="width: 600px; height: 350px" alt="">
+                                                                            <div
+                                                                                class="carousel-item @if ($key === 1) active @endif align-items-center text-center">
+                                                                                <img src="{{ url('cardimage/' . $portfolio->image) }}"
+                                                                                    class="img-fluid"
+                                                                                    style="width: 600px; height: 350px"
+                                                                                    alt="">
                                                                             </div>
                                                                         @endif
                                                                     @endforeach
                                                                 </div>
-                                                                <a class="carousel-control-prev justify-content-start" href="#imageSlider" role="button" data-slide="prev">
-                                                                    <span class="carousel-control-prev-icon bg-secondary py-5" aria-hidden="true"></span>
+                                                                <a class="carousel-control-prev justify-content-start"
+                                                                    href="#imageSlider" role="button"
+                                                                    data-slide="prev">
+                                                                    <span
+                                                                        class="carousel-control-prev-icon bg-secondary py-5"
+                                                                        aria-hidden="true"></span>
                                                                 </a>
-                                                                <a class="carousel-control-next justify-content-end" href="#imageSlider" role="button" data-slide="next">
-                                                                    <span class="carousel-control-next-icon bg-secondary py-5" aria-hidden="true"></span>
+                                                                <a class="carousel-control-next justify-content-end"
+                                                                    href="#imageSlider" role="button"
+                                                                    data-slide="next">
+                                                                    <span
+                                                                        class="carousel-control-next-icon bg-secondary py-5"
+                                                                        aria-hidden="true"></span>
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -145,7 +167,8 @@
                                                 <div class="col-md-6 h-25">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <img src="{{ asset('offerPhoto') }}/{{ $recoff->offerPhoto }}" class="img-fluid w-100 h-100" alt="">
+                                                            <img src="{{ asset('offerPhoto') }}/{{ $recoff->offerPhoto }}"
+                                                                class="img-fluid w-100 h-100" alt="">
 
                                                         </div>
                                                         <div class="col-md-8">
@@ -161,12 +184,16 @@
 
                                                         @if (Auth::user())
                                                             {{-- <a href="{{ route('qrCode') }}/{{ $recoff->id }}" class="btn btn-blue text-white"> Buy Offer +</a> --}}
-                                                            <span class="amount" style="display: none;">{{ $recoff->offerPrice }}</span>
-                                                            <span class="offerId" style="display: none;">{{ $recoff->id }}</span>
+                                                            <span class="amount"
+                                                                style="display: none;">{{ $recoff->offerPrice }}</span>
+                                                            <span class="offerId"
+                                                                style="display: none;">{{ $recoff->id }}</span>
                                                             <br>
-                                                            <button class="btn btn-blue text-white pay" id="buyOffer"> Buy Offer +</button>
+                                                            <button class="btn btn-blue text-white pay"
+                                                                id="buyOffer"> Buy Offer +</button>
                                                         @else
-                                                            <a href="{{ route('login') }}" id="buyOffer" class="btn btn-blue text-white "> Buy Offer +</a>
+                                                            <a href="{{ route('login') }}" id="buyOffer"
+                                                                class="btn btn-blue text-white "> Buy Offer +</a>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -187,7 +214,8 @@
                                                 <div class="col-md-6 h-25">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <img src="{{ asset('offerPhoto') }}/{{ $offer->offerPhoto }}" class="img-fluid w-100 h-100" alt="">
+                                                            <img src="{{ asset('offerPhoto') }}/{{ $offer->offerPhoto }}"
+                                                                class="img-fluid w-100 h-100" alt="">
 
                                                         </div>
                                                         <div class="col-md-8">
@@ -200,11 +228,14 @@
                                                 </div>
                                                 <div class="col-md-6 text-end align-self-center">
                                                     @if (Auth::user())
-                                                        <span class="amount" style="display: none;">{{ $recoff->offerPrice }}</span>
+                                                        <span class="amount"
+                                                            style="display: none;">{{ $recoff->offerPrice }}</span>
                                                         <br>
-                                                        <button class="btn btn-blue text-white pay" id="buyOffer"> Buy Offer +</button>
+                                                        <button class="btn btn-blue text-white pay" id="buyOffer">
+                                                            Buy Offer +</button>
                                                     @else
-                                                        <a href="{{ route('login') }}" id="buyOffer" class="btn btn-blue text-white "> Buy Offer +</a>
+                                                        <a href="{{ route('login') }}" id="buyOffer"
+                                                            class="btn btn-blue text-white "> Buy Offer +</a>
                                                     @endif
                                                     {{-- <a href="{{ route('qrCode') }}/{{ $recoff->id }}" class="btn btn-blue text-white"> Buy Offerdatqa +</a> --}}
 
@@ -227,7 +258,9 @@
                                 <div class="row">
                                     @foreach ($brand->card->cardPortfolio as $photos)
                                         <div class="col-md-4 pt-4">
-                                            <img src="{{ url('cardimage/' . $photos->image) }}" style="width: 300px; height: 200px" class="img-thumbnail" alt="">
+                                            <img src="{{ url('cardimage/' . $photos->image) }}"
+                                                style="width: 300px; height: 200px" class="img-thumbnail"
+                                                alt="">
                                         </div>
                                     @endforeach
                                 </div>
@@ -252,7 +285,9 @@
                                                 Details about the offer
                                             </p>
                                             <div class="input-group">
-                                                <input type="text" class="form-control " style="border: 1px solid #aaa;border-style: dashed; " name="" placeholder="Coupon code">
+                                                <input type="text" class="form-control "
+                                                    style="border: 1px solid #aaa;border-style: dashed; "
+                                                    name="" placeholder="Coupon code">
                                                 <span class="input-group-append">
                                                     <button class="btn btn-blue btn-apply coupon">copy</button>
                                                 </span>
@@ -274,7 +309,9 @@
                                                 Details about the offer
                                             </p>
                                             <div class="input-group">
-                                                <input type="text" class="form-control " style="border: 1px solid #aaa;border-style: dashed; " name="" placeholder="Coupon code">
+                                                <input type="text" class="form-control "
+                                                    style="border: 1px solid #aaa;border-style: dashed; "
+                                                    name="" placeholder="Coupon code">
                                                 <span class="input-group-append">
                                                     <button class="btn btn-blue btn-apply coupon">copy</button>
                                                 </span>
@@ -310,9 +347,13 @@
         @include('extra.homePageFooter')
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -484,6 +525,10 @@
                 // Get all elements with the 'pay-button' class
                 var payButtons = document.querySelectorAll('.pay');
                 console.log('pay', payButtons);
+
+                var currentUrl = window.location.href;
+                console.log('current url', currentUrl);
+                storeCurrentUrl(currentUrl);
                 // Loop through each pay button and attach the click event handler
                 payButtons.forEach(function(button) {
                     button.addEventListener('click', function(e) {
