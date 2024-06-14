@@ -1,0 +1,3992 @@
+{
+	"info": {
+		"_postman_id": "306b7417-f850-46a7-b638-d8a27640645c",
+		"name": "DigitalCard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28882823"
+	},
+	"item": [
+		{
+			"name": "Brand",
+			"item": [
+				{
+					"name": "campaign",
+					"item": [
+						{
+							"name": "brand-campaign-list/UserId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-list/271",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-list",
+										"271"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-store",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "userId",
+											"value": "273",
+											"type": "default"
+										},
+										{
+											"key": "title",
+											"value": "new Campaign",
+											"type": "default"
+										},
+										{
+											"key": "detail",
+											"value": "details details details details details ",
+											"type": "default"
+										},
+										{
+											"key": "price",
+											"value": "1500",
+											"type": "default"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/123.jpg"
+										},
+										{
+											"key": "rule",
+											"value": "rulerulerulerulerulerulerulerulerulerulerule",
+											"type": "default"
+										},
+										{
+											"key": "eligibleCriteria",
+											"value": "15-35",
+											"type": "default"
+										},
+										{
+											"key": "targetGender",
+											"value": "male-female",
+											"type": "default"
+										},
+										{
+											"key": "targetAgeGroup",
+											"value": "15-35",
+											"type": "default"
+										},
+										{
+											"key": "startDate",
+											"value": "2023-05-06",
+											"type": "default"
+										},
+										{
+											"key": "endDate",
+											"value": "2023-06-06",
+											"type": "default"
+										},
+										{
+											"key": "applyForLastDate",
+											"value": "2023-06-07",
+											"type": "default"
+										},
+										{
+											"key": "task",
+											"value": "task1 task2 task3",
+											"type": "default"
+										},
+										{
+											"key": "maxApplication",
+											"value": "15",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-store",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-store"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-edit/id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "new Campaign",
+											"type": "default"
+										},
+										{
+											"key": "detail",
+											"value": "details details details details details ",
+											"type": "default"
+										},
+										{
+											"key": "price",
+											"value": "1500",
+											"type": "default"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/123.jpg"
+										},
+										{
+											"key": "rule",
+											"value": "rulerulerulerulerulerulerulerulerulerulerule",
+											"type": "default"
+										},
+										{
+											"key": "eligibleCriteria",
+											"value": "15-35",
+											"type": "default"
+										},
+										{
+											"key": "targetGender",
+											"value": "male-female",
+											"type": "default"
+										},
+										{
+											"key": "targetAgeGroup",
+											"value": "15-35",
+											"type": "default"
+										},
+										{
+											"key": "startDate",
+											"value": "2023-05-06",
+											"type": "default"
+										},
+										{
+											"key": "endDate",
+											"value": "2023-06-06",
+											"type": "default"
+										},
+										{
+											"key": "applyForLastDate",
+											"value": "2023-06-07",
+											"type": "default"
+										},
+										{
+											"key": "task",
+											"value": "task1 task2 task3",
+											"type": "default"
+										},
+										{
+											"key": "maxApplication",
+											"value": "15",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-edit/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-edit",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-delete/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-delete/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-delete",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Campaign Step",
+					"item": [
+						{
+							"name": "brand-campaign-step-list/brandUserId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-step-list/271",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-step-list",
+										"271"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-step-store",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "campaignId",
+											"value": "4",
+											"type": "default"
+										},
+										{
+											"key": "title",
+											"value": "new steps",
+											"type": "default"
+										},
+										{
+											"key": "detail",
+											"value": "ancvancancanc",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-step-store",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-step-store"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-step-edit/id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "campaignId",
+											"value": "4",
+											"type": "default"
+										},
+										{
+											"key": "title",
+											"value": "new updated step",
+											"type": "default"
+										},
+										{
+											"key": "detail",
+											"value": "new updated details",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-step-edit/6",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-step-edit",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-step-delete/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-step-delete/6",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-step-delete",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "appliers",
+					"item": [
+						{
+							"name": "brand-campaign-appliers/brandId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-appliers/271",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-appliers",
+										"271"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-applier-approval/campaignId/userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-applier-approval/3/270",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-applier-approval",
+										"3",
+										"270"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-applier-onHold/campaignId/userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-applier-onHold/3/270",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-applier-onHold",
+										"3",
+										"270"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-applier-rejected/campaignId/userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-applier-rejected/3/270",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-applier-rejected",
+										"3",
+										"270"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-applier-content/campaignId/userId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-applier-content/1/270",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-applier-content",
+										"1",
+										"270"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-applier-content-approval/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-applier-content-approval/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-applier-content-approval",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-applier-content-pending/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-applier-content-pending/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-applier-content-pending",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-campaign-applier-content-rejected/Id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "remark",
+											"value": "bakwas",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/brand-campaign-applier-content-rejected/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"brand-campaign-applier-content-rejected",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "brand-influencer-followed-step/campaignId/influencerId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/influencer-steps/4/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"influencer-steps",
+										"4",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "influencer",
+			"item": [
+				{
+					"name": "steps",
+					"item": [
+						{
+							"name": "influencer-campaign-step/campaignId",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "campaignId",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "influencerId",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "stepId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "uploadActivityPhoto",
+											"type": "file",
+											"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/desktop-wallpaper-☁︎☁︎default-pfp∙nagisa∙-default-boy-pfp.jpg"
+										},
+										{
+											"key": "uploadActivityLink",
+											"value": "google.com/",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/influencer-campaign-step",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"influencer-campaign-step"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "influencer-campaign-stepList/campaignId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/influencer-campaign-stepList/4",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"influencer-campaign-stepList",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "influencer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/influencer",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"influencer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Influencer-Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/influencer-category",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"influencer-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "influencer-profile/userId",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobileno",
+									"value": "9876543210",
+									"type": "default"
+								},
+								{
+									"key": "address",
+									"value": "new address",
+									"type": "default"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "profilePhoto",
+									"type": "file",
+									"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/desktop-wallpaper-the-best-16-default-pfp-aesthetic-kidcore-pfp-icon.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/influencer-profile/270",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"influencer-profile",
+								"270"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "influencer-portfolio-store/userId",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userId",
+									"value": "270",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/ad.4165ebedd1efc48251b9.png"
+								},
+								{
+									"key": "type",
+									"value": "image",
+									"type": "default"
+								},
+								{
+									"key": "details",
+									"value": "new image from api",
+									"type": "default"
+								},
+								{
+									"key": "title",
+									"value": "image 3",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/influencer-portfolio-store/270",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"influencer-portfolio-store",
+								"270"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "brand-list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/brand-list",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"brand-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "influencer-campaign-apply",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userId",
+									"value": "272",
+									"type": "default"
+								},
+								{
+									"key": "campaignId",
+									"value": "4",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/influencer-campaign-apply",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"influencer-campaign-apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "influencer-campaign-list/userId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/influencer-campaign-list/270",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"influencer-campaign-list",
+								"270"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "influencer-campaign-content-store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "campaignId",
+									"value": "4",
+									"type": "default"
+								},
+								{
+									"key": "userId",
+									"value": "270",
+									"type": "default"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/defaultslider.png"
+								},
+								{
+									"key": "fileType",
+									"value": "Photo",
+									"description": "Photo/Video",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/influencer-campaign-content-store",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"influencer-campaign-content-store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "influencer-campaign-content-view/userId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/influencer-campaign-content-view/270",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"influencer-campaign-content-view",
+								"270"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "rudrikadave20226@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Prakash",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "raks23212222",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "raka14174@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "Business",
+							"description": "Individual/Business",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "categorytext",
+							"value": "Shopping1111",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "refer",
+							"value": "Rudrika3",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobileno",
+							"value": "9876543210",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sendotp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "ram",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "ram",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "ram123@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "6",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "categorytext",
+							"value": "Shopping",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8849683644",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/sendotp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sendotp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkotp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mobile",
+							"value": "9924962042",
+							"type": "text"
+						},
+						{
+							"key": "otp",
+							"value": "660774",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://brandbeans.biz/api/checkotp",
+					"protocol": "http",
+					"host": [
+						"brandbeans",
+						"biz"
+					],
+					"path": [
+						"api",
+						"checkotp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginWithPin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mobileno",
+							"value": "8849683644",
+							"type": "default"
+						},
+						{
+							"key": "pin",
+							"value": "123456",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/loginWithPin",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"loginWithPin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "changepassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "oldpassword",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "newpassword",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/changepassword",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"changepassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "forgotpassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "rudrika@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/forgotpassword",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"forgotpassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatepassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "rudrika@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/updatepassword",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"updatepassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cardview",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cardview/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cardview",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cardedit/id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_id",
+							"value": "27",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Kashyap ",
+							"type": "text"
+						},
+						{
+							"key": "heading",
+							"value": "CEO",
+							"type": "text"
+						},
+						{
+							"key": "companyname",
+							"value": "ABCF PVT. LTD",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Ahmedabad",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Gujarat",
+							"type": "text"
+						},
+						{
+							"key": "about",
+							"value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "5 years",
+							"type": "text"
+						},
+						{
+							"key": "logo",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/desktop-wallpaper-☁︎☁︎default-pfp∙nagisa∙-default-boy-pfp.jpg"
+						},
+						{
+							"key": "profilePhoto",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/85498161615209203_1636332751.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cardedit",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cardedit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "portfolioview",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/portfolioview/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"portfolioview",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "portfoliostore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"card_id\": \"16\",\r\n        \"type\": \"Image\",\r\n        \"image\": \"1674713416.jpg\",\r\n        \"updated_at\": \"2023-01-26T06:10:16.000000Z\",\r\n        \"created_at\": \"2023-01-26T06:10:16.000000Z\",\r\n        \"id\": 90\r\n    }"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/portfoliostore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"portfoliostore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "portfoliodelete/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/portfoliodelete/22",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"portfoliodelete",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "serviceview",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/serviceview/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"serviceview",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "servicestore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Service",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/istockphoto-1208175274-612x612.jpg"
+						},
+						{
+							"key": "description",
+							"value": "Graphic design is the art of communication, stylizing, and problem-solving through the use of type, space and image.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/servicestore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"servicestore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "serviceedit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Service Details",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/3d667893c5788613ff3590ca218a9cb2.jpg"
+						},
+						{
+							"key": "description",
+							"value": "Graphic design is the art of communication, stylizing, and problem-solving through the use of type, space and image.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/serviceedit/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"serviceedit",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "servicedelete/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/servicedelete/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"servicedelete",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mediaedit/id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mediaType",
+							"value": "Video",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "sourcePath",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/resort.jpeg"
+						},
+						{
+							"key": "isPremium",
+							"value": "yes",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Birthday",
+							"type": "text"
+						},
+						{
+							"key": "previewPath",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/istockphoto-1208175274-612x612.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/mediaedit/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"mediaedit",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categorylist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/categorylist",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categorylist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "linksview/card_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/linksview/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"linksview",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "linksedit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "phone1",
+							"value": "999988881",
+							"type": "text"
+						},
+						{
+							"key": "phone2",
+							"value": "6666667778",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "daverudrika90203@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "skype",
+							"value": "live:.cid.5d8b10f7714273d2",
+							"type": "text"
+						},
+						{
+							"key": "facebook",
+							"value": "https://www.facebook.com/profile.php?id=100035319137696",
+							"type": "text"
+						},
+						{
+							"key": "instagram",
+							"value": "https://www.instagram.com/",
+							"type": "text"
+						},
+						{
+							"key": "twitter",
+							"value": "https://twitter.com/i/flow/login",
+							"type": "text"
+						},
+						{
+							"key": "youtube",
+							"value": "@rudrikadave",
+							"type": "text"
+						},
+						{
+							"key": "linkedin",
+							"value": "linkedin",
+							"type": "text"
+						},
+						{
+							"key": "website",
+							"value": "www.perfettosolutions.in",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/linksedit",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"linksedit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "linksdelete/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/linksdelete/26",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"linksdelete",
+						"26"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "paymentview/card_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/paymentview/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"paymentview",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "paymentedit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"card_id\": 332,\r\n    \"bankName\": \"HDFC\",\r\n    \"accountHolderName\": \"Rahi Patel\",\r\n    \"accountNumber\": \"32168746146519876q\",\r\n    \"accountType\": \"Saving\",\r\n    \"ifscCode\": \"hdfc31684321686\",\r\n    \"upidetail\": \"abcbdcv@paytm\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/paymentedit",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"paymentedit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "qrview/card_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/qrview/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"qrview",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "qrstore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "Pay",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "9584763210",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/85498161615209203_1636332751.jpg"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/qrstore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"qrstore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "broview/card_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/broview/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"broview",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "brostore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cardId",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "brochure",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/246770646_118034697322759_4856074563645955824_n.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/brostore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"brostore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categorymedia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "197",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/categorymedia",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categorymedia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categorymedia With Paginate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "13",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/categorymediaWithPaginate?paginate=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categorymediaWithPaginate"
+					],
+					"query": [
+						{
+							"key": "paginate",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nonebusinesscategory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "paginate",
+							"value": "5",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/nonebusinesscategory",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"nonebusinesscategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isbusinesscategory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "paginate",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "perPage",
+							"value": "2",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/isbusinesscategorywithpaginate",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"isbusinesscategorywithpaginate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "qrdelete/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/qrdelete/10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"qrdelete",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "brodelete/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/brodelete/11",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"brodelete",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "templateview",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/templateview",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"templateview"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "feedview/cardid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/feedview/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"feedview",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "feedstore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Rajvi",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "rajvi@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "this is very good site",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/feedstore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"feedstore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nonebusinesscategorysearch",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "Art",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/nonebusinesscategorysearch",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"nonebusinesscategorysearch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "storemedia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "categoryId",
+							"value": "7",
+							"type": "text"
+						},
+						{
+							"key": "media",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/85498161615209203_1636332751.jpg"
+						},
+						{
+							"key": "date",
+							"value": "2023/1/18",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/storemedia",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"storemedia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "festivalCategory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/festivalCategory",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"festivalCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mediaDownload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "5",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/mediaDownload",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"mediaDownload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProfile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "name",
+							"value": "RUDRIKA DAVE",
+							"type": "default"
+						},
+						{
+							"key": "mobileno",
+							"value": "9999999999",
+							"type": "default"
+						},
+						{
+							"key": "profilePhoto",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/3d667893c5788613ff3590ca218a9cb2.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/updateProfile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"updateProfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "subscriptiondetail/id?",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/subscriptiondetail",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"subscriptiondetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categorywithoutbussiness",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "27",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/categorywithoutbussiness",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categorywithoutbussiness"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userpackage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "3",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/userpackage",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"userpackage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categorymaster?keyword",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "keyword",
+							"value": "other",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/categorymaster?keyword=Other",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categorymaster"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "Other"
+						},
+						{
+							"key": "name",
+							"value": "today",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "website",
+							"value": "perfettosolutions.in",
+							"type": "default"
+						},
+						{
+							"key": "mobileno",
+							"value": "9999999990",
+							"type": "default"
+						},
+						{
+							"key": "logo",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/images (2).jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/updateUser",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"updateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "today?name=today",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/today?name=Today's Specials",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"today"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Today's Specials"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isbusinesscategory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "3",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/isbusinesscategory",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"isbusinesscategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isbusinesscategory with pagination",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "paginate",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "perPage",
+							"value": "2",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://brandbeans.biz/api/isbusinesscategorywithpaginate?paginate=5",
+					"protocol": "http",
+					"host": [
+						"brandbeans",
+						"biz"
+					],
+					"path": [
+						"api",
+						"isbusinesscategorywithpaginate"
+					],
+					"query": [
+						{
+							"key": "paginate",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nonebusinesscategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/nonebusinesscategory",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"nonebusinesscategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nonebusinesscategory with Pagination",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "paginate",
+							"value": "5",
+							"type": "default"
+						},
+						{
+							"key": "perPage",
+							"value": "2",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/nonebusinesscategorywithpaginate",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"nonebusinesscategorywithpaginate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categorylistdatenull",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/categorylistdatenull",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categorylistdatenull"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categorylistdatenull with pagination",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "paginate",
+							"value": "1",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/categorylistdatenullwithpagination?paginate=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categorylistdatenullwithpagination"
+					],
+					"query": [
+						{
+							"key": "paginate",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "paymentDetails",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "7",
+							"type": "default"
+						},
+						{
+							"key": "paymentId",
+							"value": "pay_L7yy1sLqCAHsFE",
+							"type": "default"
+						},
+						{
+							"key": "amount",
+							"value": "999",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://brandbeans.biz/api/paymentDetails",
+					"protocol": "http",
+					"host": [
+						"brandbeans",
+						"biz"
+					],
+					"path": [
+						"api",
+						"paymentDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "banner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/banner",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"banner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bannerstore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg"
+						},
+						{
+							"key": "sequence",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/bannerstore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"bannerstore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mediavideo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/mediavideo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"mediavideo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refer and Earn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "129",
+							"type": "default"
+						},
+						{
+							"key": "type",
+							"value": "free",
+							"description": "type is not compulsory (Use \" free \" & \" paid \") for type",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/refer",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"refer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "homeCategorySlider",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/homeCategorySlider",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"homeCategorySlider"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "referpoints",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/referpoints",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"referpoints"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "slider",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/slider",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"slider"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sliderstore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/perfe/Downloads/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/sliderstore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sliderstore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/order",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "orderstore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Rudrika",
+							"type": "default"
+						},
+						{
+							"key": "address",
+							"value": "Surendranagar",
+							"type": "default"
+						},
+						{
+							"key": "city",
+							"value": "surendranagar",
+							"type": "default"
+						},
+						{
+							"key": "contact",
+							"value": "9999999999",
+							"type": "default"
+						},
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/orderstore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orderstore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "viewcart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/viewcart",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"viewcart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addtocart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "card_id",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "product_id",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/addtocart",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"addtocart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removecart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cartId",
+							"value": "9",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/removecart",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"removecart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "offer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/offer",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"offer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "typeview",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/typeview",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"typeview"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notificationstore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "contactName",
+							"value": "rudrika",
+							"type": "default"
+						},
+						{
+							"key": "contactNumber",
+							"value": "9999999999",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2000-03-31",
+							"type": "default"
+						},
+						{
+							"key": "birthdayphoto",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/8c70a3d56238c05550ad1f95dc9c0f89.jpg"
+						},
+						{
+							"key": "anniversaryDate",
+							"value": "2020-03-31",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "anniversaryPhoto",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/85498161615209203_1636332751.jpg",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/notificationstore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notificationstore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notificationview/userId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/notificationview/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notificationview",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "typedetailview/typeId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "typeId",
+							"value": "1",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/typedetailview/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"typedetailview",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "homescreencategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/homescreencategory",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"homescreencategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notificationdata",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "arpita",
+							"type": "default"
+						},
+						{
+							"key": "contact",
+							"value": "985697585",
+							"type": "default"
+						},
+						{
+							"key": "type",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "date",
+							"value": "2023-02-09",
+							"type": "default"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/perfe/OneDrive/Pictures/Saved Pictures/85498161615209203_1636332751.jpg"
+						},
+						{
+							"key": "userId",
+							"value": "3",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/notificationdata",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notificationdata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notificationdataview",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "3",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/notificationdataview",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notificationdataview"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "coupon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/coupon",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"coupon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "coupon/check",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "code",
+							"value": "50BRANDBEAND",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/coupon/check",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"coupon",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "package/check",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "packageId",
+							"value": "5",
+							"type": "default"
+						},
+						{
+							"key": "couponId",
+							"value": "2",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/package/check",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"package",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

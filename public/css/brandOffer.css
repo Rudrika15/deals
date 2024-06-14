@@ -1,0 +1,540 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap");
+
+:root {
+    --lightblue: #00b9f0;
+    --blue: #012e6f;
+    --white: #fff;
+    --gray1: #333;
+
+}
+
+
+.searchbutton {
+    background-color: var(--lightblue);
+    color: var(--white);
+}
+
+.searchbutton:hover {
+    color: var(--white);
+    background-color: var(--blue);
+}
+
+
+
+/* .categoryName {
+    color: var(--gray1);
+    font-weight: 600;
+    font-size: 13px;
+
+} */
+
+
+.categoryIcon {
+
+    /* filter: opacity(0.7); */
+    width: 40%;
+    margin-bottom: 1rem;
+    /* transition: filter 0.1s ease-in-out; */
+}
+
+
+
+
+
+.categoryAnchor:hover {
+    filter: none;
+}
+
+.categoryName {
+    font-family: "Dancing Script", cursive;
+    font-size: 13px;
+    color: var(--gray1);
+    position: relative;
+}
+
+.categoryName::after {
+    position: absolute;
+    content: "";
+    width: 0%;
+    height: 1px;
+    background-color: var(--lightblue);
+    left: 50%;
+    bottom: -10px;
+    transition: all 0.4s ease-in-out;
+}
+
+.categorySection:hover .categoryName::after {
+    width: 100%;
+    left: 0;
+}
+
+.categorySection {
+    filter: opacity(0.7);
+    width: 40%;
+    margin-bottom: 1rem;
+    transition: filter 0.1s ease-in-out;
+}
+
+.categorySection:hover {
+    filter: none;
+}
+
+
+.categorySection:hover {}
+
+.offerPhoto {
+    width: 250px;
+    height: 140px;
+    border: #fff solid 1px;
+    border-radius: 50px;
+}
+
+
+
+/* brand logo section */
+
+/* Slider */
+
+.slick-slide {
+    margin: 0px 30px;
+}
+
+.slick-slide img {
+    width: 100%;
+    /* width: 120px; */
+    height: 133px;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    mix-blend-mode: lighten;
+}
+
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.slick-list:focus {
+    outline: none;
+}
+
+.slick-list.dragging {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+.slick-track:before,
+.slick-track:after {
+    display: table;
+    content: '';
+}
+
+.slick-track:after {
+    clear: both;
+}
+
+.slick-loading .slick-track {
+    visibility: hidden;
+}
+
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+[dir='rtl'] .slick-slide {
+    float: right;
+}
+
+.slick-slide img {
+    display: block;
+}
+
+.slick-slide.slick-loading img {
+    display: none;
+}
+
+.slick-slide.dragging img {
+    pointer-events: none;
+}
+
+.slick-initialized .slick-slide {
+    display: block;
+}
+
+.slick-loading .slick-slide {
+    visibility: hidden;
+}
+
+.slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+    display: none;
+}
+
+.border-primary {
+    border-color: var(--blue) !important;
+}
+
+.border-dark {
+    border-color: black !important;
+}
+
+.border-secondary {
+    border-color: #fd9900 !important;
+}
+
+.border-success {
+    border-color: #33316a !important;
+}
+
+.border-warning {
+    border-color: #9f015a !important;
+}
+
+/* end  */
+
+
+
+/* home slider */
+
+
+.list {
+    width: 50rem;
+    height: 10rem;
+    background: #fff;
+    display: inline-block;
+    text-align: center;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin: 7rem 2rem 0 2rem;
+    cursor: pointer;
+}
+
+#menu {
+    /* position: relative; */
+    width: 100%;
+    /* height: 26rem; */
+    top: 1rem;
+    border-radius: 5rem;
+}
+
+#cards {
+    width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    left: 10%;
+    bottom: 60px;
+}
+
+.list p {
+    width: 300px hidden;
+}
+
+#prev {
+    display: inline-block;
+    position: absolute;
+    left: 2%;
+    cursor: pointer;
+    font-size: 60px;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+
+}
+
+#next {
+    display: inline-block;
+    position: absolute;
+    right: 2%;
+    cursor: pointer;
+    font-size: 60px;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+}
+
+#prev,
+#next {
+    margin-top: 5rem;
+    color: #aaaaaa;
+}
+
+@media (max-width: 1026px) {
+    #menu {
+        width: 95%;
+        height: 22rem;
+        top: 0.5rem;
+        margin: 0 2% 0 2%;
+    }
+
+    .list {
+        width: 17rem;
+        height: 17rem;
+        background: #e5e5e5;
+        display: inline-block;
+        text-align: center;
+        border-radius: 5%;
+        position: relative;
+        overflow: hidden;
+        margin: 6rem 1rem 0 1rem;
+    }
+
+    #prev,
+    #next {
+        margin-top: 9.5rem;
+    }
+}
+
+/* end */
+
+
+
+/* brand cards */
+
+
+.card:hover {
+    transform: scale(1.1, 1.1);
+    box-shadow: 2px 2px 3px 5px rgba(211, 211, 211, 0.25),
+        -2px -2px 3px 5px rgba(196, 196, 196, 0.22);
+}
+
+
+
+/* end */
+
+
+
+
+/* bottom card slider */
+.slide-container {
+    max-width: 1120px;
+    width: 100%;
+    padding: 40px 0;
+    align-items: center;
+}
+
+.slide-content {
+    margin: 0 40px;
+    overflow: hidden;
+}
+
+.card {
+    background-color: #FFF;
+}
+
+.image-content,
+.card-content {
+    flex-direction: column;
+
+    padding: 10px 14px;
+}
+
+
+.card-image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: #FFF;
+    padding: 3px;
+}
+
+.card-image .card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #4070F4;
+}
+
+.card-imgs {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #4070F4;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.description {
+    font-size: 14px;
+    color: #707070;
+    text-align: center;
+}
+
+.button {
+    border: none;
+    font-size: 16px;
+    color: #FFF;
+    padding: 8px 16px;
+    background-color: #4070F4;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: #265DF2;
+}
+
+.swiper-navBtn {
+    color: #6E93f7;
+    transition: color 0.3s ease;
+}
+
+.swiper-navBtn:hover {
+    color: #4070F4;
+}
+
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+    font-size: 35px;
+}
+
+.swiper-button-next {
+    right: 0;
+}
+
+.swiper-button-prev {
+    left: 0;
+}
+
+.swiper-button-next-coupon {
+    right: 0;
+}
+
+.swiper-button-prev-coupon {
+    left: 0;
+}
+
+.swiper-pagination-bullet {
+    background-color: #6E93f7;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #4070F4;
+}
+
+@media screen and (max-width: 768px) {
+    .slide-content {
+        margin: 0 10px;
+    }
+
+    .swiper-navBtn {
+        display: none;
+    }
+}
+
+/* end */
+
+
+/* bottom slider */
+
+.MultiCarousel {
+    float: left;
+    overflow: hidden;
+    padding: 15px;
+    width: 100%;
+    position: relative;
+}
+
+.MultiCarousel .MultiCarousel-inner {
+    transition: 1s ease all;
+    float: left;
+}
+
+.MultiCarousel .MultiCarousel-inner .item {
+    float: left;
+
+}
+
+.MultiCarousel .MultiCarousel-inner .item>div {
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    background: #f1f1f1;
+    color: #666;
+}
+
+.MultiCarousel .leftLst,
+.MultiCarousel .rightLst {
+    position: absolute;
+    border-radius: 50%;
+    top: calc(50% - 20px);
+}
+
+/******* Bnt Full********
+.MultiCarousel .leftLst, .MultiCarousel .rightLst {
+    position: absolute;
+    border-radius: 50%; 
+    height: 80%;
+    top: 24px;
+}**/
+
+.MultiCarousel .leftLst {
+    left: 0;
+}
+
+.MultiCarousel .rightLst {
+    right: 0;
+}
+
+.MultiCarousel .leftLst.over,
+.MultiCarousel .rightLst.over {
+    pointer-events: none;
+    background: #ccc;
+}
+
+/* end */

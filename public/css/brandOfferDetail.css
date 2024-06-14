@@ -1,0 +1,92 @@
+:root {
+    --lightblue: #00b9f0;
+    /* --lightblue: rgb(0, 185, 240); */
+    --blue: #012e6f;
+    --white: #fff;
+    --gray1: #333;
+
+}
+
+/* side slider  */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+
+
+#slider {
+    position: relative;
+    object-fit: contain;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+    border-radius: 4px;
+}
+
+#slider ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    /* height: 200px; */
+    list-style: none;
+}
+
+#slider ul li {
+    position: relative;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    height: 227px;
+    background: var(--white);
+    /* text-align: center; */
+    /* line-height: 300px; */
+}
+
+a.control_prev,
+a.control_next {
+    position: absolute;
+    top: 40%;
+    z-index: 999;
+    display: block;
+    padding: 4% 3%;
+    width: auto;
+    height: auto;
+    background: #dadada;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+a.control_prev:hover,
+a.control_next:hover {
+    opacity: 0.1;
+    -webkit-transition: all 0.2s ease;
+}
+
+a.control_prev {
+    border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+    right: 0;
+    border-radius: 2px 0 0 2px;
+}
+
+
+/* button blue */
+
+.btn-blue {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.btn-blue:hover {
+    background-color: var(--lightblue);
+    color: var(--white);
+}
+
+.cards {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+}
