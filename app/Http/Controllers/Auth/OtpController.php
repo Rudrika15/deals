@@ -95,6 +95,7 @@ class OtpController extends Controller
     {
         try {
             $otp  = $request->otp;
+
             // check otp
             $otptab = Otp::where('otp', '=', $otp)
                 // ->where('mobileno', '=', $mobileno)
@@ -138,7 +139,10 @@ class OtpController extends Controller
                         //     return redirect("/");
                         // }
                     } else {
+
+
                         session_start();
+
                         $_SESSION['mobileno'] = $mobileno;
 
                         return \redirect('register');

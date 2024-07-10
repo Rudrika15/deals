@@ -9,7 +9,8 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,15 +89,18 @@
                                     <div class="carousel-inner">
                                         @foreach ($slider as $slider)
                                             <div class="carousel-item active">
-                                                <img src="{{ asset('slider') }}/{{ $slider->file }}" class="d-block w-100" style="height: 300px;" alt="...">
+                                                <img src="{{ asset('slider') }}/{{ $slider->file }}"
+                                                    class="d-block w-100" style="height: 300px;" alt="...">
                                             </div>
                                         @endforeach
                                     </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
@@ -106,7 +110,8 @@
                                     <div class="carousel-inner">
 
                                         <div class="carousel-item active">
-                                            <img class="d-block w-100" src="{{ asset('asset/img/slider5.png') }}" alt="Image">
+                                            <img class="d-block w-100" src="{{ asset('asset/img/slider5.png') }}"
+                                                alt="Image">
                                         </div>
                                         <!-- <div class="carousel-item active">
                                         <img class="d-block w-100" src="{{ asset('asset/img/slider2.jpg') }}" alt="Image">
@@ -116,11 +121,13 @@
                                     </div> -->
 
                                     </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
@@ -130,12 +137,17 @@
                         <div>
                             <div class="text-center ovrlp text-center">
                                 @if ($user->profilePhoto)
-                                    <img src="{{ url('profile') }}/{{ $user->profilePhoto }}" style="width: 180px; height:180px;" class="img-fluid rounded-circle main-img" alt="Logo">
+                                    <img src="{{ url('profile') }}/{{ $user->profilePhoto }}"
+                                        style="width: 180px; height:180px;" class="img-fluid rounded-circle main-img"
+                                        alt="Logo">
                                 @else
-                                    <img src="{{ asset('asset/img/default.jpg') }}" style="width: 180px; height:180px;" alt="Your Profile" title="Your Profile" class="img-fluid rounded-circle main-img">
+                                    <img src="{{ asset('asset/img/default.jpg') }}" style="width: 180px; height:180px;"
+                                        alt="Your Profile" title="Your Profile"
+                                        class="img-fluid rounded-circle main-img">
                                 @endif
                                 <h2 class="mt-3">{{ $cards->name }}</h2>
-                                <img src="{{ url('cardlogo') }}/{{ $cards->logo }}" alt="logo" title="company logo" style="height: 50px;">
+                                <img src="{{ url('cardlogo') }}/{{ $cards->logo }}" alt="logo"
+                                    title="company logo" style="height: 50px;">
                                 <h4>{{ $cards->heading }}</h4>
                             </div>
 
@@ -182,7 +194,8 @@
                                     </div>
                                 </a>
 
-                                <a href="mailto:{{ $user->email }}" target="_blank" class="text-decoration-none text-dark">
+                                <a href="mailto:{{ $user->email }}" target="_blank"
+                                    class="text-decoration-none text-dark">
                                     <div class="border mt-3">
                                         <div class="row p-2 align-items-center">
                                             <div class="col-3 text-center">
@@ -196,7 +209,8 @@
                                     </div>
                                 </a>
 
-                                <a href="https://{{ $web->website }}" target="_blank" class="text-decoration-none text-dark">
+                                <a href="https://{{ $web->website }}" target="_blank"
+                                    class="text-decoration-none text-dark">
                                     <div class="border mt-3">
                                         <div class="row p-2 align-items-center">
                                             <div class="col-3 text-center">
@@ -219,11 +233,14 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne">
                                         <b>About</b>
                                     </button>
                                 </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <dl>
                                             <b>Company name :</b>
@@ -238,29 +255,41 @@
                                             @endif
                                             <b></b>
                                             <br>
-                                            <b>About Us:</b>
-                                            <span class="text-justify text-break">{{ $cards->about }}</span>
+                                            <div class="d-flex">
+                                                <b class="me-1">About Us:</b>
+                                                <span class="text-justify text-break"> {!! $cards->about !!} </span>
+                                            </div>
                                             <br>
                                             <b class="text-center">Links :</b>
                                             <span class="d-flex justify-content-between mt-3">
                                                 <div>
-                                                    <a class="text-decoration-none text-dark" href="{{ $links->facebook }}" target="_blank"><i class="fa-brands fa-square-facebook fa-xl"></i></a>
+                                                    <a class="text-decoration-none text-dark"
+                                                        href="{{ $links->facebook }}" target="_blank"><i
+                                                            class="fa-brands fa-square-facebook fa-xl"></i></a>
                                                 </div>
 
                                                 <div>
-                                                    <a class="text-decoration-none text-dark" href="{{ $links->instagram }}" target="_blank"><i class="fa-brands fa-square-instagram fa-xl"></i></a>
+                                                    <a class="text-decoration-none text-dark"
+                                                        href="{{ $links->instagram }}" target="_blank"><i
+                                                            class="fa-brands fa-square-instagram fa-xl"></i></a>
                                                 </div>
 
                                                 <div>
-                                                    <a class="text-decoration-none text-dark" href="{{ $links->twitter }}" target="_blank"><i class="fa-brands fa-square-twitter fa-xl"></i></a>
+                                                    <a class="text-decoration-none text-dark"
+                                                        href="{{ $links->twitter }}" target="_blank"><i
+                                                            class="fa-brands fa-square-twitter fa-xl"></i></a>
                                                 </div>
 
                                                 <div>
-                                                    <a class="text-decoration-none text-dark" href="{{ $links->linkedin }}" target="_blank"><i class="fa-brands fa-linkedin fa-xl"></i></a>
+                                                    <a class="text-decoration-none text-dark"
+                                                        href="{{ $links->linkedin }}" target="_blank"><i
+                                                            class="fa-brands fa-linkedin fa-xl"></i></a>
                                                 </div>
 
                                                 <div>
-                                                    <a class="text-decoration-none text-dark" href="{{ $links->skype }}" target="_blank"><i class=" fa-brands fa-skype fa-xl"></i></a>
+                                                    <a class="text-decoration-none text-dark"
+                                                        href="{{ $links->skype }}" target="_blank"><i
+                                                            class=" fa-brands fa-skype fa-xl"></i></a>
                                                 </div>
                                             </span>
                                         </dl>
@@ -270,11 +299,14 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
                                         <b>Services</b>
                                     </button>
                                 </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <h4 class="text-center">Services</h4>
                                         <?php
@@ -295,22 +327,30 @@
                                                 @if ($count % 2 == 0)
                                                     <div class="row mt-3">
                                                         <div class="col-md-8">
-                                                            <h5 class="fw-bold"><span style="color: #002E6E"> {{ $service->title }} </span></h5>
-                                                            <p class="" style="text-align: justify;">{{ $service->description }}</p>
+                                                            <h5 class="fw-bold"><span style="color: #002E6E">
+                                                                    {{ $service->title }} </span></h5>
+                                                            <p class="" style="text-align: justify;">
+                                                                {{ $service->description }}</p>
                                                         </div>
                                                         <div class="col-md-4 pt-3">
-                                                            <img src="{{ url('servicedetailimg') }}/{{ $service->photo }}" style="width: 150px;" alt="img" class=" serviceimg">
+                                                            <img src="{{ url('servicedetailimg') }}/{{ $service->photo }}"
+                                                                style="width: 150px;" alt="img"
+                                                                class=" serviceimg">
                                                         </div>
                                                     </div>
                                                     <hr>
                                                 @else
                                                     <div class="row mt-3">
                                                         <div class="col-md-4 pt-3">
-                                                            <img src="{{ url('servicedetailimg') }}/{{ $service->photo }}" style="width: 150px;" alt="img" class=" serviceimg">
+                                                            <img src="{{ url('servicedetailimg') }}/{{ $service->photo }}"
+                                                                style="width: 150px;" alt="img"
+                                                                class=" serviceimg">
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h5 class="fw-bold"><span style="color: #002E6E"> {{ $service->title }} </span></h5>
-                                                            <p class="" style="text-align: justify;">{{ $service->description }}</p>
+                                                            <h5 class="fw-bold"><span style="color: #002E6E">
+                                                                    {{ $service->title }} </span></h5>
+                                                            <p class="" style="text-align: justify;">
+                                                                {{ $service->description }}</p>
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -325,11 +365,14 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                        aria-expanded="false" aria-controls="collapseThree">
                                         <b>Payments</b>
                                     </button>
                                 </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <dl>
                                             @if (count($payment) != 0)
@@ -353,7 +396,9 @@
                                                         @foreach ($qrno as $qrnos)
                                                             <div class="col-md-4">
                                                                 <dd>-{{ $qrnos->type }}</dd>
-                                                                <dd><img src="{{ url('QRcodes') }}/{{ $qrnos->code }}" alt="" style="height: 100px; width: 100px;"></dd>
+                                                                <dd><img src="{{ url('QRcodes') }}/{{ $qrnos->code }}"
+                                                                        alt=""
+                                                                        style="height: 100px; width: 100px;"></dd>
                                                                 <dd>{{ $qrnos->number }}</dd>
 
                                                             </div>
@@ -383,11 +428,14 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                        aria-expanded="false" aria-controls="collapseFour">
                                         <b>Gallery</b>
                                     </button>
                                 </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                <div id="collapseFour" class="accordion-collapse collapse"
+                                    aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="row">
                                             @if (count($gallery) != 0)
@@ -396,9 +444,16 @@
                                                         <div class="text-center">
                                                             @if ($item->type == 'Photo')
                                                                 @if (isset($item->image))
-                                                                    <img src="{{ url('cardimage') }}/{{ $item->image }}" class="" height="200px" width="200px" data-bs-toggle="modal" data-bs-target="#lightbox" data-bs-slide-to="{{ $loop->index }}" alt="Image">
+                                                                    <img src="{{ url('cardimage') }}/{{ $item->image }}"
+                                                                        class="" height="200px" width="200px"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#lightbox"
+                                                                        data-bs-slide-to="{{ $loop->index }}"
+                                                                        alt="Image">
                                                                 @else
-                                                                    <img src="{{ asset('asset/img/default.jpg') }}" class="" height="200px" width="200px" alt="Placeholder Image">
+                                                                    <img src="{{ asset('asset/img/default.jpg') }}"
+                                                                        class="" height="200px" width="200px"
+                                                                        alt="Placeholder Image">
                                                                 @endif
                                                             @endif
                                                         </div>
@@ -418,11 +473,14 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseFive"
+                                        aria-expanded="false" aria-controls="collapseFive">
                                         <b>Feedback</b>
                                     </button>
                                 </h2>
-                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                <div id="collapseFive" class="accordion-collapse collapse"
+                                    aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <form class="" action="{{ route('feedback.store') }}" method="post">
                                             @csrf
@@ -430,15 +488,19 @@
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Enter Full
                                                     Name</label>
-                                                <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
+                                                <input type="text" class="form-control" name="name"
+                                                    id="name" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Email
                                                     address</label>
-                                                <input type="email" class="form-control" name="email" id="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                <input type="email" class="form-control" name="email"
+                                                    id="email" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Your Message</label>
+                                                <label for="exampleInputEmail1" class="form-label">Your
+                                                    Message</label>
                                                 <textarea class="form-control" name="message" id="floatingTextarea2" style="height: 100px"></textarea>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -449,17 +511,21 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingSix">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
+                                        aria-controls="collapseSix">
                                         <b>Videos</b>
                                     </button>
                                 </h2>
-                                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                                <div id="collapseSix" class="accordion-collapse collapse"
+                                    aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         @if (count($gallery1) != 0)
                                             @foreach ($gallery1 as $gallery1)
                                                 @if ($gallery1->type == 'Video')
                                                     <div class="col-md-12 py-1">
-                                                        <iframe src="{!! $gallery1->image !!}" style="width: 100%;"></iframe>
+                                                        <iframe src="{!! $gallery1->image !!}"
+                                                            style="width: 100%;"></iframe>
                                                     </div>
                                                 @endif
                                             @endforeach
@@ -472,20 +538,25 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingSeven">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseSeven"
+                                        aria-expanded="false" aria-controls="collapseSeven">
                                         <b>Inquiry</b>
                                     </button>
                                 </h2>
-                                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                                <div id="collapseSeven" class="accordion-collapse collapse"
+                                    aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="container">
-                                            <form class="" action="{{ route('inquiry.store') }}" method="post">
+                                            <form class="" action="{{ route('inquiry.store') }}"
+                                                method="post">
                                                 @csrf
                                                 <input type="hidden" name="cardId" value="{{ $user->id }}">
                                                 <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Enter Full
                                                         Name</label>
-                                                    <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                    <input type="text" class="form-control" name="name"
+                                                        id="exampleInputEmail1" aria-describedby="emailHelp">
 
                                                     @if ($errors->has('name'))
                                                         <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -494,7 +565,8 @@
                                                 <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Email
                                                         address</label>
-                                                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                    <input type="email" class="form-control" name="email"
+                                                        id="exampleInputEmail1" aria-describedby="emailHelp">
 
                                                     @if ($errors->has('email'))
                                                         <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -503,7 +575,8 @@
                                                 <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Contact
                                                         No.</label>
-                                                    <input type="number" class="form-control" name="phone" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                    <input type="number" class="form-control" name="phone"
+                                                        id="exampleInputEmail1" aria-describedby="emailHelp">
 
                                                     @if ($errors->has('phone'))
                                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
@@ -514,7 +587,8 @@
                                                         Message</label>
                                                     <textarea class="form-control" name="message" id="floatingTextarea2" style="height: 100px"></textarea>
                                                     @if ($errors->has('message'))
-                                                        <span class="text-danger">{{ $errors->first('message') }}</span>
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('message') }}</span>
                                                     @endif
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -525,18 +599,22 @@
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingNine">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseNine"
+                                        aria-expanded="false" aria-controls="collapseNine">
                                         <b> Brochure</b>
                                     </button>
                                 </h2>
-                                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+                                <div id="collapseNine" class="accordion-collapse collapse"
+                                    aria-labelledby="headingNine" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div>
                                             <div class="row">
                                                 @if (count($bro) != 0)
                                                     @foreach ($bro as $bro)
                                                         <div class="col-md-12 text-center">
-                                                            <h5><a href="{{ $bro->file }}" download> Download</a></h5>
+                                                            <h5><a href="{{ $bro->file }}" download> Download</a>
+                                                            </h5>
                                                         </div>
                                                     @endforeach
                                                 @else
@@ -550,11 +628,14 @@
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingEight">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseEight"
+                                        aria-expanded="false" aria-controls="collapseEight">
                                         <b> Reach Us</b>
                                     </button>
                                 </h2>
-                                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                                <div id="collapseEight" class="accordion-collapse collapse"
+                                    aria-labelledby="headingEight" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div>
                                             <a href="#" class="text-decoration-none text-dark">
@@ -580,7 +661,8 @@
                                                 </div>
                                             </a>
 
-                                            <a href="mailto:jaydeep.parekh@gmail.com" class="text-decoration-none text-dark">
+                                            <a href="mailto:jaydeep.parekh@gmail.com"
+                                                class="text-decoration-none text-dark">
                                                 <div class="row d-flex justify-content-center mt-4">
                                                     <div class="col-3 text-center">
                                                         <i class="fa-solid fa-envelope fa-lg"></i>
@@ -591,7 +673,8 @@
                                                 </div>
                                             </a>
 
-                                            <a href="https://www.aspireotech.com/" target="_blank" class="text-decoration-none text-dark">
+                                            <a href="https://www.aspireotech.com/" target="_blank"
+                                                class="text-decoration-none text-dark">
                                                 <div class="row d-flex justify-content-center mt-4">
                                                     <div class="col-3 text-center">
                                                         <i class="fa-solid fa-globe fa-lg"></i>
@@ -612,29 +695,38 @@
 
 
                             <!-- Modal -->
-                            <div class="modal fade" id="lightbox" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="lightbox" role="dialog" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
-                                        <div id="indicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+                                        <div id="indicators" class="carousel slide" data-bs-ride="carousel"
+                                            data-bs-interval="2000">
                                             <div class="carousel-inner">
                                                 @foreach ($gallery as $item)
                                                     <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
                                                         @if (isset($item->image))
-                                                            <img class="d-block w-100" src="{{ url('cardimage') }}/{{ $item->image }}" height="500px" width="500px" alt="Image">
+                                                            <img class="d-block w-100"
+                                                                src="{{ url('cardimage') }}/{{ $item->image }}"
+                                                                height="500px" width="500px" alt="Image">
                                                         @else
-                                                            <img src="{{ asset('asset/img/default.jpg') }}" class="" height="500px" width="500px" alt="Placeholder Image">
+                                                            <img src="{{ asset('asset/img/default.jpg') }}"
+                                                                class="" height="500px" width="500px"
+                                                                alt="Placeholder Image">
                                                         @endif
                                                     </div>
                                                 @endforeach
                                             </div>
-                                            <a class="carousel-control-prev" href="#indicators" role="button" data-bs-slide="prev">
+                                            <a class="carousel-control-prev" href="#indicators" role="button"
+                                                data-bs-slide="prev">
                                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                 <span class="visually-hidden">Previous</span>
                                             </a>
-                                            <a class="carousel-control-next" href="#indicators" role="button" data-bs-slide="next">
+                                            <a class="carousel-control-next" href="#indicators" role="button"
+                                                data-bs-slide="next">
                                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                 <span class="visually-hidden">Next</span>
                                             </a>
@@ -686,7 +778,8 @@
                             </a>
                         </div>
                         <div class="col-2 bg-green text-center p-1">
-                            <a href="https://wa.me/{{ $links->phone1 }}?send" target="_blank" class="text-decoration-none text-light">
+                            <a href="https://wa.me/{{ $links->phone1 }}?send" target="_blank"
+                                class="text-decoration-none text-light">
                                 <i class="fa-brands fa-whatsapp fa-lg"></i>
                             </a>
                         </div>
@@ -701,7 +794,8 @@
                             </a>
                         </div>
                         <div class="col-2 bg-black text-center p-1">
-                            <a href="https://{{ $links->website }}" target="_blank" class="text-decoration-none text-light">
+                            <a href="https://{{ $links->website }}" target="_blank"
+                                class="text-decoration-none text-light">
                                 <i class="fa-solid fa-globe fa-lg"></i>
                             </a>
                         </div>
@@ -714,7 +808,9 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
 
     <script src="https://kit.fontawesome.com/629dffd7a0.js" crossorigin="anonymous"></script>
 </body>

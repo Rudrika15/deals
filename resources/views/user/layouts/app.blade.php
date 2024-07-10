@@ -9,15 +9,16 @@
     <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="{{ route('profile') }}">
         <i class="bi bi-person-fill"></i> Profile
     </a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('portfolio.index') }}">
+    {{-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('portfolio.index') }}">
         <i class="bi bi-image"></i> Portfolio
-    </a>
+    </a> --}}
 
-    @if (Auth::user()->package != 'FREE')
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('userTemplate.index') }}">
+    {{-- @if (Auth::user()->package != 'FREE')
+        <a class="list-group-item list-group-item-action list-group-item-light p-3"
+            href="{{ route('userTemplate.index') }}">
             <i class="bi bi-file-image-fill"></i> Custom Template
         </a>
-    @endif
+    @endif --}}
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('account.setting') }}">
         <i class="bi bi-person-lock"></i> Account & Passwords
     </a>

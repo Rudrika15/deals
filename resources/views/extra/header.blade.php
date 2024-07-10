@@ -22,7 +22,9 @@
             <button class="btn btn-primary" id="sidebarToggle">
                 <i class="bi bi-list"></i>
             </button>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0 me-5">
                     <li class="nav-item"><a href="#" class="nav-link"><i>
@@ -43,7 +45,9 @@
 
                             </i></a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">{{ Auth::user()->name }}</a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
 
@@ -57,16 +61,19 @@
                                             $hasUser = true;
                                         @endphp
                                     @elseif ($role->name !== 'Influencer')
-                                        <a class="switch-option dropdown-item text-decoration-none btn" href="#" id="roleSwitch">{{ $role->name }}</a>
+                                        <a class="switch-option dropdown-item text-decoration-none btn" href="#"
+                                            id="roleSwitch">{{ $role->name }}</a>
                                     @endif
                                 @endforeach
 
                                 @if ($hasUser)
-                                    <a class="switch-option dropdown-item text-decoration-none btn" href="#" id="roleSwitch">My Account</a>
+                                    <a class="switch-option dropdown-item text-decoration-none btn" href="#"
+                                        id="roleSwitch">My Account</a>
                                 @endif
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();
                                                      localStorage.removeItem('selectedRole');">
                                 Logout</a>
@@ -82,6 +89,12 @@
     <!-- Page content-->
     <div class="container-fluid p-4">
         <div class="">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             @if ($message = Session::get('warning'))
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>{{ $message }}</strong>

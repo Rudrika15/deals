@@ -32,6 +32,13 @@ class LinkController extends Controller
             'phone1' => 'numeric|digits:10',
             'whatsappnumber' => 'numeric|digits:10',
             'email' => 'email',
+            'website' => 'required|url',
+            'instagram' => ['required', 'regex:/^https:\/\/instagram\.com\/[a-zA-Z0-9._]+$/'],
+            'youtube' => ['required', 'regex:/^https:\/\/youtube\.com\/@[-a-zA-Z0-9_]+$/'],
+            'facebook' => ['required', 'regex:/^https:\/\/facebook\.com\/[a-zA-Z0-9._]+$/'],
+            'skype' => ['required', 'regex:/^https:\/\/join\.skype\.com\/[a-zA-Z0-9._]+$/'],
+            'twitter' => ['required', 'regex:/^https:\/\/twitter\.com\/[a-zA-Z0-9_]+$/'],
+            'linkedin' => ['required', 'regex:/^https:\/\/(www\.|)linkedin\.com\/in\/[a-zA-Z0-9._-]+$/'],
         ]);
         try {
             $id = Auth::user()->id;

@@ -18,8 +18,8 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     @if (!Auth::user())
                         <li class="nav-item">
-                            <a class="btn btnlogin rounded-pill " href="{{ route('login') }}">Login</a>
-                            <!-- <a class="btn rounded-pill px-4 btn-primary" href="{{ route('otp.login') }}">Login</a> -->
+                            {{-- <a class="btn btnlogin rounded-pill " href="{{ route('login') }}">Login</a> --}}
+                            <a class="btn btnlogin rounded-pill " href="{{ route('otp.login') }}">Login</a>
                         </li>
                         <li class="nav-item px-1">
                             <a class="btn rounded-pill  btnregister" href="{{ route('otp.login') }}">Register</a>

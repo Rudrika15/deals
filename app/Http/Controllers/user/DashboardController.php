@@ -61,10 +61,10 @@ class DashboardController extends Controller
                 ->where('cardservices.card_id', '=', $id)
                 ->get(['cardservices.*']);
 
-            $influencer = InfluencerProfile::where('userId', '=', $authid)->first();
+            // $influencer = InfluencerProfile::where('userId', '=', $authid)->first();
             $brand_category = BrandWithCategory::where('brandId', '=', $authid)->first();
-            $category = Categories::all();
-            $influencerCategory = CategoryInfluencer::all();
+            // $category = Categories::all();
+            // $influencerCategory = CategoryInfluencer::all();
             $brandCategory = BrandCategory::all();
             // $category = Admin::all();
             $data = User::where('id', '=', $authid)->get();
@@ -100,7 +100,7 @@ class DashboardController extends Controller
             // if ($linkcount > 0) {
             //     return view('demo', compact('linkcount', 'inq', 'cardvideo', 'feed', 'id', 'details', 'qr', 'links', 'data1', 'category', 'cardimage', 'servicedetail', 'payment', 'admincategory', 'users'));
             // } else {
-            return view('user.profile.index', compact('authid', 'userurl', 'influencer', 'influencerCategory', 'brand_category', 'brandCategory', 'category', 'slider', 'bro', 'linkcount', 'inq', 'cardvideo', 'feed', 'id', 'details', 'qr', 'links', 'data1', 'category', 'cardimage', 'servicedetail', 'payment', 'admincategory', 'users'));
+            return view('user.profile.index', compact('authid', 'userurl',  'brand_category', 'brandCategory',  'slider', 'bro', 'linkcount', 'inq', 'cardvideo', 'feed', 'id', 'details', 'qr', 'links', 'data1', 'category', 'cardimage', 'servicedetail', 'payment', 'admincategory', 'users'));
             // }
         } catch (\Throwable $th) {
             throw $th;
@@ -117,7 +117,7 @@ class DashboardController extends Controller
             'logo' => 'mimetypes:image/jpeg,image/png,image/jpg,image/gif,image/svg+xml',
             'profilePhoto' => 'mimetypes:image/jpeg,image/png,image/jpg,image/gif,image/svg+xml',
             'category' => 'required',
-
+            // 'facebook' => 'required|url|starts_with:https://www.facebook.com/|max:255',
 
         ], [
             'year.regex' => 'The year field must contain only letters and characters.',

@@ -332,7 +332,8 @@
                                 @foreach ($images->card->cardPortfolio as $portfolio)
                                     <div class="item">
                                         <img src="{{ asset('cardimage') }}/{{ $portfolio->image }}"
-                                            style="height: 250px; width: 280px" alt="">
+                                            style="height: 250px; width: 280px"
+                                            onerror="this.src='{{ asset('images/default.jpg') }}'" alt="">
                                         {{-- <img src="{{ asset('images/default.jpg') }}" alt=""> --}}
                                     </div>
                                 @endforeach

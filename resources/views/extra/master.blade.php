@@ -10,6 +10,7 @@
     <title>@yield('title')</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -19,6 +20,9 @@
     {{-- icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
     <style>
         span.select2.select2-container.select2-container--classic {
             width: 100% !important;
@@ -41,9 +45,10 @@
         @include('extra.header')
     </div>
     <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
     <!-- Core theme JS-->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
 
@@ -118,13 +123,16 @@
         xhr.send();
     </script>
 
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-    <script src="//cdn.ckeditor.com/4.14.0/standard/adapters/jquery.js"></script>
-    <script type="text/javascript">
+    {{-- <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> --}}
+    {{-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script> --}}
+    {{-- <script src="//cdn.ckeditor.com/4.14.0/standard/adapters/jquery.js"></script> --}}
+
+
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
             $('.about').ckeditor();
         });
-    </script>
+    </script> --}}
 
 </body>
 

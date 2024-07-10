@@ -59,12 +59,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255',],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'unique:users', 'max:255'],
+
             'category' => ['required_if:type,==,Business'],
             'password' => 'required|same:confirm-password',
+            'refer' => 'exists:users,myrefer'
         ]);
     }
 
@@ -91,8 +94,12 @@ class RegisterController extends Controller
 
             // $email = User::where('email', '=', $data['email'])->get();
             // return $email;
-
-            $user->assignRole(['User', 'Brand']);
+            if ($data['type'] ==  'Individual') {
+                $user->assignRole(['User']);
+            } else {
+                $user->assignRole(['Brand', 'User']);
+            }
+            // $user->assignRole(['User', 'Brand']);
             if ($data['type'] ==  'Individual') {
                 $card = new CardsModels();
                 $card->user_id = $user->id;
