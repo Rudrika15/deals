@@ -85,8 +85,8 @@
 .offerPhoto {
     width: 250px;
     height: 140px;
-    border: #fff solid 1px;
-    border-radius: 50px;
+    border: #fff solid 2px;
+    border-radius: 10px;
 }
 
 

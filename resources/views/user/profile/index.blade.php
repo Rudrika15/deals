@@ -2,12 +2,10 @@
 @section('title', 'Brand beans | Design Create')
 @section('content')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.1/dist/umd/popper.min.js"></script>
-
+    <script script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
     <div class="container-fluid pt-2 pb-5">
         <div class="d-flex justify-content-end p-3">
             <a href="{{ route('user.card') }}/{{ $userurl }}" target="_blank" class="btn btn-sm btn-primary">Preview
@@ -236,16 +234,7 @@
                                 @endrole --}}
 
                             </div>
-                            <style>
-                                /* Basic styling for the editor */
-                                #editor {
-                                    width: 480px;
-                                    height: 200px;
-                                    border: 1px solid #ccc;
-                                    padding: 10px;
-                                    font-family: Arial, sans-serif;
-                                }
-                            </style>
+
                             <div class="row">
                                 <div class="col-md-12 pb-1">
                                     <div class="row">
@@ -370,8 +359,10 @@
                         </form>
 
                     </div>
+
                 </div>
             </div>
+            <hr style="margin: 0%;" class="text-muted">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -550,36 +541,37 @@
                                 @csrf
                                 <label for="formFile" class="form-label ">Bank Name</label>
                                 <input class="form-control " type="text" required id="bankName"
-                                    value="{{ $payment->bankName }}" name="bankName">
+                                    value="{{ $payment->bankName ?? old('bankName') }}" name="bankName">
                                 <br>
                                 <label for="formFile" class="form-label ">Account Holder Name</label>
                                 <input class="form-control " type="text" required id="accountHolderName"
-                                    value="{{ $payment->accountHolderName }}" name="accountHolderName">
+                                    value="{{ $payment->accountHolderName ?? old('accountHolderName') }}"
+                                    name="accountHolderName">
                                 @if ($errors->has('accountHolderName'))
                                     <span class="text-danger">{{ $errors->first('accountHolderName') }}</span>
                                 @endif
                                 <br>
                                 <label for="formFile" class=" form-label">Account Number</label>
                                 <input class="form-control " type="text" required id="accountNumber" name="accountNumber"
-                                    value="{{ $payment->accountNumber }}">
+                                    value="{{ $payment->accountNumber ?? old('accountNumber') }}">
                                 @if ($errors->has('accountNumber'))
                                     <span class="text-danger">{{ $errors->first('accountNumber') }}</span>
                                 @endif
                                 <br>
                                 <label for="formFile" class=" form-label">Account Type</label>
                                 <input class="form-control " type="text" required id="accountType" name="accountType"
-                                    value="{{ $payment->accountType }}">
+                                    value="{{ $payment->accountType ?? old('accountType') }}">
                                 <br>
                                 <label for="formFile" class=" form-label">IFSC Code</label>
                                 <input class="form-control " type="text" required id="ifscCode" name="ifscCode"
-                                    value="{{ $payment->ifscCode }}">
+                                    value="{{ $payment->ifscCode ?? old('ifscCode') }}">
                                 @if ($errors->has('ifscCode'))
                                     <span class="text-danger">{{ $errors->first('ifscCode') }}</span>
                                 @endif
                                 <br>
                                 <label for="formFile" class=" form-label">Upi Id</label>
                                 <input class="form-control " type="text" required id="upidetail" name="upidetail"
-                                    value="{{ $payment->upidetail }}"><br>
+                                    value="{{ $payment->upidetail ?? old('upidetail') }}"><br>
                                 <div class="text-center">
                                     <button class="btn btn-sm btn-success" type="submit">Submit</button>
                                 </div>

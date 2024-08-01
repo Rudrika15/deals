@@ -26,8 +26,14 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="btn btnlogin rounded-pill " href="{{ route('user.dashboard') }}">Dashboard</a>
+                            <a class="btn  btnlogin rounded-pill " href="{{ route('user.dashboard') }}">Dashboard</a>
                         </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <li class="nav-item px-1">
+                                <button class="btn rounded-pill  btnregister ">Logout</button>
+                            </li>
+                        </form>
                     @endif
 
                     <!-- <li class="nav-item">

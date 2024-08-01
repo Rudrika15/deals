@@ -48,6 +48,7 @@ Route::get('/', function () {
     })->with('card.cardPortfolio')->get();
     return view('welcome', compact('offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
+
 Route::get('/search', function (Request $request) {
     if ($request->ajax()) {
         $query = $request->get('search');

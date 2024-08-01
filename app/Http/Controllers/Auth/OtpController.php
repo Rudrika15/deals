@@ -111,7 +111,7 @@ class OtpController extends Controller
 
                     Auth::login($user);
                     // return Auth::user()->role;
-                    return redirect("/user/dashboard");
+                    return redirect("/");
                     // if ($user->hasRole(['Admin'])) {
                     //     return \redirect('/');
                     // } else if ($user->hasRole(['User', 'Writer', 'Designer'])) {
@@ -131,7 +131,7 @@ class OtpController extends Controller
                         Auth::login($user);
 
                         // return Auth::user()->role;
-                        return \redirect('/user/dashboard');
+                        return \redirect('/');
                         // if ($user->hasRole(['Admin'])) {
 
                         // } else if ($user->hasRole(['User', 'Writer', 'Designer'])) {

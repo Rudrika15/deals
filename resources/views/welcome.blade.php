@@ -145,10 +145,11 @@
                         @foreach ($card->users as $profilePic)
                             <div class="col-md-3">
                                 {{-- {{ $profilePic->profilePhoto }} --}}
-                                <img src="{{ asset('profile') }}/{{ $profilePic->profilePhoto }}"
-                                    onerror="this.onerror=null;this.src='{{ asset('images/default.jpg') }}';"
-                                    title="{{ $profilePic->name }}" class="offerPhoto" alt="">
-
+                                <a href="">
+                                    <img src="{{ asset('profile') }}/{{ $profilePic->profilePhoto }}"
+                                        onerror="this.onerror=null;this.src='{{ asset('images/default.jpg') }}';"
+                                        title="{{ $profilePic->name }}" class="offerPhoto" alt="">
+                                </a>
                             </div>
                         @endforeach
                     @endforeach
