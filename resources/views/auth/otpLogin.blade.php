@@ -37,7 +37,7 @@
         <!-- Sidebar-->
         <div class="border  mt-5 mb-5 p-5  login-box " style="">
             {{-- <div class="text-info text-center pb-2 fw-bold">Brand beans</div> --}}
-            <h2 class="text-center text-info">Login </h2>
+            <h2 class="text-center text-info"><b>Login</b> </h2>
             <form action="{{ route('otp.generate') }}" method="post">
                 @csrf
 

@@ -16,7 +16,7 @@ class InquiryController extends Controller
 
         $details = CardsModels::where('user_id', '=', $authid)->first();
         $id = $details->id;
-        $inq = Inquiry::where('card_id', '=', $id)->get();
+        $inq = Inquiry::where('card_id', '=', $id)->paginate(10);
         return \view('user.feedback.inquiry', \compact('inq'));
     }
 

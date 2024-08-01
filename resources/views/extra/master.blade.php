@@ -38,7 +38,7 @@
                 <img src="{{ asset('images/logo.png') }}" class="logo" alt="">
             </div>
             <div id="layoutContainer">
-
+                
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -48,11 +48,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
+
+
+
     <!-- Core theme JS-->
 
     <script src="{{ asset('js/scripts.js') }}"></script>
 
-
+    vfv
 
     <script>
         var base_url = window.location.origin;

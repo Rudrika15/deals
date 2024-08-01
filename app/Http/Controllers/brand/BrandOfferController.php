@@ -89,7 +89,7 @@ class BrandOfferController extends Controller
 
     public function myPurchaseOffer()
     {
-        $offers = MyOfferQrCodes::where('buyerId', Auth::user()->id)->with('offer')->get();
+        $offers = MyOfferQrCodes::where('buyerId', Auth::user()->id)->with('offer')->paginate(10);
         return view('user.offer.offerList', compact('offers'));
     }
 }

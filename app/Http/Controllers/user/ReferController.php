@@ -17,29 +17,29 @@ class ReferController extends Controller
 
             $refer = User::find($id);
             $refer_code = $refer->myrefer;
-            $user = User::where('refer', '=', $refer_code)->get();
+            $users = User::where('refer', '=', $refer_code)->get();
             // return $user;
 
 
             $type = $request->type;
             if ($type == 'free') {
                 $refer_code = $refer->myrefer;
-                $user = User::where('refer', '=', $refer_code)
+                $users = User::where('refer', '=', $refer_code)
                     ->where('package', '=', 'FREE')
                     ->orderBy('id', 'DESC')
-                    ->get();
-                return view('user.refer.index', \compact('user'));
+                    ->paginate(10);
+                return view('user.refer.index', \compact('users'));
             } else if ($type == 'paid') {
-                $user = User::where('refer', '=', $refer_code)
+                $users = User::where('refer', '=', $refer_code)
                     ->where('package', '!=', 'FREE')
                     ->orderBy('id', 'DESC')
-                    ->get();
-                return view('user.refer.index', \compact('user'));
+                    ->paginate(10);
+                return view('user.refer.index', \compact('users'));
             } else {
-                $user = User::where('refer', '=', $refer_code)
+                $users = User::where('refer', '=', $refer_code)
                     ->orderBy('id', 'DESC')
-                    ->get();
-                return view('user.refer.index', \compact('user'));
+                    ->paginate(10);
+                return view('user.refer.index', \compact('users'));
             }
         } catch (\Throwable $th) {
             throw $th;

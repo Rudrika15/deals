@@ -6,9 +6,9 @@
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('user.dashboard') }}">
         <i class="bi bi-speedometer"></i> Dashboard
     </a>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="{{ route('profile') }}">
+    {{-- <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="{{ route('profile') }}">
         <i class="bi bi-person-fill"></i> Profile
-    </a>
+    </a> --}}
     {{-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('portfolio.index') }}">
         <i class="bi bi-image"></i> Portfolio
     </a> --}}

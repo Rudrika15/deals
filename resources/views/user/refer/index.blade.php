@@ -39,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user as $user)
+                                    @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
@@ -59,7 +59,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user as $user)
+                                    @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
@@ -67,6 +67,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            <div class="d-flex justify-content-end"> {{ $users->links() }} </div>
+
                             <?php } ?>
                         </div>
 

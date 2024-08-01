@@ -38,14 +38,14 @@
         <!-- Sidebar-->
         <div class="border p-5 login-box">
             {{-- <div class="text-info text-center pb-2 fw-bold">Brand beans</div> --}}
-            <h2 class="text-info text-center mb-5">Check OTP</h2>
+            <h2 class="text-info text-center mb-5"><b>Verify OTP</b></h2>
             <form action="{{ route('auth.loginotp') }}" method="post">
                 @csrf
 
                 <div class="mx-2">
 
                     <div class="mb-2">
-                        <label class="form-label">Check Otp</label>
+                        {{-- <label class="form-label">Verify Otp</label> --}}
                         <input type="text" class="form-control" value="{{ old('otp') }}" id="otp"
                             name="otp" required autocomplete="otp" autofocus placeholder="Enter OTP here"><i
                             class="fa fa-phone frm-ico"></i>

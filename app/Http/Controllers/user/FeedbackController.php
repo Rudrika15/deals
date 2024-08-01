@@ -17,8 +17,8 @@ class FeedbackController extends Controller
 
             $details = CardsModels::where('user_id', '=', $authid)->first();
             $id = $details->id;
-            $feed = Feedback::where('card_id', '=', $id)->get();
-            return View('user.feedback.feedback', \compact('feed'));
+            $feeds = Feedback::where('card_id', '=', $id)->paginate(10);
+            return View('user.feedback.feedback', \compact('feeds'));
         } catch (\Throwable $th) {
             throw $th;
         }

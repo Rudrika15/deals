@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                @role('Influencer')
+                                {{-- @role('Influencer')
                                     <div class="col-md-6 pb-1">
                                         <div class="row">
 
@@ -233,7 +233,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endrole
+                                @endrole --}}
 
                             </div>
                             <style>
@@ -281,7 +281,7 @@
 
 
 
-                                @role('Influencer')
+                                {{-- @role('Influencer')
                                     <div class="row">
                                         <div class="col-md-6 pb-1">
                                             <div class="row">
@@ -332,7 +332,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endrole
+                                @endrole --}}
+
+
                                 @role('Brand')
                                     <div class="row">
                                         <div class="col-md-2 pb-1">
@@ -865,10 +867,10 @@
                 $("#other").hide();
             }
         });
-    });
+    });                 
 </script>
 
-
+{{-- 
 @role('Influencer')
     <script>
         const category = {!! $influencer->categoryId !!};
@@ -877,7 +879,7 @@
 
         document.getElementById('influencerCategory').innerHTML = category.join(', ');
     </script>
-@endrole
+@endrole --}}
 
 {{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
