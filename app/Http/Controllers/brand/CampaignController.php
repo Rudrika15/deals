@@ -42,16 +42,16 @@ class CampaignController extends Controller
             $brandOfCategory = BrandWithCategory::where('brandId', '=', $userId)->with('brandCategory')->first();
             if ($brandOfCategory) {
 
-                $influencer = User::whereHas('roles', function ($q) {
-                    $q->where('name', 'Influencer');
-                })->whereHas('influencer', function ($q) use ($brandOfCategory) {
-                    $q->whereHas('category', function ($q) use ($brandOfCategory) {
-                        $q->where('name', 'LIKE', '%' .  $brandOfCategory->brandCategory->categoryName . '%');
-                    });
-                })
-                    ->with(['influencer', 'influencer.category'])
-                    ->get();
-                return view('brand.campaign.index', \compact('campaign', 'influencer'));
+                // $influencer = User::whereHas('roles', function ($q) {
+                //     $q->where('name', 'Influencer');
+                // })->whereHas('influencer', function ($q) use ($brandOfCategory) {
+                //     $q->whereHas('category', function ($q) use ($brandOfCategory) {
+                //         $q->where('name', 'LIKE', '%' .  $brandOfCategory->brandCategory->categoryName . '%');
+                //     });
+                // })
+
+                //     ->get();
+                return view('brand.campaign.index', \compact('campaign'));
             } else {
                 return view('brand.campaign.index', \compact('campaign'));
             }
