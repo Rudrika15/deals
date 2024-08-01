@@ -91,7 +91,7 @@
 
             @if (session()->has('success'))
             <div class="toast align-items-center text-white show bg-success" role="alert" aria-live="assertive"
-                aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
+                aria-atomic="true" data-bs-autohide="true" data-bs-delay="2000">
                 <div class="d-flex">
                     <div class="toast-body">
                         {{ session('success') }}
@@ -107,7 +107,7 @@
             @endif
             @if (session()->has('error'))
             <div class="toast align-items-center text-white show bg-danger" role="alert" aria-live="assertive"
-                aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
+                aria-atomic="true" data-bs-autohide="true" data-bs-delay="2000">
                 <div class="d-flex">
                     <div class="toast-body">
                         {{ session('error') }}
@@ -123,7 +123,7 @@
             @endif
             @if (session()->has('warning'))
             <div class="toast align-items-center text-white show bg-warning" role="alert" aria-live="assertive"
-                aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
+                aria-atomic="true" data-bs-autohide="true" data-bs-delay="2000">
                 <div class="d-flex">
                     <div class="toast-body">
                         {{ session('warning') }}

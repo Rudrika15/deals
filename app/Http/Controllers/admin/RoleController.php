@@ -73,7 +73,7 @@ class RoleController extends Controller
             $role->syncPermissions($request->input('permission'));
 
             return redirect()->route('roles.index')
-                ->with('success', 'Role created successfully');
+                ->with('success', 'Role Created Successfully');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -140,7 +140,7 @@ class RoleController extends Controller
             $role->syncPermissions($request->input('permission'));
 
             return redirect()->route('roles.index')
-                ->with('success', 'Role updated successfully');
+                ->with('success', 'Role Updated Successfully');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -156,7 +156,7 @@ class RoleController extends Controller
         try {
             DB::table("roles")->where('id', $id)->delete();
             return redirect()->route('roles.index')
-                ->with('success', 'Role deleted successfully');
+                ->with('success', 'Role Deleted Successfully');
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -113,7 +113,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             // 'password' => 'required|same:confirm-password',
             'roles' => 'required',
-            'mobileno' => 'required',
+            'mobileno' => 'required|max:10',
         ]);
 
         try {
@@ -135,7 +135,7 @@ class UserController extends Controller
             $userUpdate->save();
 
             $card = new CardsModels();
-            $card->userid = $user->id;
+            $card->user_id = $user->id;
             $card->save();
 
             $payment = new Payment();
@@ -147,7 +147,7 @@ class UserController extends Controller
             $links->phone1  = $user->mobileno;
             $links->save();
             return redirect()->route('users.index')
-                ->with('success', 'User created successfully');
+                ->with('success', 'User Created Successfully');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -482,7 +482,7 @@ class UserController extends Controller
     {
         $users = User::whereHas('roles', function ($query) {
             $query->where('name', 'Brand');
-        })->get();
+        })->paginate(10);
 
         return view('admin.brand.index', compact('users'));
     }
