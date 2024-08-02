@@ -72,7 +72,8 @@ class CategoryController extends Controller
 
             $category->sequence = $request->sequence;
             $category->save();
-            return redirect('admincategory/index');
+            return redirect('admincategory/index')->with('success', 'Category Created Successfully');
+            // return redirect('admincategory/index');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -118,7 +119,7 @@ class CategoryController extends Controller
             }
             $category->sequence = $request->sequence;
             $category->save();
-            return redirect('admincategory/index');
+            return redirect('admincategory/index')->with('success', 'Category Edited Successfully');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -129,9 +130,10 @@ class CategoryController extends Controller
         try {
             $category = Category::find($id);
             $category->delete();
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Category Deleted Successfully');
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 }
+

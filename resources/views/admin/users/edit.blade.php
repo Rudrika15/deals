@@ -51,6 +51,7 @@
                                 {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control', 'multiple'])
                                 !!}
                             </div>
+                            <small id="helpId" class="form-text text-danger">Use CTRL+Click for select multiple roles</small>
                         </div>
                         <br>
                         <div class="col-xs-12 col-sm-12 col-md-12">

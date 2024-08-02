@@ -30,9 +30,9 @@
                             <div class="mb-3">
                                 <label for="" class="form-label">Roles</label>
                                 {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control', 'multiple']) !!}
-                                <small id="helpId" class="form-text text-muted">Use CTRL+Click for select multiple roles</small>
+                                <small id="helpId" class="form-text text-danger">Use CTRL+Click for select multiple roles</small>
+                                {{-- <small id="helpId" class="form-text text-muted">Use CTRL+Click for select multiple roles</small> --}}
                             </div>
-
                             <div class="mb-3 text-center">
                                 <button type="submit" class="btn btn-success btn-sm">Submit</button>
                             </div>

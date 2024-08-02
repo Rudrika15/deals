@@ -27,7 +27,11 @@
                                 <input type="text" name="title" id="title" class="form-control" required>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                            </div>
+
                         </form>
 
                     </div>

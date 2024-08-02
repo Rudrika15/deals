@@ -45,7 +45,7 @@ class BrandOfferController extends Controller
         $offer->validity = $request->validity;
         $offer->termsAndConditions = $request->termsAndConditions;
         $offer->save();
-        return redirect()->back()->with('success', 'Offer added successfully');
+        return redirect()->route('brand.offers')->with('success', 'Offer Added Successfully');
     }
 
     public function edit($id)
@@ -78,13 +78,14 @@ class BrandOfferController extends Controller
         $offer->validity = $request->validity;
         $offer->termsAndConditions = $request->termsAndConditions;
         $offer->save();
-        return redirect()->back()->with('success', 'Offer updated successfully');
+        return redirect()->route('brand.offers')->with('success', 'Offer Updated Successfully');
     }
 
     public function destroy($id)
     {
         BrandOffer::find($id)->delete();
-        return redirect()->back()->with('success', 'Offer deleted successfully');
+        return redirect()->route('brand.offers')->with('success', 'Offer Deleted Successfully');
+
     }
 
     public function myPurchaseOffer()

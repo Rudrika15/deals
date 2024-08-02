@@ -1,75 +1,84 @@
 @extends('extra.master')
 @section('title', 'Brand beans | Payment Report ')
 @section('content')
-    <div class='container'>
-        <div class='row'>
-            <div class='col-md-12'>
-                <div class="d-flex justify-content-between mb-3">
-                    <div class="p-2">
-                        <h3>Payment Report</h3>
-                    </div>
-
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class="d-flex justify-content-between mb-3">
+                <div class="p-2">
+                    <h3>Payment Report</h3>
                 </div>
+
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive" style="margin-top: 15px;">
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive" style="margin-top: 15px;">
 
-                            <table class="table table-bordered table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th> Screenshot</th>
-                                        <th> User Name</th>
-                                        <th> Action</th>
-                                        <th> Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($report as $reports)
-                                        <tr>
-                                            <td><img src="{{ asset('paymentScreenshot') }}/{{ $reports->screenshot }}" alt="image" style="height: 300px; width: 300px;"></td>
-                                            <td>{{ $reports->user->name }}</td>
-                                            <td>
-                                                @if ($reports->status == 'Pending')
-                                                    <span class="badge bg-primary">{{ $reports->status }}</span>
-                                                @elseif ($reports->status == 'Approved')
-                                                    <span class="badge bg-success">{{ $reports->status }}</span>
-                                                @elseif ($reports->status == 'Rejected')
-                                                    <span class="badge bg-danger">{{ $reports->status }}</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <input type="hidden" name="userId" class="userId" value="{{ $reports->userId }}">
-                                                <select name="status" id="" class="form-control statusDropdown" data-id="{{ $reports->id }}" style="width: 160px;">
-                                                    <option selected disabled>--select status--</option>
-                                                    <option value="Approved" @if ($reports->status == 'Approved') selected @endif>Approved</option>
-                                                    <option value="Rejected" @if ($reports->status == 'Rejected') selected @endif>Rejected</option>
-                                                </select>
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th> Screenshot</th>
+                                    <th> User Name</th>
+                                    <th> Action</th>
+                                    <th> Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($report as $reports)
+                                <tr>
+                                    <td><img src="{{ asset('paymentScreenshot') }}/{{ $reports->screenshot }}"
+                                            alt="image" style="height: 300px; width: 300px;"></td>
+                                    <td>{{ $reports->user->name }}</td>
+                                    <td>
+                                        @if ($reports->status == 'Pending')
+                                        <span class="badge bg-primary">{{ $reports->status }}</span>
+                                        @elseif ($reports->status == 'Approved')
+                                        <span class="badge bg-success">{{ $reports->status }}</span>
+                                        @elseif ($reports->status == 'Rejected')
+                                        <span class="badge bg-danger">{{ $reports->status }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="userId" class="userId"
+                                            value="{{ $reports->userId }}">
+                                        <select name="status" id="" class="form-control statusDropdown"
+                                            data-id="{{ $reports->id }}" style="width: 160px;">
+                                            <option selected disabled>--Select Status--</option>
+                                            <option value="Approved" @if ($reports->status == 'Approved') selected
+                                                @endif>Approved</option>
+                                            <option value="Rejected" @if ($reports->status == 'Rejected') selected
+                                                @endif>Rejected</option>
+                                        </select>
 
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
 
+                        <div class="d-flex justify-content-end">
+                            {{ $report->links() }}
                         </div>
 
                     </div>
 
                 </div>
+
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             $('.statusDropdown').change(function() {
                 var selectedStatus = $(this).val();
 
@@ -133,6 +142,6 @@
                 });
             });
         });
-    </script>
+</script>
 
 @endsection

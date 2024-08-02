@@ -90,7 +90,9 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
 
 
     {{-- content --}}
-    <span class=" fw-bold text-center text-uppercase sidebar-heading-small"> Content </span>
+    {{-- <span class=" fw-bold text-center text-uppercase sidebar-heading-small"> Content </span>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('admincategory.index') }}">
         <i class="bi bi-tag-fill"></i> Category
     </a>
@@ -35,11 +35,11 @@
     </a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('admindesign.admindesign') }}">
         <i class="bi bi-image-alt"></i> Design
-    </a>
+    </a> --}}
 
     {{-- master --}}
     <span class=" fw-bold text-center text-uppercase sidebar-heading-small"> Master </span>
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('admintemplatemaster.index') }}">
+    {{-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('admintemplatemaster.index') }}">
         <i class="bi bi-file-earmark-image"></i> Template
     </a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('product.index') }}">
@@ -50,7 +50,7 @@
     </a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('city.index') }}">
         <i class="bi bi-building"></i> City
-    </a>
+    </a> --}}
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('admin.brand.activity.index') }}">
         <i class="bi bi-boxes"></i> Package Activity
     </a>
@@ -77,7 +77,7 @@
     </a> --}}
 
     {{-- Extra --}}
-    <span class=" fw-bold text-center text-uppercase sidebar-heading-small"> Extra </span>
+    {{-- <span class=" fw-bold text-center text-uppercase sidebar-heading-small"> Extra </span>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('banner.index') }}">
         <i class="bi bi-crop"></i> Banner
     </a>
@@ -95,7 +95,7 @@
     </a>
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('offerSlider.index') }}">
         <i class="bi bi-chat-right-dots"></i> Offer Slider
-    </a>
+    </a> --}}
 
     {{-- report --}}
     <span class=" fw-bold text-center text-uppercase sidebar-heading-small"> Report </span>
@@ -106,9 +106,9 @@
     {{-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#">
         <i class="bi bi-list-check"></i> Subscription Package
     </a> --}}
-    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('writer.designer.report') }}">
+    {{-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('writer.designer.report') }}">
         <i class="bi bi-person-workspace"></i> Writer/Designer
-    </a>
+    </a> --}}
     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('paymentReport.index') }}">
         <i class="bi bi-coin"></i> Payments
     </a>

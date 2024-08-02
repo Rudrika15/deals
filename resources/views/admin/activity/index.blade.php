@@ -22,7 +22,7 @@
                         <table id="" class="table table-bordered table-responsive">
                             <thead>
                                 <tr>
-                                    <th> title</th>
+                                    <th> Title</th>
                                     <th> Action</th>
                                 </tr>
                             </thead>

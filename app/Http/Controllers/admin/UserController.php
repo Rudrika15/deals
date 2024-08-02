@@ -42,19 +42,19 @@ class UserController extends Controller
         try {
             $data = User::whereHas('roles', function ($query) {
                 return $query->whereNotIn('name', ['User', 'Influencer']);
-            })->orderBy('id', 'DESC')->paginate(50);
+            })->orderBy('id', 'DESC')->paginate(25);
             $userRoles = Role::where('name', '!=', 'Influencer')->get();
 
             $search = $request->roleSearch;
             if ($search == "Admin") {
                 $data = User::whereHas('roles', function ($query) {
                     return $query->where('name', '=', 'Admin');
-                })->orderBy('id', 'DESC')->paginate(50);
+                })->orderBy('id', 'DESC')->paginate(25);
             }
             if ($search == "Brand") {
                 $data = User::whereHas('roles', function ($query) {
                     return $query->where('name', '=', 'Brand');
-                })->orderBy('id', 'DESC')->paginate(50);
+                })->orderBy('id', 'DESC')->paginate(25);
             }
             // if ($search == "Influencer") {
             //    $data = User::whereHas('roles', function ($query) {
@@ -64,17 +64,17 @@ class UserController extends Controller
             if ($search == "Reseller") {
                 $data = User::whereHas('roles', function ($query) {
                     return $query->where('name', '=', 'Reseller');
-                })->orderBy('id', 'DESC')->paginate(50);
+                })->orderBy('id', 'DESC')->paginate(25);
             }
             if ($search == "Designer") {
                 $data = User::whereHas('roles', function ($query) {
                     return $query->where('name', '=', 'Designer');
-                })->orderBy('id', 'DESC')->paginate(50);
+                })->orderBy('id', 'DESC')->paginate(25);
             }
             if ($search == "Writer") {
                 $data = User::whereHas('roles', function ($query) {
                     return $query->where('name', '=', 'Writer');
-                })->orderBy('id', 'DESC')->paginate(50);
+                })->orderBy('id', 'DESC')->paginate(25);
             }
 
             return view('admin.users.index', compact('data', 'userRoles'))
@@ -93,7 +93,9 @@ class UserController extends Controller
     public function create()
     {
         try {
-            $roles = Role::where('name', '!=', 'Influencer')->pluck('name', 'name')->all();
+            $roles = Role::whereIn('name', ['Admin', 'Brand', 'Reseller', 'User'])
+                ->pluck('name', 'name')->all();
+            // $roles = Role::where('name', '!=', 'Influencer',)->pluck('name', 'name')->all();
             return view('admin.users.create', compact('roles'));
         } catch (\Throwable $th) {
             throw $th;
@@ -171,7 +173,8 @@ class UserController extends Controller
     {
         try {
             $user = User::find($id);
-            $roles = Role::where('name', '!=', 'Influencer')->pluck('name', 'name')->all();
+            $roles = Role::whereIn('name', ['Admin', 'Brand', 'Reseller', 'User'])
+            ->pluck('name', 'name')->all();
             $userRole = $user->roles->pluck('name', 'name')->all();
 
             return view('admin.users.edit', compact('user', 'roles', 'userRole'));
@@ -296,8 +299,12 @@ class UserController extends Controller
     public function assignRoleCreate(Request $request, $id)
     {
         $user = User::find($id);
+
         $userRole = $user->roles->pluck('name', 'name')->all();
-        $roles = Role::pluck('name', 'name')->all();
+        
+        $roles = Role::whereIn('name', ['Admin', 'User', 'Brand', 'Reseller'])
+        ->pluck('name', 'name')->all();
+        // $roles = Role::pluck('name', 'name')->all();
         return view('admin.users.assignRoleCreate', compact('user', 'roles', 'userRole'));
     }
 
@@ -382,29 +389,57 @@ class UserController extends Controller
 
     // User report
 
-    function allUser(Request $request)
-    {
-        try {
-            $type = $request->type;
-            if ($type == 'free') {
-                $user = User::where('package', '=', 'FREE')->orderBy('id', 'DESC')->get();
-                return view("admin.report.report", compact('user'));
-            } else if ($type == 'paid') {
-                // $paiduser = User::join('razorpays', 'razorpays.user_id', '=', 'users.id')
-                //     ->where('package', '!=', 'FREE')
-                //     ->get(['users.*', 'razorpays.payment_id']);
-                $paiduser = User::with('razor')->orderBy('id', 'DESC')->where('package', '!=', 'FREE')->get();
-                return view("admin.report.report", compact('paiduser'));
-            } else {
-                $user = User::where('package', '=', 'FREE')->orderBy('id', 'DESC')->get();
-                return view("admin.report.report", compact('user'));
-            }
-        } catch (\Throwable $th) {
-            throw $th;
-            // 
+    // function allUser(Request $request)
+    // {
+    //     try {
+    //         $type = $request->type;
+    //         if ($type == 'free') {
+    //             $users = User::where('package', '=', 'FREE')->orderBy('id', 'DESC')->get();
+    //             return view("admin.report.report", compact('users'));
+    //         } else if ($type == 'paid') {
+    //             // $paiduser = User::join('razorpays', 'razorpays.user_id', '=', 'users.id')
+    //             //     ->where('package', '!=', 'FREE')
+    //             //     ->get(['users.*', 'razorpays.payment_id']);
+    //             $paidusers = User::with('razor')->orderBy('id', 'DESC')->where('package', '!=', 'FREE')->get();
+    //             return view("admin.report.report", compact('paidusers'));
+    //         } else {
+    //             $users = User::where('package', '=', 'FREE')->orderBy('id', 'DESC')->get();
+    //             return view("admin.report.report", compact('users'));
+    //         }
+    //     } catch (\Throwable $th) {
+    //         throw $th;
+    //         // 
+    //     }
+    // }
 
+
+    function allUser(Request $request)
+{
+    try {
+        $type = $request->type;
+
+        // Fetch users who have the "brand" role
+        $brandUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'brand');
+        });
+
+        if ($type == 'free') {
+            $users = $brandUsers->where('package', 'FREE')->orderBy('id', 'DESC')->paginate(10);
+            return view("admin.report.report", compact('users'));
+        } else if ($type == 'paid') {
+            $paidusers = $brandUsers->with('razor')->where('package', '!=', 'FREE')->orderBy('id', 'DESC')->paginate(10);
+            return view("admin.report.report", compact('paidusers'));
+        } else {
+            $users = $brandUsers->orderBy('id', 'DESC')->paginate(10);
+            return view("admin.report.report", compact('users'));
         }
+    } catch (\Throwable $th) {
+        throw $th;
     }
+}
+
+
+
 
     public function updateStatus(Request $request, $id)
     {

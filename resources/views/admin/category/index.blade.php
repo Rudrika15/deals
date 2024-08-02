@@ -1,7 +1,9 @@
 @extends('extra.master')
 @section('title', 'Brand beans | Create Category')
 @section('content')
-    <div class='container'>
+
+
+<div class='container'>
         <div class='row'>
             <div class='col-md-12'>
                 <div class="d-flex justify-content-between mb-3">

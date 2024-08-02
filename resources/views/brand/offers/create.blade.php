@@ -89,8 +89,10 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                            </div>
 
-                            <button type="submit" class="btn btn-success btn-sm">Submit</button>
                         </form>
                     </div>
                 </div>

@@ -42,8 +42,6 @@
                                                         <input type="file" id="input-file-now-custom-1" class="dropify" name="iconPath" data-default-file="http://placehold.it/1000x667" />
                                                 </div> -->
                             </div>
-
-
                             <div class="mb-3 form-check ">
                                 <label class="mx-5">
                                     <input type="radio" class="form-check-input" value="isFestival" name="type" id="isFestival">
@@ -52,8 +50,6 @@
                                     <input type="radio" class="form-check-input" value="isBusiness" name="type" id="isBusiness">
                                     IS Business</label>
                             </div>
-
-
                             <div class="isFestival selectt" style="padding-left: 50px; display: none;">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Starting Date</label>
@@ -70,24 +66,17 @@
                                     </script>
                                 </div>
                             </div>
-
-
-
-
                             <br>
                             <div class="mb-3">
                                 <label for="sequence" class="form-label">sequence</label>
                                 <input type="number" class="form-control" id="sequence" value="{{ old('sequence') }}" name="sequence">
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                            </div>
                         </form>
-
-
-
-
                     </div>
-
                 </div>
             </div>
         </div>

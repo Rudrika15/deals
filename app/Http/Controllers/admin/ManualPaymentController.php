@@ -17,7 +17,7 @@ class ManualPaymentController extends Controller
      */
     public function index()
     {
-        $report = ManualPayment::where('status', '!=', 'Approved')->get();
+        $report = ManualPayment::where('status', '!=', 'Approved')->paginate(10);
         return view('admin.report.payment.index', compact('report'));
     }
 
