@@ -178,7 +178,7 @@ class HomepageController extends Controller
         return view('extra.brandOfferDetail', \compact('offers', 'category', 'userCity', 'offerSlider'));
     }
 
-    public function brandDetail($id, $category)
+    public function  brandDetail($id, $category)
     {
         $brandCategory = BrandCategory::find($category);
         $brand = User::where('id', $id)->with('card.cardPortfolio')->with('brand')->first();

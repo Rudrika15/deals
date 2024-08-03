@@ -1,49 +1,50 @@
 @extends('extra.master')
-@section('title', 'Brand beans | My Purchase Offer list')
+@section('title', 'Brand Beans | My Purchase Offer List')
 @section('content')
-    <div class='container'>
-        <div class='row'>
-            <div class='col-md-12'>
-                <div class="d-flex justify-content-between mb-3">
-                    <div class="p-2">
-                        <h3>My Purchase Offers</h3>
-                    </div>
-
-                </div>
+<div class='container mt-4'>
+    <div class='row mb-4'>
+        <div class='col-md-12'>
+            <div class="d-flex justify-content-between">
+                <h3>My Purchase Offers</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Offer Name</th>
-                                        <th>Validity</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($offers as $offer)
-                                        <tr>
-                                            <td>
-                                                @foreach ($offer->offer as $offerName)
-                                                    {{ $offerName->title }}
-                                                @endforeach
-                                            </td>
-                                            <td>{{ $offer->validity }}</td>
-                                            <td>{{ $offer->status }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            <div class="d-flex justify-content-end"> {{ $offers->links() }} </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="text-center">No</th> <!-- Index column -->
+                                    <th class="text-center">Offer Name</th>
+                                    <th class="text-center">Validity</th>
+                                    <th class="text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($offers as $index => $offer)
+                                <tr>
+                                    <td class="text-center">{{ $index + 1 }}</td> <!-- Display index starting from 1 -->
+                                    <td class="text-center">
+                                        @foreach ($offer->offer as $offerName)
+                                        {{ $offerName->title }}
+                                        @endforeach
+                                    </td>
+                                    <td class="text-center">{{ $offer->validity }}</td>
+                                    <td class="text-center">{{ $offer->status }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-end mt-3">
+                            {{ $offers->links() }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

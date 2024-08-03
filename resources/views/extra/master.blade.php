@@ -56,8 +56,6 @@
 
     <script src="{{ asset('js/scripts.js') }}"></script>
 
-    vfv
-
     <script>
         var base_url = window.location.origin;
         console.log("url:", base_url);

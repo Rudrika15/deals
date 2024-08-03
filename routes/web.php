@@ -70,10 +70,11 @@ Route::get('/search', function (Request $request) {
         foreach ($offers as $offer) {
             $results[] = ['id' => $offer->id, 'name' => $offer->title, 'type' => 'offer'];
         }
-
+        
         return response()->json($results);
     }
 })->name('search');
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('/')->group(__DIR__ . '/admin/adminRoute.php');

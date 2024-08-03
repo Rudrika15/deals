@@ -73,8 +73,8 @@
                             </div>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();
-                                                     localStorage.removeItem('selectedRole');">
+                                                    document.getElementById('logout-form').submit();
+                                                    localStorage.removeItem('selectedRole');">
                                 Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -88,7 +88,6 @@
     <!-- Page content-->
     <div class="container-fluid p-4">
         <div class="d-flex justify-content-end">
-
             @if (session()->has('success'))
             <div class="toast align-items-center text-white show bg-success" role="alert" aria-live="assertive"
                 aria-atomic="true" data-bs-autohide="true" data-bs-delay="2000">
@@ -96,8 +95,6 @@
                     <div class="toast-body">
                         {{ session('success') }}
                     </div>
-                    {{-- <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                        aria-bs-label="Close"></button> --}}
                 </div>
                 <div class="progress" style="height: 3px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar"
@@ -112,8 +109,6 @@
                     <div class="toast-body">
                         {{ session('error') }}
                     </div>
-                    {{-- <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button> --}}
                 </div>
                 <div class="progress" style="height: 3px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar"
@@ -128,8 +123,6 @@
                     <div class="toast-body">
                         {{ session('warning') }}
                     </div>
-                    {{-- <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button> --}}
                 </div>
                 <div class="progress" style="height: 3px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar"
@@ -137,12 +130,13 @@
                 </div>
             </div>
             @endif
-
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-        @yield('content')
+        <div class="mt-3">
+            @yield('content')
+        </div>
     </div>
 </div>
 
@@ -178,48 +172,48 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-            const toasts = document.querySelectorAll('.toast');
+    const toasts = document.querySelectorAll('.toast');
 
-            function startProgressBar(toast) {
-                const progressBar = toast.querySelector('.progress-bar');
-                if (progressBar) {
-                    if (!toast.classList.contains('progress-in-progress')) {
-                        const delay = parseInt(toast.getAttribute('data-bs-delay'));
-                        progressBar.style.transition = width ${delay}ms linear;
-                        progressBar.style.width = '100%';
-                        toast.classList.add('progress-in-progress');
+    function startProgressBar(toast) {
+        const progressBar = toast.querySelector('.progress-bar');
+        if (progressBar) {
+            if (!toast.classList.contains('progress-in-progress')) {
+                const delay = parseInt(toast.getAttribute('data-bs-delay'));
+                progressBar.style.transition = `width ${delay}ms linear`;
+                progressBar.style.width = '100%';
+                toast.classList.add('progress-in-progress');
 
-                        // Check when progress bar reaches 100% width
-                        progressBar.addEventListener('transitionend', function() {
-                            if (progressBar.style.width === '100%' && !toast.classList.contains(
-                                    'hovered')) {
-                                toast.remove();
-                            }
-                        });
+                // Check when progress bar reaches 100% width
+                progressBar.addEventListener('transitionend', function() {
+                    if (progressBar.style.width === '100%' && !toast.classList.contains('hovered')) {
+                        toast.remove();
                     }
-                }
-            }
-
-            function resetProgressBar(toast) {
-                const progressBar = toast.querySelector('.progress-bar');
-                if (progressBar) {
-                    progressBar.style.width = '0%';
-                    toast.classList.remove('progress-in-progress');
-                }
-            }
-
-            toasts.forEach(toast => {
-                toast.addEventListener('mouseenter', function() {
-                    toast.classList.add('hovered');
-                    resetProgressBar(toast);
                 });
+            }
+        }
+    }
 
-                toast.addEventListener('mouseleave', function() {
-                    toast.classList.remove('hovered');
-                    startProgressBar(toast);
-                });
+    function resetProgressBar(toast) {
+        const progressBar = toast.querySelector('.progress-bar');
+        if (progressBar) {
+            progressBar.style.width = '0%';
+            toast.classList.remove('progress-in-progress');
+        }
+    }
 
-                startProgressBar(toast);
-            });
+    toasts.forEach(toast => {
+        toast.addEventListener('mouseenter', function() {
+            toast.classList.add('hovered');
+            resetProgressBar(toast);
         });
+
+        toast.addEventListener('mouseleave', function() {
+            toast.classList.remove('hovered');
+            startProgressBar(toast);
+        });
+
+        startProgressBar(toast);
+    });
+});
+
 </script>
