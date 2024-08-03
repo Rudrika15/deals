@@ -44,7 +44,9 @@
                 <div class="card-body">
 
                     @include('admin.users.table')
-                    {{ $data->links() }}
+
+                    <div class="d-flex justify-content-end">{{ $data->links() }}</div>
+
                 </div>
             </div>
         </div>

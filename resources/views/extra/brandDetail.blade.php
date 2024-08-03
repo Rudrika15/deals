@@ -52,7 +52,7 @@
                                         <div class="">
                                             <h6 class="text-muted">{{ $brandCategory->categoryName }}</h6>
                                             <h2 class="fw-bold">{{ $brand->name }}</h2>
-                                            <small class="text-muted fw-bold">{{ $brand->card->address }},
+                                            <small class="text-muted fw-bold">{{ $brand->card->address }}
                                                 {{ $brand->card->city }}</small>
                                         </div>
                                         <div class="text-end">
@@ -86,13 +86,14 @@
 
                                             @foreach ($brand->card->cardPortfolio as $key => $portfolio)
                                                 @if ($key === 0)
+                                                
                                                     <div class="image-container">
                                                         <img src="{{ url('cardimage/' . $portfolio->image) }}"
                                                             class="img-fluid main-image" alt="">
 
                                                         <button class="view-slider-btn btn btn-sm"
-                                                            style="position: absolute; bottom: 55px; left: 87%; transform: translateX(-50%); background-color: rgba(201, 201, 201, 0.9); color: white;">View
-                                                            all images</button>
+                                                            style="position: absolute; bottom: 55px; left: 87%; transform: translateX(-50%); background-color: rgba(4, 205, 255, 0.959); color: white;"><b>View
+                                                            all Images</b></button>
                                                     </div>
                                                 @endif
                                             @endforeach
