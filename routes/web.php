@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\LocationController;
 use App\Models\BrandCategory;
 use App\Models\BrandOffer;
 use App\Models\BrandWithCategory;
@@ -41,13 +42,19 @@ Route::get('/', function () {
     })->with('offer')->with('card')->take(4)->get();
 
     $offers = BrandOffer::inRandomOrder()->take(6)->get();
-    $cities = City::all();
+    $cities = City::where('is_delete', '=', 'Active')->get();
 
     $randomBrandPortfolio = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
     })->with('card.cardPortfolio')->get();
     return view('welcome', compact('offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
+
+Route::get('/search-main', [HomepageController::class, 'search_main']);
+
+// search nearby location
+// Route::post('/search-nearby-brands', [LocationController::class, 'searchNearby'])->name('search.nearby.brands');
+
 
 Route::get('/search', function (Request $request) {
     if ($request->ajax()) {
@@ -70,7 +77,7 @@ Route::get('/search', function (Request $request) {
         foreach ($offers as $offer) {
             $results[] = ['id' => $offer->id, 'name' => $offer->title, 'type' => 'offer'];
         }
-        
+
         return response()->json($results);
     }
 })->name('search');
@@ -86,6 +93,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('/')->group(__DIR__ . '/reseller/resellerRoute.php');
 
     Route::get('/fetch-layout', [App\Http\Controllers\HomepageController::class, 'fetchLayout'])->name('fetch-layout');
+    // routes/web.php
+    Route::post('/save-location', [LocationController::class, 'store'])
+        ->name('save.location');
+    Route::post('/find-users-by-city', [LocationController::class, 'findUsersByCity'])->name('find.users.by.city');
 });
 
 // OTP 

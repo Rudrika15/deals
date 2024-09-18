@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,11 +20,17 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
 
 </head>
+@if (Auth::check())
+    {{--  <p>User is logged in</p>  --}}
+@else
+    {{--  <p>User is not logged in</p>  --}}
+@endif
 
 <body>
     @include('extra.homePageMenu')
@@ -42,42 +50,44 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="border: none;">
-                    {{-- <h5 class="modal-title" id="exampleModalLabel">Search Anything </h5> --}}
                     <div class="d-flex ms-5 mt-5">
                         <i class="bi bi-geo-alt-fill text-muted"></i>
                         <p class="text-muted me-2">Select City</p>
-                        <select name="city" class="mb-3" id="" style="border: none">
+                        <select name="city" class="mb-3" id="city-select" style="border: none">
+                            <option value="">Select City</option> <!-- Default selection -->
                             @foreach ($cities as $item)
-                                <b>
-                                    <option value="{{ $item->city }}">{{ $item->city }}</option>
-                                </b>
+                                <option value="{{ $item->city }}">{{ $item->city }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <button type="button" class="btn-close me-5" data-bs-dismiss="modal" aria-label="Close">
-
-                    </button>
+                    <button type="button" class="btn-close me-5" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid pt-3 d-flex justify-content-center">
                         <div class="input-group mb-3 w-50">
-                            
-                            <input type="text" class="form-control shadow-none" placeholder="Search Anything..."
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn searchbutton" type="button" id="button-addon2">Search</button>
+                            <input type="text" class="form-control shadow-none" name="search"
+                                placeholder="Search Anything..." aria-label="Search" aria-describedby="button-addon2">
+                            <button class="btn searchbutton" id="search-btn" type="button">Search</button>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="results w-75">
+                            <!-- Results will be dynamically inserted here -->
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <img src="{{ asset('images/logo.png') }}" class="img-fluid logo " alt="Logo">
+                    <img src="{{ asset('images/logo.png') }}" class="img-fluid logo" alt="Logo">
                 </div>
-
             </div>
         </div>
     </div>
+    
+    
+    
 
 
     <main class="pb-5 mx-5">
@@ -115,7 +125,6 @@
 
 
         {{-- poster section --}}
-1
 
 
         <div class="brandlogosection">
@@ -177,7 +186,6 @@
                     </div>
                 </div>
                 <ul id="cards">
-
                     @foreach ($sliderPosters as $sliderPoster)
                         <li id="box1" class="list">
                             <img src="{{ asset('brandCategoryPoster/' . $sliderPoster->poster) }}" class="h-100"
@@ -284,7 +292,7 @@
                     </div>
                 </div>
                 <div class="swiper-button-next swiper-navBtn"></div>
-                <div class="swiper-button-prev swiper-navBtn "></div>
+                <div class="swiper-button-prev swiper-navBtn"></div>
                 <div class="swiper-pagination"></div>
             </div>
         </div>
@@ -352,7 +360,7 @@
         </div>
 
 
-        {{-- <div class="container pt-3">
+        {{--  <div class="container pt-3">
             <span class="fw-bold h4">Popular Salon Services✂️ </span>
 
             <div class="row text-center pt-2">
@@ -387,7 +395,7 @@
                     <p>₹price</p>
                 </div>
             </div>
-        </div> --}}
+        </div>  --}}
         <div class="container pt-3">
             <span class="fw-bold h4">Promo Codes For More Savings </span>
 
@@ -723,6 +731,259 @@
             },
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $("input[name=search]").on("keyup", function () {
+                var search = $(this).val(); // Get the input value
+                var city = $("#city-select").val(); // Get the selected city value
+    
+                // Send AJAX request if search term is provided or a city is selected
+                if (search.length > 0 || city !== "") {
+                    $.ajax({
+                        type: "GET",
+                        url: "search-main",
+                        data: {
+                            search: search,
+                            city: city // Send city only if selected, empty string will be handled in the backend
+                        },
+                        success: function (data) {
+                            $(".modal-body .results").empty(); // Clear existing content
+    
+                            var table = `
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            `;
+                            $(".modal-body .results").append(table);
+    
+                            if (data.length > 0) {
+                                $.each(data, function (index, user) {
+                                    $(".modal-body .results table tbody").append(
+                                        '<tr><td>' + (index + 1) + '</td><td>' + user.name + '</td></tr>'
+                                    );
+                                });
+                            } else {
+                                $(".modal-body .results table tbody").append(
+                                    '<tr><td colspan="2">No results found</td></tr>'
+                                );
+                            }
+                        }
+                    });
+                } else {
+                    $(".modal-body .results").empty(); // Clear the results if search input is empty
+                }
+            });
+    
+            // Clear input and results when the modal is closed
+            $('#exampleModal').on('hidden.bs.modal', function () {
+                $("input[name=search]").val(''); // Clear search input field
+                $(".modal-body .results").empty(); // Clear search results
+            });
+        });
+    </script>
+    {{--  <script>
+        window.onload = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    // Store latitude and longitude in local storage
+                    localStorage.setItem('latitude', latitude);
+                    localStorage.setItem('longitude', longitude);
+
+                    // Send data to the backend if user is authenticated
+                    fetch('{{ route('save.location') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                    .getAttribute('content')
+                            },
+                            body: JSON.stringify({
+                                latitude: latitude,
+                                longitude: longitude
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message) {
+                                console.log(data.message);
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+
+                    console.log('Location saved in local storage and sent to the server!');
+                }, function(error) {
+                    alert('Error getting location: ' + error.message);
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        };
+    </script>  --}}
+
+    {{--  <script>
+        window.onload = function() {
+            // Hardcoded latitude and longitude
+            const latitude = 22.730475;
+            const longitude = 71.626647;
+
+            // Store hardcoded latitude and longitude in local storage
+            localStorage.setItem('latitude', latitude);
+            localStorage.setItem('longitude', longitude);
+
+            // Reverse Geocoding using Nominatim (OpenStreetMap)
+            const geocodeUrl =
+                `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
+
+            fetch(geocodeUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Fallback to handle various possible location types
+                    const address = data.address;
+                    const city = address.city || address.town || address.village || address.hamlet ||
+                        'Location not found';
+
+                    console.log('City:', city);
+
+                    // Store the city in local storage
+                    localStorage.setItem('city', city);
+
+                    // Send data to the backend if user is authenticated
+                    fetch('{{ route('save.location') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                    'content')
+                            },
+                            body: JSON.stringify({
+                                latitude: latitude,
+                                longitude: longitude,
+                                city: city
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message) {
+                                console.log(data.message);
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+
+                    console.log('Location and city sent to the server!');
+                })
+                .catch(error => console.error('Error fetching geocode data:', error));
+        };
+    </script>  --}}
+
+    <script>
+        window.onload = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+
+                    console.log('Current Latitude:', latitude);
+                    console.log('Current Longitude:', longitude);
+
+                    // Store latitude and longitude in local storage
+                    localStorage.setItem('latitude', latitude);
+                    localStorage.setItem('longitude', longitude);
+
+                    // Reverse Geocoding using Nominatim with a zoom level
+                    const geocodeUrl =
+                        `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&zoom=12&format=json`;
+
+                    fetch(geocodeUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            const address = data.address;
+
+                            // Enhanced fallback options, now with zoom level
+                            const city = address.city || address.town || address.village || address
+                                .hamlet ||
+                                address.suburb || address.county || address.state || 'Location not found';
+
+                            console.log('City:', city);
+
+                            // Store the city in local storage
+                            localStorage.setItem('city', city);
+
+                            // Send data to the backend if the user is authenticated
+                            fetch('{{ route('save.location') }}', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': document.querySelector(
+                                            'meta[name="csrf-token"]').getAttribute('content')
+                                    },
+                                    body: JSON.stringify({
+                                        latitude: latitude,
+                                        longitude: longitude,
+                                        city: city
+                                    })
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.message) {
+                                        console.log(data.message);
+                                    }
+                                })
+                                .catch(error => console.error('Error:', error));
+
+                            console.log('Location and city sent to the server!');
+                        })
+                        .catch(error => console.error('Error fetching geocode data:', error));
+
+                }, function(error) {
+                    alert('Error getting location: ' + error.message);
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        };
+    </script>
+
+    <script>
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            fetch('{{ route('find.users.by.city') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content')
+                    },
+                    body: JSON.stringify({
+                        latitude: latitude,
+                        longitude: longitude
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.city) {
+                        alert('City:', data.city);
+                        alert('Users in this city:', data.users);
+                    } else {
+                        console.log(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+
 </body>
 
 </html>

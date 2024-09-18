@@ -18,6 +18,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Str;
@@ -216,4 +217,42 @@ class HomepageController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function search_main(Request $request)
+{
+    $query = $request->get('search');  // Get search term
+    $city = $request->get('city');     // Get selected city
+    $userId = auth()->user()->id;      // Get the logged-in user's ID
+
+    // If no city is selected, retrieve the city from the logged-in user's location
+    if (empty($city)) {
+        $userLocation = DB::table('locations')
+                          ->where('user_id', $userId)
+                          ->value('city'); // Assuming 'city' column exists in 'locations' table
+        $city = $userLocation;
+    }
+
+    // Build the query to filter by role 'Brand' and city
+    $randomBrandPortfolio = User::whereHas('roles', function ($q) {
+        $q->where('name', 'Brand');
+    });
+
+    // Filter by city if it's found
+    if (!empty($city)) {
+        $randomBrandPortfolio->where('city', 'like', '%' . $city . '%');
+    }
+
+    // Filter by search term if provided
+    if (!empty($query)) {
+        $randomBrandPortfolio->where('name', 'like', '%' . $query . '%');
+    }
+
+    // Get the results
+    $result = $randomBrandPortfolio->select('id', 'name')->get();
+
+    // Return as JSON response
+    return response()->json($result);
+}
+
+    
 }
