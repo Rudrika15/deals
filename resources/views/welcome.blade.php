@@ -750,29 +750,33 @@
                         success: function (data) {
                             $(".modal-body .results").empty(); // Clear existing content
     
-                            var table = `
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Result</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            `;
-                            $(".modal-body .results").append(table);
     
                             if (data.length > 0) {
                                 $.each(data, function (index, user) {
-                                    $(".modal-body .results table tbody").append(
-                                        '<tr><td>' + (index + 1) + '</td><td>' + user.name + '</td></tr>'
-                                    );
+                                    if (index % 2 === 0) {
+                                    row = $('<div class="row mb-3"></div>'); // Create a new row
+                                    $(".modal-body .results").append(row); // Append the row to the results
+                                }
+                                var card = `
+                                    <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="d-inline-block position-relative">
+                                            <img class="card-img-top" src="{{ asset('profile/') }}/` + user.profilePhoto + `"
+                                                style="object-fit: fit; height: 200px" alt="Title" />
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title">` + user.name + `</h4>
+                                            <p class="card-text">` + city + `</p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                `;
+                                row.append(card);                                
                                 });
                             } else {
-                                $(".modal-body .results table tbody").append(
-                                    '<tr><td colspan="2">No results found</td></tr>'
-                                );
+                                $(".modal-body .results").append(
+                                '<div class="alert alert-warning">No results found</div>'                                
+                            );
                             }
                         }
                     });

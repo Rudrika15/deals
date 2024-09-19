@@ -123,8 +123,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(MyOfferQrCodes::class, 'buyerId', 'id');
     }
+    // public function location()
+    // {
+    //     return $this->hasOne(Location::class);
+    // }
+
     public function location()
-    {
-        return $this->hasOne(Location::class);
-    }
+{
+    return $this->hasOne(Location::class, 'user_id', 'id');
+}
+
 }

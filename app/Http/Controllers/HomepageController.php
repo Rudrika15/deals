@@ -218,7 +218,7 @@ class HomepageController extends Controller
         }
     }
 
-    public function search_main(Request $request)
+public function search_main(Request $request)
 {
     $query = $request->get('search');  // Get search term
     $city = $request->get('city');     // Get selected city
@@ -228,8 +228,33 @@ class HomepageController extends Controller
     if (empty($city)) {
         $userLocation = DB::table('locations')
                           ->where('user_id', $userId)
-                          ->value('city'); // Assuming 'city' column exists in 'locations' table
-        $city = $userLocation;
+                          ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
+        
+        // return $userLocation;
+        if ($userLocation) {
+            $latitude = $userLocation->latitude;
+            $longitude = $userLocation->longitude;
+            $radius = 2; // Radius in kilometers
+    
+            // Query to find locations within 2km radius
+            $locations = DB::table('locations')
+                           ->select('id','user_id' ,'latitude', 'longitude')
+                           ->whereRaw("
+                               (6371 * acos(
+                                   cos(radians(?)) * cos(radians(latitude)) *
+                                   cos(radians(longitude) - radians(?)) +
+                                   sin(radians(?)) * sin(radians(latitude))
+                               )) <= ?
+                           ", [$latitude, $longitude, $latitude, $radius])
+                           ->pluck('user_id');;
+
+                           if ($locations->isNotEmpty()) {
+                            $userData = DB::table('users')
+                                          ->whereIn('id', $locations)
+                                          ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                        }
+            // return $userData;
+        }
     }
 
     // Build the query to filter by role 'Brand' and city
@@ -248,9 +273,10 @@ class HomepageController extends Controller
     }
 
     // Get the results
-    $result = $randomBrandPortfolio->select('id', 'name')->get();
+    $result = $randomBrandPortfolio->select('id', 'name','profilePhoto')->get();
 
     // Return as JSON response
+
     return response()->json($result);
 }
 
