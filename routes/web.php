@@ -1,15 +1,17 @@
 <?php
 
+use App\Models\City;
+use App\Models\User;
+use App\Models\BrandOffer;
+use Illuminate\Http\Request;
+use App\Models\BrandCategory;
+use App\Models\BrandWithCategory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LocationController;
-use App\Models\BrandCategory;
-use App\Models\BrandOffer;
-use App\Models\BrandWithCategory;
-use App\Models\City;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +26,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
+
+Route::get('/', function (Request $request) {
     $offerCategory = BrandCategory::take(9)->get();
     $brandLogos = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
@@ -47,7 +50,45 @@ Route::get('/', function () {
     $randomBrandPortfolio = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
     })->with('card.cardPortfolio')->get();
-    return view('welcome', compact('offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
+    
+    if(Auth::user()){
+        $userId = auth()->user()->id;      // Get the logged-in user's ID
+        $userLocation = DB::table('locations')
+        ->where('user_id', $userId)
+        ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
+
+    // return $userLocation;
+    if ($userLocation) {
+        $latitude = $userLocation->latitude;
+        $longitude = $userLocation->longitude;
+        $radius = 2; // Radius in kilometers
+
+        // Query to find locations within 2km radius
+        $locations = DB::table('locations')
+            ->select('id', 'user_id', 'latitude', 'longitude')
+            ->whereRaw("
+         (6371 * acos(
+             cos(radians(?)) * cos(radians(latitude)) *
+             cos(radians(longitude) - radians(?)) +
+             sin(radians(?)) * sin(radians(latitude))
+         )) <= ?
+     ", [$latitude, $longitude, $latitude, $radius])
+            ->pluck('user_id');;
+
+        if ($locations->isNotEmpty()) {
+            $userData = DB::table('users')
+                ->whereIn('id', $locations)
+                ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+        }
+        // return $userData;
+    }
+    }
+    else{
+        $userData = '';
+    
+        }
+        
+    return view('welcome', compact('userData','offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
 
 Route::get('/search-main', [HomepageController::class, 'search_main']);

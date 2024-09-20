@@ -512,7 +512,7 @@
 .MultiCarousel .rightLst {
     position: absolute;
     border-radius: 50%;
-    top: calc(50% - 20px);
+    top: calc(50% - 40px);
 }
 
 /******* Bnt Full********

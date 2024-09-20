@@ -23,8 +23,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
-
+    
 </head>
 @if (Auth::check())
     {{--  <p>User is logged in</p>  --}}
@@ -73,6 +72,28 @@
                             <button class="btn searchbutton" id="search-btn" type="button">Search</button>
                         </div>
                     </div>
+                    @if (!empty($userData) )
+                    @foreach ($userData as $data)
+                    <div class="d-flex justify-content-center">
+                        <div class=" w-75">
+                            <div class="row mb-3">
+                                <div class="col-md-6 " id="default">
+                                    <div class="card">
+                                        <div class="d-inline-block position-relative">
+                                            <img class="card-img-top" src="{{ asset('profile/') }}/{{$data->profilePhoto}}"
+                                                style="object-fit: fit; height: 200px" alt="Title" />
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{$data->name}}</h4>
+                                            <p class="card-text">{{$data->city}}</p>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>        
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
                     <div class="d-flex justify-content-center">
                         <div class="results w-75">
                             <!-- Results will be dynamically inserted here -->
@@ -92,7 +113,7 @@
 
     <main class="pb-5 mx-5">
 
-        <div class="container-fluid pt-2">
+        <div class="container-fluid pt-5">
             <div class="row px-5 text-center">
 
                 @foreach ($offerCategory as $category)
@@ -248,7 +269,7 @@
         <div class="container pt-4">
             <span class="fw-bold h4">Next Thing On Your Mind 💅🍔💆‍♀️✂️</span>
 
-            <div class="row text-center pt-2">
+            <div class="row text-center pt-5">
                 @foreach ($offers as $offer)
                     <div class="col-md-2">
                         <img src="{{ asset('offerPhoto') }}/{{ $offer->offerPhoto }}" class=""
@@ -261,7 +282,7 @@
         </div>
 
         <div class="container-fluid pt-4  d-flex justify-content-center ps-5">
-            <div class="slide-container swiper ps-5 ms-5">
+            <div class="slide-container swiper p-5">
                 <div class="slide-content">
                     <div class="card-wrapper swiper-wrapper">
                         @foreach ($newBrands as $brand)
@@ -400,7 +421,7 @@
             <span class="fw-bold h4">Promo Codes For More Savings </span>
 
             <div class="container-fluid pt-4  d-flex justify-content-center">
-                <div class="couponslide-content swiper">
+                <div class="couponslide-content swiper p-5">
                     <div class="slide-content">
                         <div class="card-wrapper swiper-wrapper">
                             <div class="card  swiper-slide" style="width: 500rem;">
@@ -497,6 +518,7 @@
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('.customer-logos').slick({
@@ -734,7 +756,9 @@
 
     <script>
         $(document).ready(function () {
+           $serachbtn =  $('#search-btn').val();
             $("input[name=search]").on("keyup", function () {
+                $('#default').hide();
                 var search = $(this).val(); // Get the input value
                 var city = $("#city-select").val(); // Get the selected city value
     
@@ -782,6 +806,7 @@
                     });
                 } else {
                     $(".modal-body .results").empty(); // Clear the results if search input is empty
+                    $("#default").show();
                 }
             });
     
@@ -896,8 +921,8 @@
                     latitude = position.coords.latitude;
                     longitude = position.coords.longitude;
 
-                    console.log('Current Latitude:', latitude);
-                    console.log('Current Longitude:', longitude);
+                    // console.log('Current Latitude:', latitude);
+                    // console.log('Current Longitude:', longitude);
 
                     // Store latitude and longitude in local storage
                     localStorage.setItem('latitude', latitude);
@@ -917,7 +942,7 @@
                                 .hamlet ||
                                 address.suburb || address.county || address.state || 'Location not found';
 
-                            console.log('City:', city);
+                            // console.log('City:', city);
 
                             // Store the city in local storage
                             localStorage.setItem('city', city);
@@ -944,7 +969,7 @@
                                 })
                                 .catch(error => console.error('Error:', error));
 
-                            console.log('Location and city sent to the server!');
+                            // console.log('Location and city sent to the server!');
                         })
                         .catch(error => console.error('Error fetching geocode data:', error));
 
