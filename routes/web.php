@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Auth::routes();
 
 
 Route::get('/', function (Request $request) {
+    
     $offerCategory = BrandCategory::take(9)->get();
     $brandLogos = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
@@ -80,18 +82,36 @@ Route::get('/', function (Request $request) {
                 ->whereIn('id', $locations)
                 ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
         }
-        // return $userData;
     }
     }
     else{
         $userData = '';
-    
-        }
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+
+        // Prepare the Nominatim API URL
+        $nominatimUrl = "https://nominatim.openstreetmap.org/reverse?lat={$latitude}&lon={$longitude}&zoom=12&format=json";
+
+        // Make the request to the Nominatim API
+        $nominatimResponse = Http::get($nominatimUrl);
+
+        if ($nominatimResponse->successful()) {
+            $nominatimData = $nominatimResponse->json();
+            $city = $nominatimData['address']['city'] ?? 'Unknown';
+            $state = $nominatimData['address']['state'] ?? 'Unknown';
+            $country = $nominatimData['address']['country'] ?? 'Unknown';
+
+            // Return the data
+            return "Latitude: $latitude<br>Longitude: $longitude<br>City: $city<br>State: $state<br>Country: $country";
+
+}}
         
     return view('welcome', compact('userData','offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
 
 Route::get('/search-main', [HomepageController::class, 'search_main']);
+
+
 
 // search nearby location
 // Route::post('/search-nearby-brands', [LocationController::class, 'searchNearby'])->name('search.nearby.brands');

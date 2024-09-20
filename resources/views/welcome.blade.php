@@ -96,7 +96,6 @@
                     @endif
                     <div class="d-flex justify-content-center">
                         <div class="results w-75">
-                            <!-- Results will be dynamically inserted here -->
                         </div>
                     </div>
                 </div>
@@ -107,10 +106,6 @@
         </div>
     </div>
     
-    
-    
-
-
     <main class="pb-5 mx-5">
 
         <div class="container-fluid pt-5">
@@ -185,8 +180,6 @@
                         @endforeach
                     @endforeach
                 @endforeach
-
-
             </div>
         </div>
 
@@ -817,6 +810,7 @@
             });
         });
     </script>
+
     {{--  <script>
         window.onload = function() {
             if (navigator.geolocation) {
@@ -981,6 +975,46 @@
             }
         };
     </script>
+
+
+{{-- //new code  --}}
+<script>
+    // Automatically request user's location on page load
+    window.onload = function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(latitude);
+                console.log(longitude);
+        
+                // Send the latitude and longitude to your Laravel route
+                fetch('/', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ latitude, longitude })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('locationOutput').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+            }, function(error) {
+                document.getElementById('locationOutput').innerHTML = "Error getting location: " + error.message;
+            });
+        } else {
+            document.getElementById('locationOutput').innerHTML = "Geolocation is not supported by this browser.";
+        }
+    };
+</script>
+
+{{-- new code end  --}}
+
+
+
 
     <script>
         navigator.geolocation.getCurrentPosition(function(position) {
