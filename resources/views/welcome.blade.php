@@ -64,7 +64,7 @@
                 <div class="modal-body">
                     <div class="container-fluid pt-3 d-flex justify-content-center">
                         <div class="input-group mb-3 w-50">
-                            
+
                             <input type="text" class="form-control shadow-none" placeholder="Search Anything..."
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
                             <button class="btn searchbutton" type="button" id="button-addon2">Search</button>
@@ -115,7 +115,7 @@
 
 
         {{-- poster section --}}
-1
+        1
 
 
         <div class="brandlogosection">
