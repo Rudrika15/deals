@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Auth::routes();
 
 
 Route::get('/', function (Request $request) {
+    
     $offerCategory = BrandCategory::take(9)->get();
     $brandLogos = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
@@ -73,6 +75,7 @@ Route::get('/', function (Request $request) {
              sin(radians(?)) * sin(radians(latitude))
          )) <= ?
      ", [$latitude, $longitude, $latitude, $radius])
+<<<<<<< HEAD
                 ->pluck('user_id');;
 
             if ($locations->isNotEmpty()) {
@@ -87,9 +90,76 @@ Route::get('/', function (Request $request) {
     }
 
     return view('welcome', compact('userData', 'offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
+=======
+            ->pluck('user_id');
+
+        if ($locations->isNotEmpty()) {
+            $userData = DB::table('users')
+                ->whereIn('id', $locations)
+                ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+               $id = $userData->pluck('id');
+                $brandCategory = DB::table('brand_with_categories')
+                ->whereIn('brandId',$id)
+                ->pluck('brandCategoryId')
+                ->first(); 
+        }
+
+    }
+    }
+    else{
+        $userData = '';
+        $publicIpResponse = Http::get('https://api.ipify.org');
+        $publicIp = trim($publicIpResponse->body());
+        // Call an external API (like ip-api.com) to get location based on the IP address
+        $locationResponse = Http::get("http://ip-api.com/json/{$publicIp}");
+
+        if ($locationResponse->successful()) {
+            $data = $locationResponse->json();
+            $latitude = $data['lat'] ?? 'Unknown';
+            $longitude = $data['lon'] ?? 'Unknown';
+            $city = $data['city'] ?? 'Unknown';
+            $region = $data['regionName'] ?? 'Unknown';
+            $country = $data['country'] ?? 'Unknown';
+
+            // return "IP: $publicIp<br>Latitude: $latitude<br>Longitude: $longitude<br>City: $city<br>Region: $region<br>Country: $country";
+        } else {
+            return "Unable to retrieve location data.";
+        }
+        $near_latitude = $latitude;
+        $near_longitude = $longitude;
+        $near_radius = 2; // Radius in kilometers
+
+          $locations = DB::table('locations')
+            ->select('id','user_id','latitude', 'longitude')
+            ->whereRaw("
+         (6371 * acos(
+             cos(radians(?)) * cos(radians(latitude)) *
+             cos(radians(longitude) - radians(?)) +
+             sin(radians(?)) * sin(radians(latitude))
+         )) <= ?
+         ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
+         ->pluck('user_id');
+        if ($locations->isNotEmpty()) {
+            $userData = DB::table('users')
+                ->whereIn('id', $locations)
+                ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                $id = $userData->pluck('id');
+                $brandCategory = DB::table('brand_with_categories')
+                ->whereIn('brandId',$id)
+                ->pluck('brandCategoryId')
+                ->first(); 
+        }
+        
+    }
+
+        
+    return view('welcome', compact('userData','brandCategory','offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
+>>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
 });
 
 Route::get('/search-main', [HomepageController::class, 'search_main']);
+
+
 
 // search nearby location
 // Route::post('/search-nearby-brands', [LocationController::class, 'searchNearby'])->name('search.nearby.brands');

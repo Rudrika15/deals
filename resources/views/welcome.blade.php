@@ -72,6 +72,7 @@
                             <button class="btn searchbutton" id="search-btn" type="button">Search</button>
                         </div>
                     </div>
+<<<<<<< HEAD
                     @if (!empty($userData))
                         @foreach ($userData as $data)
                             <div class="d-flex justify-content-center">
@@ -94,10 +95,37 @@
                                 </div>
                             </div>
                         @endforeach
+=======
+                    @if (!empty($userData) )
+                    <div class="d-flex justify-content-center">
+                        <div class=" w-75">
+                            <div class="row mb-3"  id="default">
+                                @foreach ($userData as $data)
+                                <div class="col-md-6 mb-4">
+                                    <div class="card" onclick="redirectToDetail('{{ $data->id }}', '{{ $brandCategory }}')">
+                                        <div class="d-inline-block position-relative">
+                                            <img class="card-img-top" src="{{ asset('profile/') }}/{{$data->profilePhoto}}"
+                                                style="object-fit: fit; height: 200px" alt="Title" />
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{$data->name}}</h4>
+                                            <p class="card-text">{{$data->city}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>        
+                        </div>
+                    </div>
+                    <script>
+                        function redirectToDetail(id, category) {
+                            window.location.href = `/brand/detail/${id}/${category}`;
+                        }
+                    </script>
+>>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
                     @endif
                     <div class="d-flex justify-content-center">
                         <div class="results w-75">
-                            <!-- Results will be dynamically inserted here -->
                         </div>
                     </div>
                 </div>
@@ -107,11 +135,15 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
 
 
 
 
+=======
+    
+>>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
     <main class="pb-5 mx-5">
 
         <div class="container-fluid pt-5">
@@ -186,8 +218,6 @@
                         @endforeach
                     @endforeach
                 @endforeach
-
-
             </div>
         </div>
 
@@ -318,7 +348,6 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-
 
         <div class="container pt-4">
 
@@ -756,6 +785,7 @@
     </script>
 
     <script>
+<<<<<<< HEAD
         $(document).ready(function() {
             $serachbtn = $('#search-btn').val();
             $("input[name=search]").on("keyup", function() {
@@ -763,6 +793,15 @@
                 var search = $(this).val(); // Get the input value
                 var city = $("#city-select").val(); // Get the selected city value
 
+=======
+        $(document).ready(function () {
+           $serachbtn =  $('#search-btn').val();
+            $("input[name=search]").on("keyup", function () {
+                var search = $(this).val(); // Get the input value
+                var city = $("#city-select").val(); // Get the selected city value
+                
+                $('#default').hide();
+>>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
                 // Send AJAX request if search term is provided or a city is selected
                 if (search.length > 0 || city !== "") {
                     $.ajax({
@@ -774,6 +813,7 @@
                         },
                         success: function(data) {
                             $(".modal-body .results").empty(); // Clear existing content
+<<<<<<< HEAD
 
 
                             if (data.length > 0) {
@@ -786,16 +826,34 @@
                                             row); // Append the row to the results
                                     }
                                     var card = `
+=======
+                            var results = data.results;
+                            var brandCategories = data.brandCategories ;
+    
+                            if (results.length > 0) {
+                                $.each(results, function (index, user) {
+                                    if (index % 2 === 0) {
+                                    row = $('<div class="row mb-3"></div>'); // Create a new row
+                                    $(".modal-body .results").append(row); // Append the row to the results
+                                }
+                                
+                                var categoryString = brandCategories.join(',');
+                                var card = `
+>>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
                                     <div class="col-md-6">
-                                    <div class="card">
+                                    <div class="card user-card" data-id="${user.id}" data-category="${categoryString}" style="cursor: pointer;" onclick="redirectToDetail(${user.id}, '${categoryString}')">
                                         <div class="d-inline-block position-relative">
+<<<<<<< HEAD
                                             <img class="card-img-top" src="{{ asset('profile/') }}/` + user
                                         .profilePhoto + `"
+=======
+                                            <img class="card-img-top" src="{{ asset('profile/') }}/${user.profilePhoto}"
+>>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
                                                 style="object-fit: fit; height: 200px" alt="Title" />
                                         </div>
                                         <div class="card-body">
-                                            <h4 class="card-title">` + user.name + `</h4>
-                                            <p class="card-text">` + city + `</p>
+                                            <h4 class="card-title">${user.name}</h4>
+                                            <p class="card-text">${city}</p>
                                         </div>
                                     </div>
                                     </div>
@@ -819,105 +877,17 @@
             $('#exampleModal').on('hidden.bs.modal', function() {
                 $("input[name=search]").val(''); // Clear search input field
                 $(".modal-body .results").empty(); // Clear search results
+                $("#default").show(); //Show default data when modal is closed
             });
         });
+
+        function redirectToDetail(id, category) {
+        // Encode category for URL safety
+        category = encodeURIComponent(category);
+        // Redirect to the specified route
+        window.location.href = `/brand/detail/${id}/${category}`;
+    }
     </script>
-    {{--  <script>
-        window.onload = function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-
-                    // Store latitude and longitude in local storage
-                    localStorage.setItem('latitude', latitude);
-                    localStorage.setItem('longitude', longitude);
-
-                    // Send data to the backend if user is authenticated
-                    fetch('{{ route('save.location') }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                                    .getAttribute('content')
-                            },
-                            body: JSON.stringify({
-                                latitude: latitude,
-                                longitude: longitude
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.message) {
-                                console.log(data.message);
-                            }
-                        })
-                        .catch(error => console.error('Error:', error));
-
-                    console.log('Location saved in local storage and sent to the server!');
-                }, function(error) {
-                    alert('Error getting location: ' + error.message);
-                });
-            } else {
-                alert('Geolocation is not supported by this browser.');
-            }
-        };
-    </script>  --}}
-
-    {{--  <script>
-        window.onload = function() {
-            // Hardcoded latitude and longitude
-            const latitude = 22.730475;
-            const longitude = 71.626647;
-
-            // Store hardcoded latitude and longitude in local storage
-            localStorage.setItem('latitude', latitude);
-            localStorage.setItem('longitude', longitude);
-
-            // Reverse Geocoding using Nominatim (OpenStreetMap)
-            const geocodeUrl =
-                `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
-
-            fetch(geocodeUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Fallback to handle various possible location types
-                    const address = data.address;
-                    const city = address.city || address.town || address.village || address.hamlet ||
-                        'Location not found';
-
-                    console.log('City:', city);
-
-                    // Store the city in local storage
-                    localStorage.setItem('city', city);
-
-                    // Send data to the backend if user is authenticated
-                    fetch('{{ route('save.location') }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                                    'content')
-                            },
-                            body: JSON.stringify({
-                                latitude: latitude,
-                                longitude: longitude,
-                                city: city
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.message) {
-                                console.log(data.message);
-                            }
-                        })
-                        .catch(error => console.error('Error:', error));
-
-                    console.log('Location and city sent to the server!');
-                })
-                .catch(error => console.error('Error fetching geocode data:', error));
-        };
-    </script>  --}}
 
     <script>
         window.onload = function() {
@@ -933,7 +903,7 @@
                     localStorage.setItem('latitude', latitude);
                     localStorage.setItem('longitude', longitude);
 
-                    // Reverse Geocoding using Nominatim with a zoom level
+                    // Reverse Geocoding using Nomi natim with a zoom level
                     const geocodeUrl =
                         `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&zoom=12&format=json`;
 
@@ -986,6 +956,7 @@
             }
         };
     </script>
+
 
     <script>
         navigator.geolocation.getCurrentPosition(function(position) {
