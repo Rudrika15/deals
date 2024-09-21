@@ -75,22 +75,6 @@ Route::get('/', function (Request $request) {
              sin(radians(?)) * sin(radians(latitude))
          )) <= ?
      ", [$latitude, $longitude, $latitude, $radius])
-<<<<<<< HEAD
-                ->pluck('user_id');;
-
-            if ($locations->isNotEmpty()) {
-                $userData = DB::table('users')
-                    ->whereIn('id', $locations)
-                    ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
-            }
-            // return $userData;
-        }
-    } else {
-        $userData = '';
-    }
-
-    return view('welcome', compact('userData', 'offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
-=======
             ->pluck('user_id');
 
         if ($locations->isNotEmpty()) {
@@ -154,7 +138,6 @@ Route::get('/', function (Request $request) {
 
         
     return view('welcome', compact('userData','brandCategory','offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
->>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
 });
 
 Route::get('/search-main', [HomepageController::class, 'search_main']);
