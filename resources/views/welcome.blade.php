@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    
+
 </head>
 @if (Auth::check())
     {{--  <p>User is logged in</p>  --}}
@@ -72,27 +72,28 @@
                             <button class="btn searchbutton" id="search-btn" type="button">Search</button>
                         </div>
                     </div>
-                    @if (!empty($userData) )
-                    @foreach ($userData as $data)
-                    <div class="d-flex justify-content-center">
-                        <div class=" w-75">
-                            <div class="row mb-3">
-                                <div class="col-md-6 " id="default">
-                                    <div class="card">
-                                        <div class="d-inline-block position-relative">
-                                            <img class="card-img-top" src="{{ asset('profile/') }}/{{$data->profilePhoto}}"
-                                                style="object-fit: fit; height: 200px" alt="Title" />
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="card-title">{{$data->name}}</h4>
-                                            <p class="card-text">{{$data->city}}</p>
+                    @if (!empty($userData))
+                        @foreach ($userData as $data)
+                            <div class="d-flex justify-content-center">
+                                <div class=" w-75">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6 " id="default">
+                                            <div class="card">
+                                                <div class="d-inline-block position-relative">
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('profile/') }}/{{ $data->profilePhoto }}"
+                                                        style="object-fit: fit; height: 200px" alt="Title" />
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4 class="card-title">{{ $data->name }}</h4>
+                                                    <p class="card-text">{{ $data->city }}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>    
-                            </div>        
-                        </div>
-                    </div>
-                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
                     @endif
                     <div class="d-flex justify-content-center">
                         <div class="results w-75">
@@ -106,9 +107,9 @@
             </div>
         </div>
     </div>
-    
-    
-    
+
+
+
 
 
     <main class="pb-5 mx-5">
@@ -174,7 +175,7 @@
                 @foreach ($posters as $brand)
                     @foreach ($brand->brand as $card)
                         @foreach ($card->users as $profilePic)
-                            <div class="col-md-3">
+                            <div class="col-md-3 pb-5">
                                 {{-- {{ $profilePic->profilePhoto }} --}}
                                 <a href="">
                                     <img src="{{ asset('profile') }}/{{ $profilePic->profilePhoto }}"
@@ -755,13 +756,13 @@
     </script>
 
     <script>
-        $(document).ready(function () {
-           $serachbtn =  $('#search-btn').val();
-            $("input[name=search]").on("keyup", function () {
+        $(document).ready(function() {
+            $serachbtn = $('#search-btn').val();
+            $("input[name=search]").on("keyup", function() {
                 $('#default').hide();
                 var search = $(this).val(); // Get the input value
                 var city = $("#city-select").val(); // Get the selected city value
-    
+
                 // Send AJAX request if search term is provided or a city is selected
                 if (search.length > 0 || city !== "") {
                     $.ajax({
@@ -771,21 +772,25 @@
                             search: search,
                             city: city // Send city only if selected, empty string will be handled in the backend
                         },
-                        success: function (data) {
+                        success: function(data) {
                             $(".modal-body .results").empty(); // Clear existing content
-    
-    
+
+
                             if (data.length > 0) {
-                                $.each(data, function (index, user) {
+                                $.each(data, function(index, user) {
                                     if (index % 2 === 0) {
-                                    row = $('<div class="row mb-3"></div>'); // Create a new row
-                                    $(".modal-body .results").append(row); // Append the row to the results
-                                }
-                                var card = `
+                                        row = $(
+                                            '<div class="row mb-3"></div>'
+                                        ); // Create a new row
+                                        $(".modal-body .results").append(
+                                            row); // Append the row to the results
+                                    }
+                                    var card = `
                                     <div class="col-md-6">
                                     <div class="card">
                                         <div class="d-inline-block position-relative">
-                                            <img class="card-img-top" src="{{ asset('profile/') }}/` + user.profilePhoto + `"
+                                            <img class="card-img-top" src="{{ asset('profile/') }}/` + user
+                                        .profilePhoto + `"
                                                 style="object-fit: fit; height: 200px" alt="Title" />
                                         </div>
                                         <div class="card-body">
@@ -795,12 +800,12 @@
                                     </div>
                                     </div>
                                 `;
-                                row.append(card);                                
+                                    row.append(card);
                                 });
                             } else {
                                 $(".modal-body .results").append(
-                                '<div class="alert alert-warning">No results found</div>'                                
-                            );
+                                    '<div class="alert alert-warning">No results found</div>'
+                                );
                             }
                         }
                     });
@@ -809,9 +814,9 @@
                     $("#default").show();
                 }
             });
-    
+
             // Clear input and results when the modal is closed
-            $('#exampleModal').on('hidden.bs.modal', function () {
+            $('#exampleModal').on('hidden.bs.modal', function() {
                 $("input[name=search]").val(''); // Clear search input field
                 $(".modal-body .results").empty(); // Clear search results
             });

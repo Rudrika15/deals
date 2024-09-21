@@ -260,19 +260,19 @@
 }
 
 #cards {
-    width: 80%;
+    width: 90%;
     overflow: hidden;
     white-space: nowrap;
     display: block;
     list-style: none;
     padding: 0;
     position: relative;
-    left: 10%;
+    left: 0%;
     bottom: 60px;
 }
 
 .list p {
-    width: 300px hidden;
+    width: 100px hidden;
 }
 
 #prev {
@@ -512,7 +512,7 @@
 .MultiCarousel .rightLst {
     position: absolute;
     border-radius: 50%;
-    top: calc(50% - 40px);
+    top: calc(50% - 20px);
 }
 
 /******* Bnt Full********
