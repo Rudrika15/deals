@@ -75,36 +75,57 @@ Route::get('/', function (Request $request) {
              sin(radians(?)) * sin(radians(latitude))
          )) <= ?
      ", [$latitude, $longitude, $latitude, $radius])
-            ->pluck('user_id');;
+            ->pluck('user_id');
 
         if ($locations->isNotEmpty()) {
             $userData = DB::table('users')
                 ->whereIn('id', $locations)
                 ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
         }
+        
     }
     }
     else{
         $userData = '';
-        $latitude = $request->input('latitude');
-        $longitude = $request->input('longitude');
+        $publicIpResponse = Http::get('https://api.ipify.org');
+        $publicIp = trim($publicIpResponse->body());
+        // Call an external API (like ip-api.com) to get location based on the IP address
+        $locationResponse = Http::get("http://ip-api.com/json/{$publicIp}");
 
-        // Prepare the Nominatim API URL
-        $nominatimUrl = "https://nominatim.openstreetmap.org/reverse?lat={$latitude}&lon={$longitude}&zoom=12&format=json";
+        if ($locationResponse->successful()) {
+            $data = $locationResponse->json();
+            $latitude = $data['lat'] ?? 'Unknown';
+            $longitude = $data['lon'] ?? 'Unknown';
+            $city = $data['city'] ?? 'Unknown';
+            $region = $data['regionName'] ?? 'Unknown';
+            $country = $data['country'] ?? 'Unknown';
 
-        // Make the request to the Nominatim API
-        $nominatimResponse = Http::get($nominatimUrl);
+            // return "IP: $publicIp<br>Latitude: $latitude<br>Longitude: $longitude<br>City: $city<br>Region: $region<br>Country: $country";
+        } else {
+            return "Unable to retrieve location data.";
+        }
+        $near_latitude = $latitude;
+        $near_longitude = $longitude;
+        $near_radius = 2; // Radius in kilometers
 
-        if ($nominatimResponse->successful()) {
-            $nominatimData = $nominatimResponse->json();
-            $city = $nominatimData['address']['city'] ?? 'Unknown';
-            $state = $nominatimData['address']['state'] ?? 'Unknown';
-            $country = $nominatimData['address']['country'] ?? 'Unknown';
+          $locations = DB::table('locations')
+            ->select('id','user_id','latitude', 'longitude')
+            ->whereRaw("
+         (6371 * acos(
+             cos(radians(?)) * cos(radians(latitude)) *
+             cos(radians(longitude) - radians(?)) +
+             sin(radians(?)) * sin(radians(latitude))
+         )) <= ?
+         ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
+         ->pluck('user_id');
+        if ($locations->isNotEmpty()) {
+            $userData = DB::table('users')
+                ->whereIn('id', $locations)
+                ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+        }
+        
+    }
 
-            // Return the data
-            return "Latitude: $latitude<br>Longitude: $longitude<br>City: $city<br>State: $state<br>Country: $country";
-
-}}
         
     return view('welcome', compact('userData','offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });

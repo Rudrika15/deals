@@ -73,11 +73,11 @@
                         </div>
                     </div>
                     @if (!empty($userData) )
-                    @foreach ($userData as $data)
                     <div class="d-flex justify-content-center">
                         <div class=" w-75">
-                            <div class="row mb-3">
-                                <div class="col-md-6 " id="default">
+                            <div class="row mb-3"  id="default">
+                                @foreach ($userData as $index=>$data)
+                                <div class="col-md-6 mb-4">
                                     <div class="card">
                                         <div class="d-inline-block position-relative">
                                             <img class="card-img-top" src="{{ asset('profile/') }}/{{$data->profilePhoto}}"
@@ -88,11 +88,11 @@
                                             <p class="card-text">{{$data->city}}</p>
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
+                            @endforeach
                             </div>        
                         </div>
                     </div>
-                    @endforeach
                     @endif
                     <div class="d-flex justify-content-center">
                         <div class="results w-75">
@@ -751,10 +751,10 @@
         $(document).ready(function () {
            $serachbtn =  $('#search-btn').val();
             $("input[name=search]").on("keyup", function () {
-                $('#default').hide();
                 var search = $(this).val(); // Get the input value
                 var city = $("#city-select").val(); // Get the selected city value
-    
+                
+                $('#default').hide();
                 // Send AJAX request if search term is provided or a city is selected
                 if (search.length > 0 || city !== "") {
                     $.ajax({
@@ -807,6 +807,7 @@
             $('#exampleModal').on('hidden.bs.modal', function () {
                 $("input[name=search]").val(''); // Clear search input field
                 $(".modal-body .results").empty(); // Clear search results
+                $("#default").show(); //Show default data when modal is closed
             });
         });
     </script>
@@ -922,7 +923,7 @@
                     localStorage.setItem('latitude', latitude);
                     localStorage.setItem('longitude', longitude);
 
-                    // Reverse Geocoding using Nominatim with a zoom level
+                    // Reverse Geocoding using Nomi natim with a zoom level
                     const geocodeUrl =
                         `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&zoom=12&format=json`;
 
@@ -975,45 +976,6 @@
             }
         };
     </script>
-
-
-{{-- //new code  --}}
-<script>
-    // Automatically request user's location on page load
-    window.onload = function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-                console.log(latitude);
-                console.log(longitude);
-        
-                // Send the latitude and longitude to your Laravel route
-                fetch('/', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({ latitude, longitude })
-                })
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('locationOutput').innerHTML = data;
-                })
-                .catch(error => console.error('Error:', error));
-            }, function(error) {
-                document.getElementById('locationOutput').innerHTML = "Error getting location: " + error.message;
-            });
-        } else {
-            document.getElementById('locationOutput').innerHTML = "Geolocation is not supported by this browser.";
-        }
-    };
-</script>
-
-{{-- new code end  --}}
-
-
 
 
     <script>
