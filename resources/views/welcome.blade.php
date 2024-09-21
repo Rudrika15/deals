@@ -72,30 +72,6 @@
                             <button class="btn searchbutton" id="search-btn" type="button">Search</button>
                         </div>
                     </div>
-<<<<<<< HEAD
-                    @if (!empty($userData))
-                        @foreach ($userData as $data)
-                            <div class="d-flex justify-content-center">
-                                <div class=" w-75">
-                                    <div class="row mb-3">
-                                        <div class="col-md-6 " id="default">
-                                            <div class="card">
-                                                <div class="d-inline-block position-relative">
-                                                    <img class="card-img-top"
-                                                        src="{{ asset('profile/') }}/{{ $data->profilePhoto }}"
-                                                        style="object-fit: fit; height: 200px" alt="Title" />
-                                                </div>
-                                                <div class="card-body">
-                                                    <h4 class="card-title">{{ $data->name }}</h4>
-                                                    <p class="card-text">{{ $data->city }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-=======
                     @if (!empty($userData) )
                     <div class="d-flex justify-content-center">
                         <div class=" w-75">
@@ -122,7 +98,6 @@
                             window.location.href = `/brand/detail/${id}/${category}`;
                         }
                     </script>
->>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
                     @endif
                     <div class="d-flex justify-content-center">
                         <div class="results w-75">
@@ -135,15 +110,7 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-
-
-
-
-
-=======
     
->>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
     <main class="pb-5 mx-5">
 
         <div class="container-fluid pt-5">
@@ -785,15 +752,6 @@
     </script>
 
     <script>
-<<<<<<< HEAD
-        $(document).ready(function() {
-            $serachbtn = $('#search-btn').val();
-            $("input[name=search]").on("keyup", function() {
-                $('#default').hide();
-                var search = $(this).val(); // Get the input value
-                var city = $("#city-select").val(); // Get the selected city value
-
-=======
         $(document).ready(function () {
            $serachbtn =  $('#search-btn').val();
             $("input[name=search]").on("keyup", function () {
@@ -801,7 +759,6 @@
                 var city = $("#city-select").val(); // Get the selected city value
                 
                 $('#default').hide();
->>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
                 // Send AJAX request if search term is provided or a city is selected
                 if (search.length > 0 || city !== "") {
                     $.ajax({
@@ -813,20 +770,6 @@
                         },
                         success: function(data) {
                             $(".modal-body .results").empty(); // Clear existing content
-<<<<<<< HEAD
-
-
-                            if (data.length > 0) {
-                                $.each(data, function(index, user) {
-                                    if (index % 2 === 0) {
-                                        row = $(
-                                            '<div class="row mb-3"></div>'
-                                        ); // Create a new row
-                                        $(".modal-body .results").append(
-                                            row); // Append the row to the results
-                                    }
-                                    var card = `
-=======
                             var results = data.results;
                             var brandCategories = data.brandCategories ;
     
@@ -839,16 +782,10 @@
                                 
                                 var categoryString = brandCategories.join(',');
                                 var card = `
->>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
                                     <div class="col-md-6">
                                     <div class="card user-card" data-id="${user.id}" data-category="${categoryString}" style="cursor: pointer;" onclick="redirectToDetail(${user.id}, '${categoryString}')">
                                         <div class="d-inline-block position-relative">
-<<<<<<< HEAD
-                                            <img class="card-img-top" src="{{ asset('profile/') }}/` + user
-                                        .profilePhoto + `"
-=======
                                             <img class="card-img-top" src="{{ asset('profile/') }}/${user.profilePhoto}"
->>>>>>> 2645323ae466dab12f196bcb7fe884f4dc748cc8
                                                 style="object-fit: fit; height: 200px" alt="Title" />
                                         </div>
                                         <div class="card-body">
