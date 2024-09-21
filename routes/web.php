@@ -81,8 +81,13 @@ Route::get('/', function (Request $request) {
             $userData = DB::table('users')
                 ->whereIn('id', $locations)
                 ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+               $id = $userData->pluck('id');
+                $brandCategory = DB::table('brand_with_categories')
+                ->whereIn('brandId',$id)
+                ->pluck('brandCategoryId')
+                ->first(); 
         }
-        
+
     }
     }
     else{
@@ -122,12 +127,17 @@ Route::get('/', function (Request $request) {
             $userData = DB::table('users')
                 ->whereIn('id', $locations)
                 ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                $id = $userData->pluck('id');
+                $brandCategory = DB::table('brand_with_categories')
+                ->whereIn('brandId',$id)
+                ->pluck('brandCategoryId')
+                ->first(); 
         }
         
     }
 
         
-    return view('welcome', compact('userData','offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
+    return view('welcome', compact('userData','brandCategory','offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
 
 Route::get('/search-main', [HomepageController::class, 'search_main']);
