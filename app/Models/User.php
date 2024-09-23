@@ -129,8 +129,11 @@ class User extends Authenticatable
     // }
 
     public function location()
-{
-    return $this->hasOne(Location::class, 'user_id', 'id');
-}
-
+    {
+        return $this->hasOne(Location::class, 'user_id', 'id');
+    }
+    public function brandWithCategories()
+    {
+        return $this->hasMany(BrandWithCategory::class, 'brandId', 'id');
+    }
 }

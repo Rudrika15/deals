@@ -170,7 +170,7 @@ class HomepageController extends Controller
         // })->get('id');
         $category = BrandCategory::find($categoryId);
         $offers = BrandWithCategory::where('brandcategoryId', $categoryId)
-            ->with('brand.card.cardPortfolio')->whereHas('brand.card.cardPortfolio')->with('offer')->get();
+        ->with('brand.card.cardPortfolio')->whereHas('brand.card.cardPortfolio')->with('offer')->get();
         $offerSlider = BrandOffer::all();
 
         $userCity = User::whereHas('roles', function ($q) {
@@ -182,10 +182,50 @@ class HomepageController extends Controller
     public function  brandDetail($id, $category)
     {
         $brandCategory = BrandCategory::find($category);
+        // return $brandCategory->id;
+
         $brand = User::where('id', $id)->with('card.cardPortfolio')->with('brand')->first();
         $offers = BrandOffer::where('userId', $id)->get();
         $recommendedOffers = BrandOffer::where('userId', $id)->take(5)->get();
-        return view('extra.brandDetail', \compact('brand', 'brandCategory', 'offers', 'recommendedOffers'));
+        
+        if (Auth::user()) {
+            $userId = auth()->user()->id;      // Get the logged-in user's ID
+            $userLocation = DB::table('locations')
+            ->where('user_id', $userId)
+            ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
+            if ($userLocation) {
+                $latitude = $userLocation->latitude;
+                $longitude = $userLocation->longitude;
+                $radius = 2; // Radius in kilometers
+    
+                // Query to find locations within 2km radius
+                $locations = DB::table('locations')
+                ->select('id', 'user_id', 'latitude', 'longitude')
+                ->whereRaw("
+                 (6371 * acos(
+                 cos(radians(?)) * cos(radians(latitude)) *
+                 cos(radians(longitude) - radians(?)) +
+                 sin(radians(?)) * sin(radians(latitude))
+                    )) <= ?
+                ", [$latitude, $longitude, $latitude, $radius])
+                ->pluck('user_id');
+                if ($locations->isNotEmpty()) {
+                    $userData = DB::table('users')
+                    ->whereIn('id', $locations)
+                    ->where('id','!=',$id)
+                    ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                    $id = $userData->pluck('id');
+                    $brandCategories = DB::table('brand_with_categories')
+                    ->whereIn('brandId', $id)
+                    ->pluck('brandCategoryId')
+                    ->first();
+                }
+            }
+        }else{
+            $userData = "";
+        }
+        // return $userData;
+        return view('extra.brandDetail', \compact('userData','brand', 'brandCategory', 'offers', 'recommendedOffers'));
     }
 
     public function qrCode($offerId)

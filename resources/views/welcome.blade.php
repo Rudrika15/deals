@@ -57,9 +57,18 @@
                         <p class="text-muted me-2">Select City</p>
                         <select name="city" class="mb-3" id="city-select" style="border: none">
                             <option value="">Select City</option> <!-- Default selection -->
-                            @foreach ($cities as $item)
-                                <option value="{{ $item->city }}">{{ $item->city }}</option>
-                            @endforeach
+                            @if(Auth::user()){
+                                @foreach ($cities as $item)
+                                    <option value="{{ $item->city }}">{{ $item->city }}</option>
+                                @endforeach
+                            }
+                            @else
+                            {
+                                @foreach ($cities as $item)
+                                    <option value="{{ $item->city }}"{{ $item->city == 'Ahmedabad' ? 'selected' : '' }}>{{ $item->city }}</option>
+                                @endforeach
+                            }
+                            @endif
                         </select>
                     </div>
                     <button type="button" class="btn-close me-5" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -112,16 +121,12 @@
     </div>
     
     <main class="pb-5 mx-5">
-
         <div class="container-fluid pt-5">
             <div class="row px-5 text-center">
-
                 @foreach ($offerCategory as $category)
                     <div class="col categorySection">
-
                         <a href="{{ route('brand.offer') }}/{{ $category->id }}">
                             <img src="{{ asset('brandCategoryIcon') }}/{{ $category->icon }}" class="categoryIcon">
-
                             <p class="categoryName"> {{ $category->categoryName }}</p>
                         </a>
                     </div>
@@ -144,29 +149,23 @@
             </div>
         </div>
 
-
         {{-- poster section --}}
 
-
         <div class="brandlogosection">
-
             @php
                 // Define an array of border classes
                 $borderClasses = ['border-primary', 'border-info'];
             @endphp
-
             <div class="container py-4">
                 <section class="customer-logos slider row">
                     @foreach ($brandLogos as $index => $logo)
                         @php
                             $borderClass = $borderClasses[$index % count($borderClasses)];
-
                         @endphp
                     @endforeach
                 </section>
             </div>
         </div>
-
 
         <div class="container pt-4">
             <span class="fw-bold h4">Everything {{ $cat->categoryName }} !!</span>
@@ -231,10 +230,9 @@
             <span class="fw-bold h4">New On BrandBeans! </span>
 
             <div class="row p-3 ps-5">
-                {{-- {{ $newBrands }} --}}
                 @foreach ($newBrands as $brand)
                     <div class="col-md-3">
-                        <div class="card ">
+                        <div class="card "  onclick="redirectToDetail('{{ $brand->id }}', '{{ $brand->brandWithCategories[0]->brandCategoryId }}')">
                             <div class="d-inline-block position-relative">
                                 <img class="card-img-top" src="{{ asset('cardlogo') }}/{{ $brand->card->logo }}"
                                     style="object-fit: fit; height: 200px" alt="Title" />
@@ -260,7 +258,11 @@
 
                     </div>
                 @endforeach
-
+                <script>
+                    function redirectToDetail(id, category) {
+                        window.location.href = `/brand/detail/${id}/${category}`;
+                    }
+                </script>
             </div>
         </div>
 
@@ -276,6 +278,7 @@
                         <p>₹{{ $offer->offerPrice }}</p>
                     </div>
                 @endforeach
+                
             </div>
         </div>
 
@@ -284,7 +287,7 @@
                 <div class="slide-content">
                     <div class="card-wrapper swiper-wrapper">
                         @foreach ($newBrands as $brand)
-                            <div class="card swiper-slide">
+                            <div class="card swiper-slide"  onclick="redirectToDetail('{{ $brand->id }}', '{{ $brand->brandWithCategories[0]->brandCategoryId }}')">
                                 <div class="image-content">
                                     <img src="{{ asset('cardlogo') }}/{{ $brand->card->logo }}" alt=""
                                         style="object-fit: fit; height: 200px" class="card-img">
@@ -307,7 +310,12 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        <script>
+                            function redirectToDetail(id, category) {
+                                window.location.href = `/brand/detail/${id}/${category}`;
+                            }
+                        </script>
+        
                     </div>
                 </div>
                 <div class="swiper-button-next swiper-navBtn"></div>
@@ -751,35 +759,37 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function () {
-           $serachbtn =  $('#search-btn').val();
-            $("input[name=search]").on("keyup", function () {
-                var search = $(this).val(); // Get the input value
-                var city = $("#city-select").val(); // Get the selected city value
-                
-                $('#default').hide();
-                // Send AJAX request if search term is provided or a city is selected
-                if (search.length > 0 || city !== "") {
-                    $.ajax({
-                        type: "GET",
-                        url: "search-main",
-                        data: {
-                            search: search,
-                            city: city // Send city only if selected, empty string will be handled in the backend
-                        },
-                        success: function (data) {
-                            $(".modal-body .results").empty(); // Clear existing content
-                            var results = data.results;
-                            var brandCategories = data.brandCategories ;
+<script>
+    $(document).ready(function () {
+        var searchButton = $('#search-btn').val();
+        
+        // Function to trigger AJAX search
+        function triggerSearch() {
+            var search = $("input[name=search]").val(); // Get the input value
+            var city = $("#city-select").val(); // Get the selected city value
     
-                            if (results.length > 0) {
-                                $.each(results, function (index, user) {
-                                    if (index % 2 === 0) {
+            $('#default').hide();
+            // Send AJAX request if search term is provided or a city is selected
+            if (search.length > 0 || city !== "") {
+                $.ajax({
+                    type: "GET",
+                    url: "search-main",
+                    data: {
+                        search: search,
+                        city: city // Send city only if selected
+                    },
+                    success: function (data) {
+                        $(".modal-body .results").empty(); // Clear existing content
+                        var results = data.results;
+                        var brandCategories = data.brandCategories;
+    
+                        if (results.length > 0) {
+                            $.each(results, function (index, user) {
+                                if (index % 2 === 0) {
                                     row = $('<div class="row mb-3"></div>'); // Create a new row
                                     $(".modal-body .results").append(row); // Append the row to the results
                                 }
-                                
+    
                                 var categoryString = brandCategories.join(',');
                                 var card = `
                                     <div class="col-md-6">
@@ -795,30 +805,46 @@
                                     </div>
                                     </div>
                                 `;
-                                row.append(card);                                
-                                });
-                            } else {
-                                $(".modal-body .results").append(
-                                '<div class="alert alert-warning">No results found</div>'                                
+                                row.append(card);
+                            });
+                        } else {
+                            $(".modal-body .results").append(
+                                '<div class="alert alert-warning">No results found</div>'
                             );
-                            }
                         }
-                    });
-                } else {
-                    $(".modal-body .results").empty(); // Clear the results if search input is empty
-                    $("#default").show();
-                }
-            });
+                    }
+                });
+            } else {
+                $(".modal-body .results").empty(); // Clear the results if search input is empty
+                $("#default").show();
+            }
+        }
     
-            // Clear input and results when the modal is closed
-            $('#exampleModal').on('hidden.bs.modal', function () {
-                $("input[name=search]").val(''); // Clear search input field
-                $(".modal-body .results").empty(); // Clear search results
-                $("#default").show(); //Show default data when modal is closed
-            });
+        // Trigger search when the modal is loaded if Ahmedabad is selected by default
+        $('#exampleModal').on('shown.bs.modal', function () {
+            var selectedCity = $("#city-select").val();
+            if (selectedCity === "Ahmedabad") {
+                triggerSearch(); // Trigger the search for Ahmedabad by default
+            }
         });
-
-        function redirectToDetail(id, category) {
+    
+        // Listen to search input and city select changes
+        $("input[name=search]").on("keyup", function () {
+            triggerSearch();
+        });
+        $("#city-select").on("change", function () {
+            triggerSearch();
+        });
+    
+        // Clear input and results when the modal is closed
+        $('#exampleModal').on('hidden.bs.modal', function () {
+            $("input[name=search]").val(''); // Clear search input field
+            $(".modal-body .results").empty(); // Clear search results
+            $("#default").show(); //Show default data when modal is closed
+        });
+    });
+    
+    function redirectToDetail(id, category) {
         // Encode category for URL safety
         category = encodeURIComponent(category);
         // Redirect to the specified route

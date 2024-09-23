@@ -30,6 +30,8 @@ Auth::routes();
 
 Route::get('/', function (Request $request) {
 
+    $brandCategory =null;
+
     $offerCategory = BrandCategory::take(9)->get();
     $brandLogos = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
@@ -44,7 +46,8 @@ Route::get('/', function (Request $request) {
 
     $newBrands = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
-    })->with('offer')->with('card')->take(4)->get();
+    })->with('offer')->with('card')->with('brandWithCategories')->take(4)->get();
+    // return $newBrands;
 
     $offers = BrandOffer::inRandomOrder()->take(6)->get();
     $cities = City::where('is_delete', '=', 'Active')->get();
@@ -69,13 +72,13 @@ Route::get('/', function (Request $request) {
             $locations = DB::table('locations')
                 ->select('id', 'user_id', 'latitude', 'longitude')
                 ->whereRaw("
-         (6371 * acos(
-             cos(radians(?)) * cos(radians(latitude)) *
-             cos(radians(longitude) - radians(?)) +
-             sin(radians(?)) * sin(radians(latitude))
-         )) <= ?
-     ", [$latitude, $longitude, $latitude, $radius])
-                ->pluck('user_id');
+            (6371 * acos(
+                cos(radians(?)) * cos(radians(latitude)) *
+                cos(radians(longitude) - radians(?)) +
+                sin(radians(?)) * sin(radians(latitude))
+            )) <= ?
+            ", [$latitude, $longitude, $latitude, $radius])
+            ->pluck('user_id');
 
             if ($locations->isNotEmpty()) {
                 $userData = DB::table('users')
@@ -90,60 +93,57 @@ Route::get('/', function (Request $request) {
         }
     } else {
         $userData = '';
-        $publicIpResponse = Http::get('https://api.ipify.org');
-        $publicIp = trim($publicIpResponse->body());
-        // Call an external API (like ip-api.com) to get location based on the IP address
-        $locationResponse = Http::get("http://ip-api.com/json/{$publicIp}");
+        // $publicIpResponse = Http::get('https://api.ipify.org');
+        // $publicIp = trim($publicIpResponse->body());
+        // // Call an external API (like ip-api.com) to get location based on the IP address
+        // $locationResponse = Http::get("http://ip-api.com/json/{$publicIp}");
+        // // return $locationResponse;
 
-        if ($locationResponse->successful()) {
-            $data = $locationResponse->json();
-            $latitude = $data['lat'] ?? 'Unknown';
-            $longitude = $data['lon'] ?? 'Unknown';
-            $city = $data['city'] ?? 'Unknown';
-            $region = $data['regionName'] ?? 'Unknown';
-            $country = $data['country'] ?? 'Unknown';
-            // comment by jigar
-            // return "IP: $publicIp<br>Latitude: $latitude<br>Longitude: $longitude<br>City: $city<br>Region: $region<br>Country: $country";
-        } else {
-            return "Unable to retrieve location data.";
-        }
-        $near_latitude = $latitude;
-        $near_longitude = $longitude;
-        $near_radius = 2; // Radius in kilometers
+        // if ($locationResponse->successful()) {
+        //     $data = $locationResponse->json();
+        //     $latitude = $data['lat'] ?? 'Unknown';
+        //     $longitude = $data['lon'] ?? 'Unknown';
+        //     $city = $data['city'] ?? 'Unknown';
+        //     $region = $data['regionName'] ?? 'Unknown';
+        //     $country = $data['country'] ?? 'Unknown';
+        //     // comment by jigar
+        //     // return "IP: $publicIp<br>Latitude: $latitude<br>Longitude: $longitude<br>City: $city<br>Region: $region<br>Country: $country";
+        // } else {
+        //     return "Unable to retrieve location data.";
+        // }
+        // $near_latitude = $latitude;
+        // $near_longitude = $longitude;
+        // $near_radius = 2; // Radius in kilometers
 
-        $locations = DB::table('locations')
-            ->select('id', 'user_id', 'latitude', 'longitude')
-            ->whereRaw("
-         (6371 * acos(
-             cos(radians(?)) * cos(radians(latitude)) *
-             cos(radians(longitude) - radians(?)) +
-             sin(radians(?)) * sin(radians(latitude))
-         )) <= ?
-         ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
-            ->pluck('user_id');
-        if ($locations->isNotEmpty()) {
-            $userData = DB::table('users')
-                ->whereIn('id', $locations)
-                ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
-            $id = $userData->pluck('id');
-            $brandCategory = DB::table('brand_with_categories')
-                ->whereIn('brandId', $id)
-                ->pluck('brandCategoryId')
-                ->first();
-        }
+        // $locations = DB::table('locations')
+        //     ->select('id', 'user_id', 'latitude', 'longitude')
+        //     ->whereRaw("
+        //  (6371 * acos(
+        //      cos(radians(?)) * cos(radians(latitude)) *
+        //      cos(radians(longitude) - radians(?)) +
+        //      sin(radians(?)) * sin(radians(latitude))
+        //  )) <= ?
+        //  ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
+        //     ->pluck('user_id');
+        // if ($locations->isNotEmpty()) {
+        //     $userData = DB::table('users')
+        //         ->whereIn('id', $locations)
+        //         ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+        //     $id = $userData->pluck('id');
+        //     $brandCategory = DB::table('brand_with_categories')
+        //         ->whereIn('brandId', $id)
+        //         ->pluck('brandCategoryId')
+        //         ->first();
+        // }
     }
-
 
     return view('welcome', compact('userData', 'brandCategory', 'offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
 
 Route::get('/search-main', [HomepageController::class, 'search_main']);
 
-
-
 // search nearby location
 // Route::post('/search-nearby-brands', [LocationController::class, 'searchNearby'])->name('search.nearby.brands');
-
 
 Route::get('/search', function (Request $request) {
     if ($request->ajax()) {

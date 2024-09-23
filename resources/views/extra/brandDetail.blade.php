@@ -53,7 +53,7 @@
                                             <h6 class="text-muted">{{ $brandCategory->categoryName }}</h6>
                                             <h2 class="fw-bold">{{ $brand->name }}</h2>
                                             <small class="text-muted fw-bold">{{ $brand->card->address }}
-                                                {{ $brand->card->city }}</small>
+                                                {{ $brand->card->city }}</small>   
                                         </div>
                                         <div class="text-end">
                                             <small class="row ms-5">
@@ -160,50 +160,34 @@
                         <div class="tabBlock-content">
                             <div class="tabBlock-pane">
                                 {{-- recommended --}}
-                                @foreach ($recommendedOffers as $recoff)
-                                    <div class="row">
-                                        <div class="col-md-12 py-3">
-                                            <div class="row">
-
-                                                <div class="col-md-6 h-25">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <img src="{{ asset('offerPhoto') }}/{{ $recoff->offerPhoto }}"
-                                                                class="img-fluid w-100 h-100" alt="">
-
-                                                        </div>
-                                                        <div class="col-md-8">
-
-                                                            <span class="ps-2">{{ $recoff->title }}</span><br>
-                                                            <small>{{ $recoff->description }}</small>
-                                                            <p class="fw-bold">₹{{ $recoff->offerPrice }}</p>
-                                                        </div>
+                                @if (!empty($userData) )
+                                <div class="d-flex">
+                                    <div class=" w-75">
+                                        <div class="row mb-3"  id="default">
+                                            @foreach ($userData as $data)
+                                            <div class="col-md-6 mb-4">
+                                                <div class="card" onclick="redirectToDetail('{{ $data->id }}', '{{ $brandCategory->id }}')">
+                                                    <div class="d-inline-block position-relative">
+                                                        <img class="card-img-top" src="{{ asset('profile/') }}/{{$data->profilePhoto}}"
+                                                            style="object-fit: fit; height: 200px" alt="Title" />
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 text-end align-self-center">
-                                                    <div class="pay-container">
-
-                                                        @if (Auth::user())
-                                                            {{-- <a href="{{ route('qrCode') }}/{{ $recoff->id }}" class="btn btn-blue text-white"> Buy Offer +</a> --}}
-                                                            <span class="amount"
-                                                                style="display: none;">{{ $recoff->offerPrice }}</span>
-                                                            <span class="offerId"
-                                                                style="display: none;">{{ $recoff->id }}</span>
-                                                            <br>
-                                                            <button class="btn btn-blue text-white pay"
-                                                                id="buyOffer"> Buy Offer +</button>
-                                                        @else
-                                                            <a href="{{ route('login') }}" id="buyOffer"
-                                                                class="btn btn-blue text-white "> Buy Offer +</a>
-                                                        @endif
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">{{$data->name}}</h4>
+                                                        <p class="card-text">{{$data->city}}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <hr>
-
+                                        @endforeach
+                                        </div>        
                                     </div>
-                                @endforeach
+                                </div>
+                                <script>
+                                    function redirectToDetail(id, category) {
+                                        window.location.href = `/brand/detail/${id}/${category}`;
+                                    }
+                                </script>
+                                @endif
+            
                             </div>
                             <div class="tabBlock-pane">
                                 {{-- offer --}}
@@ -211,26 +195,23 @@
                                     <div class="row">
                                         <div class="col-md-12 py-3">
                                             <div class="row">
-
                                                 <div class="col-md-6 h-25">
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <img src="{{ asset('offerPhoto') }}/{{ $offer->offerPhoto }}"
                                                                 class="img-fluid w-100 h-100" alt="">
-
                                                         </div>
                                                         <div class="col-md-8">
-
                                                             <span class="ps-2">{{ $offer->title }}</span><br>
                                                             <small>{{ $offer->description }}</small>
-                                                            <p class="fw-bold">₹{{ $recoff->offerPrice }}</p>
+                                                            <p class="fw-bold">₹{{ $offer->offerPrice }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 text-end align-self-center">
                                                     @if (Auth::user())
                                                         <span class="amount"
-                                                            style="display: none;">{{ $recoff->offerPrice }}</span>
+                                                            style="display: none;">{{ $offer->offerPrice }}</span>
                                                         <br>
                                                         <button class="btn btn-blue text-white pay" id="buyOffer">
                                                             Buy Offer +</button>
@@ -239,12 +220,10 @@
                                                             class="btn btn-blue text-white "> Buy Offer +</a>
                                                     @endif
                                                     {{-- <a href="{{ route('qrCode') }}/{{ $recoff->id }}" class="btn btn-blue text-white"> Buy Offerdatqa +</a> --}}
-
                                                 </div>
                                             </div>
                                         </div>
                                         <hr>
-
                                     </div>
                                 @endforeach
                             </div>
