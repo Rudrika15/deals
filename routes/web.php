@@ -52,23 +52,23 @@ Route::get('/', function (Request $request) {
     $randomBrandPortfolio = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
     })->with('card.cardPortfolio')->get();
-
-    if (Auth::user()) {
+    
+    if(Auth::user()){
         $userId = auth()->user()->id;      // Get the logged-in user's ID
         $userLocation = DB::table('locations')
-            ->where('user_id', $userId)
-            ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
+        ->where('user_id', $userId)
+        ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
 
-        // return $userLocation;
-        if ($userLocation) {
-            $latitude = $userLocation->latitude;
-            $longitude = $userLocation->longitude;
-            $radius = 2; // Radius in kilometers
+    // return $userLocation;
+    if ($userLocation) {
+        $latitude = $userLocation->latitude;
+        $longitude = $userLocation->longitude;
+        $radius = 2; // Radius in kilometers
 
-            // Query to find locations within 2km radius
-            $locations = DB::table('locations')
-                ->select('id', 'user_id', 'latitude', 'longitude')
-                ->whereRaw("
+        // Query to find locations within 2km radius
+        $locations = DB::table('locations')
+            ->select('id', 'user_id', 'latitude', 'longitude')
+            ->whereRaw("
          (6371 * acos(
              cos(radians(?)) * cos(radians(latitude)) *
              cos(radians(longitude) - radians(?)) +
