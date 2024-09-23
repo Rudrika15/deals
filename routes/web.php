@@ -29,7 +29,7 @@ Auth::routes();
 
 
 Route::get('/', function (Request $request) {
-    
+
     $offerCategory = BrandCategory::take(9)->get();
     $brandLogos = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
@@ -52,45 +52,43 @@ Route::get('/', function (Request $request) {
     $randomBrandPortfolio = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
     })->with('card.cardPortfolio')->get();
-    
-    if(Auth::user()){
+
+    if (Auth::user()) {
         $userId = auth()->user()->id;      // Get the logged-in user's ID
         $userLocation = DB::table('locations')
-        ->where('user_id', $userId)
-        ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
+            ->where('user_id', $userId)
+            ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
 
-    // return $userLocation;
-    if ($userLocation) {
-        $latitude = $userLocation->latitude;
-        $longitude = $userLocation->longitude;
-        $radius = 2; // Radius in kilometers
+        // return $userLocation;
+        if ($userLocation) {
+            $latitude = $userLocation->latitude;
+            $longitude = $userLocation->longitude;
+            $radius = 2; // Radius in kilometers
 
-        // Query to find locations within 2km radius
-        $locations = DB::table('locations')
-            ->select('id', 'user_id', 'latitude', 'longitude')
-            ->whereRaw("
+            // Query to find locations within 2km radius
+            $locations = DB::table('locations')
+                ->select('id', 'user_id', 'latitude', 'longitude')
+                ->whereRaw("
          (6371 * acos(
              cos(radians(?)) * cos(radians(latitude)) *
              cos(radians(longitude) - radians(?)) +
              sin(radians(?)) * sin(radians(latitude))
          )) <= ?
      ", [$latitude, $longitude, $latitude, $radius])
-            ->pluck('user_id');
+                ->pluck('user_id');
 
-        if ($locations->isNotEmpty()) {
-            $userData = DB::table('users')
-                ->whereIn('id', $locations)
-                ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
-               $id = $userData->pluck('id');
+            if ($locations->isNotEmpty()) {
+                $userData = DB::table('users')
+                    ->whereIn('id', $locations)
+                    ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                $id = $userData->pluck('id');
                 $brandCategory = DB::table('brand_with_categories')
-                ->whereIn('brandId',$id)
-                ->pluck('brandCategoryId')
-                ->first(); 
+                    ->whereIn('brandId', $id)
+                    ->pluck('brandCategoryId')
+                    ->first();
+            }
         }
-
-    }
-    }
-    else{
+    } else {
         $userData = '';
         $publicIpResponse = Http::get('https://api.ipify.org');
         $publicIp = trim($publicIpResponse->body());
@@ -113,8 +111,8 @@ Route::get('/', function (Request $request) {
         $near_longitude = $longitude;
         $near_radius = 2; // Radius in kilometers
 
-          $locations = DB::table('locations')
-            ->select('id','user_id','latitude', 'longitude')
+        $locations = DB::table('locations')
+            ->select('id', 'user_id', 'latitude', 'longitude')
             ->whereRaw("
          (6371 * acos(
              cos(radians(?)) * cos(radians(latitude)) *
@@ -122,22 +120,21 @@ Route::get('/', function (Request $request) {
              sin(radians(?)) * sin(radians(latitude))
          )) <= ?
          ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
-         ->pluck('user_id');
+            ->pluck('user_id');
         if ($locations->isNotEmpty()) {
             $userData = DB::table('users')
                 ->whereIn('id', $locations)
                 ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
-                $id = $userData->pluck('id');
-                $brandCategory = DB::table('brand_with_categories')
-                ->whereIn('brandId',$id)
+            $id = $userData->pluck('id');
+            $brandCategory = DB::table('brand_with_categories')
+                ->whereIn('brandId', $id)
                 ->pluck('brandCategoryId')
-                ->first(); 
+                ->first();
         }
-        
     }
 
-        
-    return view('welcome', compact('userData','brandCategory','offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
+
+    return view('welcome', compact('userData', 'brandCategory', 'offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
 
 Route::get('/search-main', [HomepageController::class, 'search_main']);
