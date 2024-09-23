@@ -894,7 +894,6 @@
         };
     </script>
 
-
     <script>
         navigator.geolocation.getCurrentPosition(function(position) {
             const latitude = position.coords.latitude;
