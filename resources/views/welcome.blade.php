@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
+    
 </head>
 @if (Auth::check())
     {{--  <p>User is logged in</p>  --}}
@@ -174,7 +174,7 @@
                 @foreach ($posters as $brand)
                     @foreach ($brand->brand as $card)
                         @foreach ($card->users as $profilePic)
-                            <div class="col-md-3 pb-5">
+                            <div class="col-md-3">
                                 {{-- {{ $profilePic->profilePhoto }} --}}
                                 <a href="">
                                     <img src="{{ asset('profile') }}/{{ $profilePic->profilePhoto }}"
@@ -768,7 +768,7 @@
                             search: search,
                             city: city // Send city only if selected, empty string will be handled in the backend
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $(".modal-body .results").empty(); // Clear existing content
                             var results = data.results;
                             var brandCategories = data.brandCategories ;
@@ -795,12 +795,12 @@
                                     </div>
                                     </div>
                                 `;
-                                    row.append(card);
+                                row.append(card);                                
                                 });
                             } else {
                                 $(".modal-body .results").append(
-                                    '<div class="alert alert-warning">No results found</div>'
-                                );
+                                '<div class="alert alert-warning">No results found</div>'                                
+                            );
                             }
                         }
                     });
@@ -809,9 +809,9 @@
                     $("#default").show();
                 }
             });
-
+    
             // Clear input and results when the modal is closed
-            $('#exampleModal').on('hidden.bs.modal', function() {
+            $('#exampleModal').on('hidden.bs.modal', function () {
                 $("input[name=search]").val(''); // Clear search input field
                 $(".modal-body .results").empty(); // Clear search results
                 $("#default").show(); //Show default data when modal is closed
