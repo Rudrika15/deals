@@ -102,7 +102,7 @@ Route::get('/', function (Request $request) {
             $city = $data['city'] ?? 'Unknown';
             $region = $data['regionName'] ?? 'Unknown';
             $country = $data['country'] ?? 'Unknown';
-
+            // comment by jigar
             // return "IP: $publicIp<br>Latitude: $latitude<br>Longitude: $longitude<br>City: $city<br>Region: $region<br>Country: $country";
         } else {
             return "Unable to retrieve location data.";
