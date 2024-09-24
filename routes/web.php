@@ -90,7 +90,7 @@ Route::get('/', function (Request $request) {
                     ->first();
             }
         }
-    } else {
+    } elseif(session()->has('city') && session()->has('latitude') && session()->has('longitude')) {
         // $userData = '';
         $city = session('city');
         $latitude = session('latitude');
@@ -120,6 +120,9 @@ Route::get('/', function (Request $request) {
                 ->first();
         }
 
+    }else{
+        
+        $userData = '';
     }
 
     return view('welcome', compact('userData', 'brandCategory', 'offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));

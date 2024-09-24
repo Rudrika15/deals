@@ -36,17 +36,10 @@ class LocationController extends Controller
     }
     // this is a session store 
     public function getlocalstoragedata(Request $request){
-        $validatedData = $request->validate([
-            'city' => 'required|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-        ]);
-        session([
-            'city' => $validatedData['city'],
-            'latitude' => $validatedData['latitude'],
-            'longitude' => $validatedData['longitude'],
-        ]);
-        return response()->json(['success' => 'Location data saved successfully!']);
+        session()->put('city', $request->input('city'));
+        session()->put('latitude', $request->input('latitude'));
+        session()->put('longitude', $request->input('longitude'));    
+    return response()->json(['success' => 'Location data saved successfully!']);
     }
     public function findUsersByCity(Request $request)
     {
