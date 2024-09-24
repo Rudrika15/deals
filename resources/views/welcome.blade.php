@@ -508,256 +508,251 @@
 
     </main>
 
-    <footer>
-        <!-- place footer here -->
-        @include('extra.homePageFooter')
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
+<footer>
+    <!-- place footer here -->
+    @include('extra.homePageFooter')
+</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+</script>
 
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+</script>
 
-    <script>
-        $(document).ready(function() {
-            $('.customer-logos').slick({
-                slidesToShow: 6,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 1500,
-                arrows: false,
-                dots: false,
-                pauseOnHover: false,
-                responsive: [{
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 4
-                    }
-                }, {
-                    breakpoint: 520,
-                    settings: {
-                        slidesToShow: 3
-                    }
-                }]
-            });
-        });
-    </script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-    {{-- slider --}}
-    <script>
-        $('#prev').on('click', function() {
-            $('#cards').animate({
-                scrollLeft: '-=900%'
-            }, 500, 'swing');
-        });
-
-        $('#next').on('click', function() {
-            $('#cards').animate({
-                scrollLeft: '+=900%'
-            }, 500, 'swing');
-        });
-    </script>
-
-    {{-- slider2 --}}
-    <script>
-        $('.prev').on('click', function() {
-            $('.cardss').animate({
-                scrollLeft: '-=900%'
-            }, 500, 'swing');
-        });
-
-        $('.next').on('click', function() {
-            $('.cardss').animate({
-                scrollLeft: '+=900%'
-            }, 500, 'swing');
-        });
-    </script>
-    {{-- card slider  --}}
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <script>
-        var swiper = new Swiper(".slide-content", {
-            slidesPerView: 3,
-            spaceBetween: 25,
-            loop: true,
-            centerSlide: 'true',
-            fade: 'true',
-            grabCursor: 'true',
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                dynamicBullets: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                },
-                520: {
-                    slidesPerView: 2,
-                },
-                950: {
-                    slidesPerView: 3,
-                },
-            },
-        });
-    </script>
-
-    {{-- bottom  image slider  --}}
-
-    <script>
-        $(document).ready(function() {
-            var itemsMainDiv = ('.MultiCarousel');
-            var itemsDiv = ('.MultiCarousel-inner');
-            var itemWidth = "";
-
-            $('.leftLst, .rightLst').click(function() {
-                var condition = $(this).hasClass("leftLst");
-                if (condition)
-                    click(0, this);
-                else
-                    click(1, this)
-            });
-
-            ResCarouselSize();
-
-
-
-
-            $(window).resize(function() {
-                ResCarouselSize();
-            });
-
-            //this function define the size of the items
-            function ResCarouselSize() {
-                var incno = 0;
-                var dataItems = ("data-items");
-                var itemClass = ('.item');
-                var id = 0;
-                var btnParentSb = '';
-                var itemsSplit = '';
-                var sampwidth = $(itemsMainDiv).width();
-                var bodyWidth = $('body').width();
-                $(itemsDiv).each(function() {
-                    id = id + 1;
-                    var itemNumbers = $(this).find(itemClass).length;
-                    btnParentSb = $(this).parent().attr(dataItems);
-                    itemsSplit = btnParentSb.split(',');
-                    $(this).parent().attr("id", "MultiCarousel" + id);
-
-
-                    if (bodyWidth >= 1200) {
-                        incno = itemsSplit[3];
-                        itemWidth = sampwidth / incno;
-                    } else if (bodyWidth >= 992) {
-                        incno = itemsSplit[2];
-                        itemWidth = sampwidth / incno;
-                    } else if (bodyWidth >= 768) {
-                        incno = itemsSplit[1];
-                        itemWidth = sampwidth / incno;
-                    } else {
-                        incno = itemsSplit[0];
-                        itemWidth = sampwidth / incno;
-                    }
-                    $(this).css({
-                        'transform': 'translateX(0px)',
-                        'width': itemWidth * itemNumbers
-                    });
-                    $(this).find(itemClass).each(function() {
-                        $(this).outerWidth(itemWidth);
-                    });
-
-                    $(".leftLst").addClass("over");
-                    $(".rightLst").removeClass("over");
-
-                });
-            }
-
-
-            //this function used to move the items
-            function ResCarousel(e, el, s) {
-                var leftBtn = ('.leftLst');
-                var rightBtn = ('.rightLst');
-                var translateXval = '';
-                var divStyle = $(el + ' ' + itemsDiv).css('transform');
-                var values = divStyle.match(/-?[\d\.]+/g);
-                var xds = Math.abs(values[4]);
-                if (e == 0) {
-                    translateXval = parseInt(xds) - parseInt(itemWidth * s);
-                    $(el + ' ' + rightBtn).removeClass("over");
-
-                    if (translateXval <= itemWidth / 2) {
-                        translateXval = 0;
-                        $(el + ' ' + leftBtn).addClass("over");
-                    }
-                } else if (e == 1) {
-                    var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-                    translateXval = parseInt(xds) + parseInt(itemWidth * s);
-                    $(el + ' ' + leftBtn).removeClass("over");
-
-                    if (translateXval >= itemsCondition - itemWidth / 2) {
-                        translateXval = itemsCondition;
-                        $(el + ' ' + rightBtn).addClass("over");
-                    }
+<script>
+    $(document).ready(function() {
+        $('.customer-logos').slick({
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1500,
+            arrows: false,
+            dots: false,
+            pauseOnHover: false,
+            responsive: [{
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 4
                 }
-                $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
-            }
-
-            //It is used to get some elements from btn
-            function click(ell, ee) {
-                var Parent = "#" + $(ee).parent().attr("id");
-                var slide = $(Parent).attr("data-slide");
-                ResCarousel(ell, Parent, slide);
-            }
-
+            }, {
+                breakpoint: 520,
+                settings: {
+                    slidesToShow: 3
+                }
+            }]
         });
-    </script>
+    });
+</script>
 
-    {{-- bottom coupon card slider --}}
+{{-- slider --}}
+<script>
+    $('#prev').on('click', function() {
+        $('#cards').animate({
+            scrollLeft: '-=900%'
+        }, 500, 'swing');
+    });
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    $('#next').on('click', function() {
+        $('#cards').animate({
+            scrollLeft: '+=900%'
+        }, 500, 'swing');
+    });
+</script>
 
-    <script>
-        var swiper = new Swiper(".couponslide-content", {
-            slidesPerView: 3,
-            spaceBetween: 25,
-            loop: true,
-            centerSlide: 'true',
-            fade: 'true',
-            grabCursor: 'true',
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                dynamicBullets: true,
+{{-- slider2 --}}
+<script>
+    $('.prev').on('click', function() {
+        $('.cardss').animate({
+            scrollLeft: '-=900%'
+        }, 500, 'swing');
+    });
+
+    $('.next').on('click', function() {
+        $('.cardss').animate({
+            scrollLeft: '+=900%'
+        }, 500, 'swing');
+    });
+</script>
+    
+{{-- card slider  --}}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+    var swiper = new Swiper(".slide-content", {
+        slidesPerView: 3,
+        spaceBetween: 25,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
             },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
+            520: {
+                slidesPerView: 2,
             },
+            950: {
+                slidesPerView: 3,
+            },
+        },
+    });
+</script>
 
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                },
-                520: {
-                    slidesPerView: 2,
-                },
-                950: {
-                    slidesPerView: 3,
-                },
-            },
+{{-- bottom  image slider  --}}
+
+<script>
+    $(document).ready(function() {
+        var itemsMainDiv = ('.MultiCarousel');
+        var itemsDiv = ('.MultiCarousel-inner');
+        var itemWidth = "";
+
+        $('.leftLst, .rightLst').click(function() {
+            var condition = $(this).hasClass("leftLst");
+            if (condition)
+                click(0, this);
+            else
+                click(1, this)
         });
-    </script>
+
+        ResCarouselSize();
+
+        $(window).resize(function() {
+            ResCarouselSize();
+        });
+
+        //this function define the size of the items
+        function ResCarouselSize() {
+            var incno = 0;
+            var dataItems = ("data-items");
+            var itemClass = ('.item');
+            var id = 0;
+            var btnParentSb = '';
+            var itemsSplit = '';
+            var sampwidth = $(itemsMainDiv).width();
+            var bodyWidth = $('body').width();
+            $(itemsDiv).each(function() {
+                id = id + 1;
+                var itemNumbers = $(this).find(itemClass).length;
+                btnParentSb = $(this).parent().attr(dataItems);
+                itemsSplit = btnParentSb.split(',');
+                $(this).parent().attr("id", "MultiCarousel" + id);
+                if (bodyWidth >= 1200) {
+                    incno = itemsSplit[3];
+                    itemWidth = sampwidth / incno;
+                } else if (bodyWidth >= 992) {
+                    incno = itemsSplit[2];
+                    itemWidth = sampwidth / incno;
+                } else if (bodyWidth >= 768) {
+                    incno = itemsSplit[1];
+                    itemWidth = sampwidth / incno;
+                } else {
+                    incno = itemsSplit[0];
+                    itemWidth = sampwidth / incno;
+                }
+                $(this).css({
+                    'transform': 'translateX(0px)',
+                    'width': itemWidth * itemNumbers
+                });
+                $(this).find(itemClass).each(function() {
+                    $(this).outerWidth(itemWidth);
+                });
+
+                $(".leftLst").addClass("over");
+                $(".rightLst").removeClass("over");
+
+            });
+        }
+
+        //this function used to move the items
+        function ResCarousel(e, el, s) {
+            var leftBtn = ('.leftLst');
+            var rightBtn = ('.rightLst');
+            var translateXval = '';
+            var divStyle = $(el + ' ' + itemsDiv).css('transform');
+            var values = divStyle.match(/-?[\d\.]+/g);
+            var xds = Math.abs(values[4]);
+            if (e == 0) {
+                translateXval = parseInt(xds) - parseInt(itemWidth * s);
+                $(el + ' ' + rightBtn).removeClass("over");
+
+                if (translateXval <= itemWidth / 2) {
+                    translateXval = 0;
+                    $(el + ' ' + leftBtn).addClass("over");
+                }
+            } else if (e == 1) {
+                var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+                translateXval = parseInt(xds) + parseInt(itemWidth * s);
+                $(el + ' ' + leftBtn).removeClass("over");
+
+                if (translateXval >= itemsCondition - itemWidth / 2) {
+                    translateXval = itemsCondition;
+                    $(el + ' ' + rightBtn).addClass("over");
+                }
+            }
+            $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+        }
+
+        //It is used to get some elements from btn
+        function click(ell, ee) {
+            var Parent = "#" + $(ee).parent().attr("id");
+            var slide = $(Parent).attr("data-slide");
+            ResCarousel(ell, Parent, slide);
+        }
+
+    });
+</script>
+
+{{-- bottom coupon card slider --}}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+    var swiper = new Swiper(".couponslide-content", {
+        slidesPerView: 3,
+        spaceBetween: 25,
+        loop: true,
+        centerSlide: 'true',
+        fade: 'true',
+        grabCursor: 'true',
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            520: {
+                slidesPerView: 2,
+            },
+            950: {
+                slidesPerView: 3,
+            },
+        },
+    });
+</script>
 
 <script>
     $(document).ready(function () {
@@ -792,18 +787,18 @@
     
                                 var categoryString = brandCategories.join(',');
                                 var card = `
-                                    <div class="col-md-6">
-                                    <div class="card user-card" data-id="${user.id}" data-category="${categoryString}" style="cursor: pointer;" onclick="redirectToDetail(${user.id}, '${categoryString}')">
-                                        <div class="d-inline-block position-relative">
-                                            <img class="card-img-top" src="{{ asset('profile/') }}/${user.profilePhoto}"
-                                                style="object-fit: fit; height: 200px" alt="Title" />
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="card-title">${user.name}</h4>
-                                            <p class="card-text">${city}</p>
-                                        </div>
+                                <div class="col-md-6">
+                                <div class="card user-card" data-id="${user.id}" data-category="${categoryString}" style="cursor: pointer;" onclick="redirectToDetail(${user.id}, '${categoryString}')">
+                                    <div class="d-inline-block position-relative">
+                                        <img class="card-img-top" src="{{ asset('profile/') }}/${user.profilePhoto}"
+                                            style="object-fit: fit; height: 200px" alt="Title" />
                                     </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">${user.name}</h4>
+                                        <p class="card-text">${city}</p>
                                     </div>
+                                </div>
+                                </div>
                                 `;
                                 row.append(card);
                             });
@@ -850,135 +845,132 @@
         // Redirect to the specified route
         window.location.href = `/brand/detail/${id}/${category}`;
     }
-    </script>
+</script>
 
-    <script>
-        window.onload = function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    latitude = position.coords.latitude;
-                    longitude = position.coords.longitude;
+<script>
+    window.onload = function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
 
-                    // console.log('Current Latitude:', latitude);
-                    // console.log('Current Longitude:', longitude);
+                // console.log('Current Latitude:', latitude);
+                // console.log('Current Longitude:', longitude);
 
-                    // Store latitude and longitude in local storage
-                    localStorage.setItem('latitude', latitude);
-                    localStorage.setItem('longitude', longitude);
+                // Store latitude and longitude in local storage
+                localStorage.setItem('latitude', latitude);
+                localStorage.setItem('longitude', longitude);
 
-                    // Reverse Geocoding using Nomi natim with a zoom level
-                    const geocodeUrl =
-                        `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&zoom=12&format=json`;
+                // Reverse Geocoding using Nomi natim with a zoom level
+                const geocodeUrl =
+                `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&zoom=12&format=json`;
 
-                    fetch(geocodeUrl)
-                        .then(response => response.json())
-                        .then(data => {
-                            const address = data.address;
-
-                            // Enhanced fallback options, now with zoom level
-                            const city = address.city || address.town || address.village || address
-                                .hamlet ||
-                                address.suburb || address.county || address.state || 'Location not found';
-
-                            // console.log('City:', city);
-
-                            // Store the city in local storage
-                            localStorage.setItem('city', city);
-
-                            // Send data to the backend if the user is authenticated
-                            fetch('{{ route('save.location') }}', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-CSRF-TOKEN': document.querySelector(
-                                            'meta[name="csrf-token"]').getAttribute('content')
-                                    },
-                                    body: JSON.stringify({
-                                        latitude: latitude,
-                                        longitude: longitude,
-                                        city: city
-                                    })
-                                })
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data.message) {
-                                        console.log(data.message);
-                                    }
-                                })
-                                .catch(error => console.error('Error:', error));
-
-                            // console.log('Location and city sent to the server!');
-                        })
-                        .catch(error => console.error('Error fetching geocode data:', error));
-
-                }, function(error) {
-                    alert('Error getting location: ' + error.message);
-                });
-            } else {
-                alert('Geolocation is not supported by this browser.');
-            }
-
-            var city = localStorage.getItem('city')  // Default city if not set
-            var latitude = localStorage.getItem('latitude') // Default latitude if not set
-            var longitude = localStorage.getItem('longitude') // Default longitude if not set
-            // Prepare the data to send
-            var data = {
-                city: city,
-                latitude: latitude,
-                longitude: longitude
-            };
-
-            // Send data to the Laravel route
-            fetch('/getlocalstoragedata', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token for Laravel
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                // Redirect or display a message based on response
-                // window.location.href = '/'; // Redirect to home or wherever necessary
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-
-        };
-    </script>
-
-    <script>
-        navigator.geolocation.getCurrentPosition(function(position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-
-            fetch('{{ route('find.users.by.city') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content')
-                    },
-                    body: JSON.stringify({
-                        latitude: latitude,
-                        longitude: longitude
-                    })
-                })
+                fetch(geocodeUrl)
                 .then(response => response.json())
                 .then(data => {
-                    if (data.city) {
-                        alert('City:', data.city);
-                        alert('Users in this city:', data.users);
-                    } else {
-                        console.log(data.message);
-                    }
+                    const address = data.address;
+
+                    // Enhanced fallback options, now with zoom level
+                    const city = address.city || address.town || address.village || address
+                        .hamlet ||
+                        address.suburb || address.county || address.state || 'Location not found';
+
+                    // console.log('City:', city);
+
+                    // Store the city in local storage
+                    localStorage.setItem('city', city);
+
+                    // Send data to the backend if the user is authenticated
+                    fetch('{{ route('save.location') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector(
+                                'meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            latitude: latitude,
+                            longitude: longitude,
+                            city: city
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message) {
+                            console.log(data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+
+                    // console.log('Location and city sent to the server!');
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => console.error('Error fetching geocode data:', error));
+
+            }, function(error) {
+                alert('Error getting location: ' + error.message);
+            });
+        } else {
+            alert('Geolocation is not supported by this browser.');
+        }
+
+        var city = localStorage.getItem('city') 
+        var latitude = localStorage.getItem('latitude')
+        var longitude = localStorage.getItem('longitude') 
+
+        var data = {
+            city: city,
+            latitude: latitude,
+            longitude: longitude
+        };
+
+        fetch('/getlocalstoragedata', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}' 
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
-    </script>
+
+    };
+</script>  
+
+<script>
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        fetch('{{ route('find.users.by.city') }}', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                'content')            
+            },
+            body: JSON.stringify({
+                latitude: latitude,
+                longitude: longitude
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.city) {
+                alert('City:', data.city);
+                alert('Users in this city:', data.users);
+            } else {
+                console.log(data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
 
 
 </body>

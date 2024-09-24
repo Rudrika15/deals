@@ -192,7 +192,7 @@ class HomepageController extends Controller
             $userId = auth()->user()->id;      // Get the logged-in user's ID
             $userLocation = DB::table('locations')
             ->where('user_id', $userId)
-            ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
+            ->first(['latitude', 'longitude']); 
             if ($userLocation) {
                 $latitude = $userLocation->latitude;
                 $longitude = $userLocation->longitude;
@@ -213,7 +213,7 @@ class HomepageController extends Controller
                     $userData = DB::table('users')
                     ->whereIn('id', $locations)
                     ->where('id','!=',$id)
-                    ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                    ->get(['id', 'name', 'profilePhoto', 'city']);
                     $id = $userData->pluck('id');
                     $brandCategories = DB::table('brand_with_categories')
                     ->whereIn('brandId', $id)
@@ -231,8 +231,7 @@ class HomepageController extends Controller
             //         ->whereIn('brandId', $id)
             //         ->pluck('brandCategoryId')
             //         ->first();
-
-
+            
             $city = session('city');
             $latitude = session('latitude');
             $longitude = session('longitude');
@@ -241,25 +240,25 @@ class HomepageController extends Controller
             $near_longitude = $longitude;
             $near_radius = 2; // Radius in kilometers
             $locations = DB::table('locations')
-                ->select('id', 'user_id', 'latitude', 'longitude')
-                ->whereRaw("
+            ->select('id', 'user_id', 'latitude', 'longitude')
+            ->whereRaw("
              (6371 * acos(
-                 cos(radians(?)) * cos(radians(latitude)) *
-                 cos(radians(longitude) - radians(?)) +
-                 sin(radians(?)) * sin(radians(latitude))
-             )) <= ?
-             ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
-                ->pluck('user_id');
+             cos(radians(?)) * cos(radians(latitude)) *
+             cos(radians(longitude) - radians(?)) +
+             sin(radians(?)) * sin(radians(latitude))
+                )) <= ?
+            ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
+            ->pluck('user_id');
             if ($locations->isNotEmpty()) {
                 $userData = DB::table('users')
-                    ->whereIn('id', $locations)
-                    ->where('id','!=',$id)
-                    ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                ->whereIn('id', $locations)
+                ->where('id','!=',$id)
+                ->get(['id', 'name', 'profilePhoto', 'city']); 
                 $id = $userData->pluck('id');
                 $brandCategories = DB::table('brand_with_categories')
-                    ->whereIn('brandId', $id)
-                    ->pluck('brandCategoryId')
-                    ->first();
+                ->whereIn('brandId', $id)
+                ->pluck('brandCategoryId')
+                ->first();
             }
     
         }
@@ -297,42 +296,42 @@ class HomepageController extends Controller
         }
     }
 
-public function search_main(Request $request)
-{
-    $query = $request->get('search');  // Get search term
-    $city = $request->get('city');     // Get selected city
-    // $userId = auth()->user()->id;      // Get the logged-in user's ID
+    public function search_main(Request $request)
+    {
+        $query = $request->get('search');  // Get search term
+        $city = $request->get('city');     // Get selected city
+        // $userId = auth()->user()->id;      // Get the logged-in user's ID
 
-    // Build the query to filter by role 'Brand' and city
-    $randomBrandPortfolio = User::whereHas('roles', function ($q) {
-        $q->where('name', 'Brand');
-    });
+        // Build the query to filter by role 'Brand' and city
+        $randomBrandPortfolio = User::whereHas('roles', function ($q) {
+            $q->where('name', 'Brand');
+        });
 
-    // Filter by city if it's found
-    if (!empty($city)) {
-        $randomBrandPortfolio->where('city', 'like', '%' . $city . '%');
-    }
+        // Filter by city if it's found
+        if (!empty($city)) {
+            $randomBrandPortfolio->where('city', 'like', '%' . $city . '%');
+        }
 
-    // Filter by search term if provided
-    if (!empty($query)) {
-        $randomBrandPortfolio->where('name', 'like', '%' . $query . '%');
-    }
+        // Filter by search term if provided
+        if (!empty($query)) {
+            $randomBrandPortfolio->where('name', 'like', '%' . $query . '%');
+        }
 
-    // Get the results
-    $result = $randomBrandPortfolio->select('id', 'name','profilePhoto')->get();
-    $id = $result->pluck('id');
+        // Get the results
+        $result = $randomBrandPortfolio->select('id', 'name','profilePhoto')->get();
+        $id = $result->pluck('id');
         // Get the brandCategoryId from the brand_with_categories table
         $brandCategory = DB::table('brand_with_categories')
-                    ->whereIn('brandId',$id)
-                    ->pluck('brandCategoryId')
-                    ->toArray();    
-                    
-    // Return as JSON response
+                        ->whereIn('brandId',$id)
+                        ->pluck('brandCategoryId')
+                        ->toArray();    
+                        
+        // Return as JSON response
 
-    return response()->json([
-        'results' => $result,
-        'brandCategories' => $brandCategory
-    ]);
-}
+        return response()->json([
+            'results' => $result,
+            'brandCategories' => $brandCategory
+        ]);
+    }
 
 }
