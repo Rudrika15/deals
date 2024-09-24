@@ -34,6 +34,20 @@ class LocationController extends Controller
 
         return response()->json(['message' => 'User is not authenticated'], 401);
     }
+    // this is a session store 
+    public function getlocalstoragedata(Request $request){
+        $validatedData = $request->validate([
+            'city' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+        session([
+            'city' => $validatedData['city'],
+            'latitude' => $validatedData['latitude'],
+            'longitude' => $validatedData['longitude'],
+        ]);
+        return response()->json(['success' => 'Location data saved successfully!']);
+    }
     public function findUsersByCity(Request $request)
     {
         $latitude = $request->input('latitude');

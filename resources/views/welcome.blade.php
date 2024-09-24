@@ -57,18 +57,18 @@
                         <p class="text-muted me-2">Select City</p>
                         <select name="city" class="mb-3" id="city-select" style="border: none">
                             <option value="">Select City</option> <!-- Default selection -->
-                            @if(Auth::user()){
+                            {{-- @if(Auth::user()){ --}}
                                 @foreach ($cities as $item)
                                     <option value="{{ $item->city }}">{{ $item->city }}</option>
                                 @endforeach
-                            }
+                            {{-- }
                             @else
                             {
                                 @foreach ($cities as $item)
                                     <option value="{{ $item->city }}"{{ $item->city == 'Ahmedabad' ? 'selected' : '' }}>{{ $item->city }}</option>
                                 @endforeach
                             }
-                            @endif
+                            @endif --}}
                         </select>
                     </div>
                     <button type="button" class="btn-close me-5" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -917,6 +917,36 @@
             } else {
                 alert('Geolocation is not supported by this browser.');
             }
+
+            var city = localStorage.getItem('city')  // Default city if not set
+            var latitude = localStorage.getItem('latitude') // Default latitude if not set
+            var longitude = localStorage.getItem('longitude') // Default longitude if not set
+            // Prepare the data to send
+            var data = {
+                city: city,
+                latitude: latitude,
+                longitude: longitude
+            };
+
+            // Send data to the Laravel route
+            fetch('/getlocalstoragedata', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token for Laravel
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Redirect or display a message based on response
+                // window.location.href = '/'; // Redirect to home or wherever necessary
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
         };
     </script>
 

@@ -222,7 +222,46 @@ class HomepageController extends Controller
                 }
             }
         }else{
-            $userData = "";
+            // $userData = User::whereHas('roles', function ($q) {
+            //     $q->where('name', 'Brand');})
+            //         ->where('city','Ahmedabad')
+            //         ->get(['id','name','profilePhoto','city']);
+            //         $id = $userData->pluck('id');
+            //         $brandCategories = DB::table('brand_with_categories')
+            //         ->whereIn('brandId', $id)
+            //         ->pluck('brandCategoryId')
+            //         ->first();
+
+
+            $city = session('city');
+            $latitude = session('latitude');
+            $longitude = session('longitude');
+            
+            $near_latitude = $latitude;
+            $near_longitude = $longitude;
+            $near_radius = 2; // Radius in kilometers
+            $locations = DB::table('locations')
+                ->select('id', 'user_id', 'latitude', 'longitude')
+                ->whereRaw("
+             (6371 * acos(
+                 cos(radians(?)) * cos(radians(latitude)) *
+                 cos(radians(longitude) - radians(?)) +
+                 sin(radians(?)) * sin(radians(latitude))
+             )) <= ?
+             ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
+                ->pluck('user_id');
+            if ($locations->isNotEmpty()) {
+                $userData = DB::table('users')
+                    ->whereIn('id', $locations)
+                    ->where('id','!=',$id)
+                    ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                $id = $userData->pluck('id');
+                $brandCategories = DB::table('brand_with_categories')
+                    ->whereIn('brandId', $id)
+                    ->pluck('brandCategoryId')
+                    ->first();
+            }
+    
         }
         // return $userData;
         return view('extra.brandDetail', \compact('userData','brand', 'brandCategory', 'offers', 'recommendedOffers'));
