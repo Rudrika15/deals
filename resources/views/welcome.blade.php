@@ -558,7 +558,7 @@
 {{-- slider --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    let scrollAmount = $('.list').outerWidth(true);  
+    let scrollAmount = 900;  
     let autoScrollInterval;
 
     function autoScroll() {
@@ -589,9 +589,6 @@
         }, 500, 'swing', function() {
             autoScrollInterval = setInterval(autoScroll, 3000);
         });
-    });
-    $(window).resize(function() {
-        scrollAmount = $('.list').outerWidth(true);  
     });
 </script>
 
