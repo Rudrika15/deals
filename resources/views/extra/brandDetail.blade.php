@@ -92,7 +92,7 @@
                                                             class="img-fluid main-image" alt="">
 
                                                         <button class="view-slider-btn btn btn-sm"
-                                                            style="position: absolute; bottom: 55px; left: 87%; transform: translateX(-50%); background-color: rgba(4, 205, 255, 0.959); color: white;"><b>View
+                                                            style="position: absolute; bottom: 55px; left: 84%; transform: translateX(-50%); background-color: rgba(4, 205, 255, 0.959); color: white;"><b>View
                                                             all Images</b></button>
                                                     </div>
                                                 @endif
@@ -253,7 +253,7 @@
                 <div class="col-md-3 ">
                     <div class="div-sticky-class ">
 
-                        <div id="slider">
+                        <div id="slider" style="margin:0px">
                             <span href="#" class="control_next"> <i class="bi bi-caret-right-fill"></i> </span>
                             <span href="#" class="control_prev"> <i class="bi bi-caret-left-fill"></i> </span>
                             <ul>
@@ -264,12 +264,12 @@
                                             <p class="card-text pt-1">
                                                 Details about the offer
                                             </p>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control "
-                                                    style="border: 1px solid #aaa;border-style: dashed; "
+                                            <div class="input-group" style="width: 77%; margin-left:32px;">
+                                                <input type="text" class="form-control"
+                                                    style="border: 1px solid #aaa;border-style: dashed;"
                                                     name="" placeholder="Coupon code">
                                                 <span class="input-group-append">
-                                                    <button class="btn btn-blue btn-apply coupon">copy</button>
+                                                    <button class="btn btn-blue btn-apply coupon" style="margin-left: 4px;">copy</button>
                                                 </span>
                                             </div>
                                             <hr>
@@ -288,12 +288,12 @@
                                             <p class="card-text pt-1">
                                                 Details about the offer
                                             </p>
-                                            <div class="input-group">
+                                            <div class="input-group" style="width: 77%; margin-left:32px;">
                                                 <input type="text" class="form-control "
                                                     style="border: 1px solid #aaa;border-style: dashed; "
                                                     name="" placeholder="Coupon code">
                                                 <span class="input-group-append">
-                                                    <button class="btn btn-blue btn-apply coupon">copy</button>
+                                                    <button class="btn btn-blue btn-apply coupon" style="margin-left: 4px;">copy</button>
                                                 </span>
                                             </div>
                                             <hr>

@@ -44,7 +44,7 @@
             <div class="row pt-4">
                 <div class="col-md-3">
                     <span class="fw-bold">Promos and Filters</span>
-                    <div id="slider">
+                    <div id="slider" style="margin: 0px">
                         <a class="control_next"> <i class="bi bi-caret-right-fill"></i> </a>
                         <a class="control_prev"> <i class="bi bi-caret-left-fill"></i> </a>
                         <ul>
@@ -56,12 +56,12 @@
                                             <p class="card-text pt-1">
                                                 Details about the offer
                                             </p>
-                                            <div class="input-group">
+                                            <div class="input-group" style="width: 77%; margin-left:32px;">
                                                 <input type="text" class="form-control "
                                                     style="border: 1px solid #aaa;border-style: dashed; " name=""
                                                     placeholder="Coupon code">
                                                 <span class="input-group-append">
-                                                    <button class="btn btn-blue btn-apply coupon">copy</button>
+                                                    <button class="btn btn-blue btn-apply coupon" style="margin-left: 4px;">copy</button>
                                                 </span>
                                             </div>
                                             <hr>

@@ -534,7 +534,7 @@
 .MultiCarousel .leftLst.over,
 .MultiCarousel .rightLst.over {
     pointer-events: none;
-    background: #ccc;
+    /* background: #ccc; */
 }
 
 /* end */

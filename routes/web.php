@@ -30,7 +30,7 @@ Auth::routes();
 
 Route::get('/', function (Request $request) {
     $brandCategory =null;
-
+    $userData = '';
     $offerCategory = BrandCategory::take(9)->get();
     $brandLogos = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
@@ -80,7 +80,9 @@ Route::get('/', function (Request $request) {
             ->pluck('user_id');
 
             if ($locations->isNotEmpty()) {
-                $userData = DB::table('users')
+                $userData = User::whereHas('roles', function ($q) {
+                    $q->where('name', 'Brand');
+                })
                     ->whereIn('id', $locations)
                     ->get(['id', 'name', 'profilePhoto', 'city']); 
                 $id = $userData->pluck('id');
@@ -110,7 +112,9 @@ Route::get('/', function (Request $request) {
         ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
             ->pluck('user_id');
         if ($locations->isNotEmpty()) {
-            $userData = DB::table('users')
+            $userData = User::whereHas('roles', function ($q) {
+                $q->where('name', 'Brand');
+            })
                 ->whereIn('id', $locations)
                 ->get(['id', 'name', 'profilePhoto', 'city']);
             $id = $userData->pluck('id');
@@ -118,6 +122,7 @@ Route::get('/', function (Request $request) {
                 ->whereIn('brandId', $id)
                 ->pluck('brandCategoryId')
                 ->first();
+            // return $userData
         }
     }else{
 

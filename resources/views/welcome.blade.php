@@ -51,7 +51,7 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header" style="border: none;">
+                <div class="modal-header" style="border: none; margin-left:40px;">
                     <div class="d-flex ms-5 mt-5">
                         <i class="bi bi-geo-alt-fill text-muted"></i>
                         <p class="text-muted me-2">Select City</p>
@@ -70,6 +70,22 @@
                             }
                             @endif --}}
                         </select>
+                        {{-- <div class="dropdown" style="text-align: center;">
+                            <button class="btn btn-info dropdown-toggle text-white" type="button" id="city-select" data-bs-toggle="dropdown" aria-expanded="false">
+                                Select City
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="city-select">
+                                <li>
+                                    <a class="dropdown-item"  data-value="">Select City</a> <!-- Default selection -->
+                                </li>
+                                @foreach ($cities as $item)
+                                    <li>
+                                        <a class="dropdown-item"  data-value="{{ $item->city }}">{{ $item->city }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div> --}}
+                        
                     </div>
                     <button type="button" class="btn-close me-5" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -173,7 +189,7 @@
                 @foreach ($posters as $brand)
                     @foreach ($brand->brand as $card)
                         @foreach ($card->users as $profilePic)
-                            <div class="col-md-3">
+                            <div class="col-md-3 mb-5">
                                 {{-- {{ $profilePic->profilePhoto }} --}}
                                 <a href="">
                                     <img src="{{ asset('profile') }}/{{ $profilePic->profilePhoto }}"
@@ -189,7 +205,6 @@
 
 
         <div class="container pt-4">
-
             <div id="menu">
                 <div id="nav">
                     <div id="prev">
@@ -205,7 +220,7 @@
                 </div>
                 <ul id="cards">
                     @foreach ($sliderPosters as $sliderPoster)
-                        <li id="box1" class="list">
+                        <li class="list">
                             <img src="{{ asset('brandCategoryPoster/' . $sliderPoster->poster) }}" class="h-100"
                                 style="object-fit: cover; width: 90%; border-radius: 10px" alt="">
                         </li>
@@ -358,7 +373,6 @@
 
 
         <div class="container">
-
             <div class="row">
                 <div class="MultiCarousel" data-items="1,2,3,4" data-slide="3" id="MultiCarousel"
                     data-interval="3000">
@@ -433,64 +447,55 @@
                                 <div class="image-content">
                                     <img src="{{ asset('images/coupon.webp') }}" alt="" class="card-img">
                                 </div>
-
                             </div>
+
                             <div class="card swiper-slide">
                                 <div class="image-content">
                                     <img src="{{ asset('images/coupon1.webp') }}" alt="" class="card-img">
-
                                 </div>
-
                             </div>
+
                             <div class="card swiper-slide">
                                 <div class="image-content">
                                     <img src="{{ asset('images/coupon2.webp') }}" alt="" class="card-img"
                                         style="object-fit: fill">
-
                                 </div>
-
                             </div>
 
                             <div class="card swiper-slide">
                                 <div class="image-content">
                                     <img src="{{ asset('images/coupon3.webp') }}" alt="" class="card-img">
-
                                 </div>
-
                             </div>
+
                             <div class="card swiper-slide">
                                 <div class="image-content">
                                     <img src="{{ asset('images/coupon4.webp') }}" alt="" class="card-img">
-
                                 </div>
-
                             </div>
+
                             <div class="card swiper-slide">
                                 <div class="image-content">
                                     <img src="{{ asset('images/coupon5.webp') }}" alt="" class="card-img">
-
                                 </div>
-
                             </div>
-                            <div class="card swiper-slide">
+                            
+                            {{-- <div class="card swiper-slide">
                                 <div class="image-content">
                                     <span>some text</span>
                                 </div>
+                            </div> --}}
 
-                            </div>
                             <div class="card swiper-slide">
                                 <div class="image-content">
                                     <img src="{{ asset('images/coupon6.webp') }}" alt="" class="card-img">
-
                                 </div>
-
                             </div>
+
                             <div class="card swiper-slide">
                                 <div class="image-content">
                                     <img src="{{ asset('images/coupon7.webp') }}" alt="" class="card-img">
-
                                 </div>
-
                             </div>
 
                         </div>
@@ -551,35 +556,95 @@
 </script>
 
 {{-- slider --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    let scrollAmount = $('.list').outerWidth(true);  
+    let autoScrollInterval;
+
+    function autoScroll() {
+        if ($('#cards').scrollLeft() + $('#cards').width() >= $('#cards')[0].scrollWidth) {
+            $('#cards').animate({ scrollLeft: 0 }, 500, 'swing'); 
+        } else {
+            $('#cards').animate({
+                scrollLeft: '+=900px' 
+            }, 500, 'swing');
+        }
+    }
+
+    autoScrollInterval = setInterval(autoScroll, 3000);
+
     $('#prev').on('click', function() {
+        clearInterval(autoScrollInterval); 
         $('#cards').animate({
-            scrollLeft: '-=900%'
-        }, 500, 'swing');
+            scrollLeft: '-=' + scrollAmount
+        }, 500, 'swing', function() {
+            autoScrollInterval = setInterval(autoScroll, 3000);
+        });
     });
 
     $('#next').on('click', function() {
+        clearInterval(autoScrollInterval); 
         $('#cards').animate({
-            scrollLeft: '+=900%'
-        }, 500, 'swing');
+            scrollLeft: '+=' + scrollAmount
+        }, 500, 'swing', function() {
+            autoScrollInterval = setInterval(autoScroll, 3000);
+        });
+    });
+    $(window).resize(function() {
+        scrollAmount = $('.list').outerWidth(true);  
     });
 </script>
 
 {{-- slider2 --}}
 <script>
-    $('.prev').on('click', function() {
-        $('.cardss').animate({
-            scrollLeft: '-=900%'
+    const $cards = $('.cardss');
+    const cardWidth = $cards.children().outerWidth(true); 
+    const totalCards = $cards.children().length; 
+    let currentIndex = 0;
+
+    function slideNext() {
+        currentIndex++;
+        
+        if (currentIndex >= totalCards) {
+            currentIndex = 0;
+        }
+
+        $cards.animate({
+            scrollLeft: currentIndex * cardWidth 
         }, 500, 'swing');
+    }
+
+    function slidePrev() {
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = totalCards - 1; 
+        }
+
+        $cards.animate({
+            scrollLeft: currentIndex * cardWidth 
+        }, 500, 'swing');
+    }
+
+    // Click event for the previous button
+    $('.prev').on('click', function() {
+        slidePrev();
     });
 
+    // Click event for the next button
     $('.next').on('click', function() {
-        $('.cardss').animate({
-            scrollLeft: '+=900%'
-        }, 500, 'swing');
+        slideNext();
+    });
+
+    let autoSlideInterval = setInterval(slideNext, 3000); 
+
+    $('#menu').hover(function() {
+        clearInterval(autoSlideInterval);
+    }, function() {
+        autoSlideInterval = setInterval(slideNext, 3000);
     });
 </script>
-    
+
 {{-- card slider  --}}
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -622,22 +687,36 @@
         var itemsMainDiv = ('.MultiCarousel');
         var itemsDiv = ('.MultiCarousel-inner');
         var itemWidth = "";
+        var autoSlideInterval;
+        var currentIndex = 0; // To track the current index
 
         $('.leftLst, .rightLst').click(function() {
             var condition = $(this).hasClass("leftLst");
             if (condition)
                 click(0, this);
             else
-                click(1, this)
+                click(1, this);
+            resetAutoSlide();
         });
 
         ResCarouselSize();
+        startAutoSlide();
 
         $(window).resize(function() {
             ResCarouselSize();
         });
 
-        //this function define the size of the items
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(function() {
+                click(1, $('.rightLst')); // Automatically click the next button
+            }, 3000); // Change slide every 3 seconds
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
         function ResCarouselSize() {
             var incno = 0;
             var dataItems = ("data-items");
@@ -676,11 +755,9 @@
 
                 $(".leftLst").addClass("over");
                 $(".rightLst").removeClass("over");
-
             });
         }
 
-        //this function used to move the items
         function ResCarousel(e, el, s) {
             var leftBtn = ('.leftLst');
             var rightBtn = ('.rightLst');
@@ -688,6 +765,8 @@
             var divStyle = $(el + ' ' + itemsDiv).css('transform');
             var values = divStyle.match(/-?[\d\.]+/g);
             var xds = Math.abs(values[4]);
+            var itemNumbers = $(el).find('.item').length; // Get the total number of items
+
             if (e == 0) {
                 translateXval = parseInt(xds) - parseInt(itemWidth * s);
                 $(el + ' ' + rightBtn).removeClass("over");
@@ -705,11 +784,18 @@
                     translateXval = itemsCondition;
                     $(el + ' ' + rightBtn).addClass("over");
                 }
+
+                // Check if we've reached the last item
+                if (translateXval >= itemsCondition) {
+                    translateXval = 0; // Reset to the first item
+                    setTimeout(function() {
+                        $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+                    }, 300); // Delay before resetting to allow for a smooth transition
+                }
             }
             $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
         }
 
-        //It is used to get some elements from btn
         function click(ell, ee) {
             var Parent = "#" + $(ee).parent().attr("id");
             var slide = $(Parent).attr("data-slide");
@@ -830,7 +916,12 @@
         $("#city-select").on("change", function () {
             triggerSearch();
         });
-    
+
+        // $('.dropdown-item').on('click', function() {
+        //     var selectedCity = $(this).data('value');
+        //     $('#city-select').text($(this).text()).attr('data-value', selectedCity);
+        //     triggerSearch(); 
+        // });
         // Clear input and results when the modal is closed
         $('#exampleModal').on('hidden.bs.modal', function () {
             $("input[name=search]").val(''); // Clear search input field

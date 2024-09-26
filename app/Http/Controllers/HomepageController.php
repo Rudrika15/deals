@@ -183,7 +183,7 @@ class HomepageController extends Controller
     {
         $brandCategory = BrandCategory::find($category);
         // return $brandCategory->id;
-
+        $userData = '';
         $brand = User::where('id', $id)->with('card.cardPortfolio')->with('brand')->first();
         $offers = BrandOffer::where('userId', $id)->get();
         $recommendedOffers = BrandOffer::where('userId', $id)->take(5)->get();
@@ -221,7 +221,7 @@ class HomepageController extends Controller
                     ->first();
                 }
             }
-        }else{
+        }elseif(session()->has('city') && session()->has('latitude') && session()->has('longitude')){
             // $userData = User::whereHas('roles', function ($q) {
             //     $q->where('name', 'Brand');})
             //         ->where('city','Ahmedabad')
@@ -261,6 +261,8 @@ class HomepageController extends Controller
                 ->first();
             }
     
+        }else{
+            $userData = '';
         }
         // return $userData;
         return view('extra.brandDetail', \compact('userData','brand', 'brandCategory', 'offers', 'recommendedOffers'));
