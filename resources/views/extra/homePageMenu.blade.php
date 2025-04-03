@@ -1,10 +1,10 @@
 <header>
     <nav class="navbar navbar-expand-lg  main-header shadow-sm p-3 ">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="{{ asset('images/logo.png') }}" class="img-fluid logo" alt="Logo">
             </a>
-            <a class="header-title" href="/">Home</a>
+            {{--  <a class="header-title" href="/">Home</a>  --}}
             {{-- <a class="header-title @if (Route::currentRouteName() == 'main.influencer') activeted @endif" href="{{ route('main.influencer') }}">Influencers</a> --}}
             {{-- <a class="header-title @if (Route::currentRouteName() == 'main.brandOffer') activeted @endif" href="{{ route('main.brandOffer') }}">Brand Offers</a> --}}
             {{-- <a class="nav-link" href="{{ route('main.brandStory') }}">Brand Story</a> --}}

@@ -1,14 +1,18 @@
 <?php
 
-use App\Http\Controllers\Auth\OtpController;
-use App\Http\Controllers\HomepageController;
-use App\Models\BrandCategory;
-use App\Models\BrandOffer;
-use App\Models\BrandWithCategory;
 use App\Models\City;
 use App\Models\User;
+use App\Models\BrandOffer;
 use Illuminate\Http\Request;
+use App\Models\BrandCategory;
+use App\Models\BrandWithCategory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\OtpController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\LocationController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +27,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
+
+Route::get('/', function (Request $request) {
+    $brandCategory =null;
+    $userData = '';
     $offerCategory = BrandCategory::take(9)->get();
     $brandLogos = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
@@ -38,16 +45,97 @@ Route::get('/', function () {
 
     $newBrands = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
-    })->with('offer')->with('card')->take(4)->get();
+    })->with('offer')->with('card')->with('brandWithCategories')->take(4)->get();
+    // return $newBrands;
 
     $offers = BrandOffer::inRandomOrder()->take(6)->get();
-    $cities = City::all();
+    $cities = City::where('is_delete', '=', 'Active')->get();
 
     $randomBrandPortfolio = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
     })->with('card.cardPortfolio')->get();
-    return view('welcome', compact('offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
+    //check user is logged-in  
+    if (Auth::user()) {
+        $userId = auth()->user()->id;      // Get the logged-in user's ID
+        $userLocation = DB::table('locations')
+            ->where('user_id', $userId)
+            ->first(['latitude', 'longitude']);
+
+        // return $userLocation;
+        if ($userLocation) {
+            $latitude = $userLocation->latitude;
+            $longitude = $userLocation->longitude;
+            $radius = 2; // Radius in kilometers
+
+            // Query to find locations within 2km radius
+            $locations = DB::table('locations')
+                ->select('id', 'user_id', 'latitude', 'longitude')
+                ->whereRaw("
+            (6371 * acos(
+                cos(radians(?)) * cos(radians(latitude)) *
+                cos(radians(longitude) - radians(?)) +
+                sin(radians(?)) * sin(radians(latitude))
+            )) <= ?
+            ", [$latitude, $longitude, $latitude, $radius])
+            ->pluck('user_id');
+
+            if ($locations->isNotEmpty()) {
+                $userData = User::whereHas('roles', function ($q) {
+                    $q->where('name', 'Brand');
+                })
+                    ->whereIn('id', $locations)
+                    ->get(['id', 'name', 'profilePhoto', 'city']); 
+                $id = $userData->pluck('id');
+                $brandCategory = DB::table('brand_with_categories')
+                    ->whereIn('brandId', $id)
+                    ->pluck('brandCategoryId')
+                    ->first();
+            }
+        }
+    } elseif(session()->has('city') && session()->has('latitude') && session()->has('longitude')) {
+        // $userData = '';
+        $city = session('city');
+        $latitude = session('latitude');
+        $longitude = session('longitude');
+        
+        $near_latitude = $latitude;
+        $near_longitude = $longitude;
+        $near_radius = 2; // Radius in kilometers
+        $locations = DB::table('locations')
+            ->select('id', 'user_id', 'latitude', 'longitude')
+            ->whereRaw("
+        (6371 * acos(
+            cos(radians(?)) * cos(radians(latitude)) *
+            cos(radians(longitude) - radians(?)) +
+            sin(radians(?)) * sin(radians(latitude))
+        )) <= ?
+        ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
+            ->pluck('user_id');
+        if ($locations->isNotEmpty()) {
+            $userData = User::whereHas('roles', function ($q) {
+                $q->where('name', 'Brand');
+            })
+                ->whereIn('id', $locations)
+                ->get(['id', 'name', 'profilePhoto', 'city']);
+            $id = $userData->pluck('id');
+            $brandCategory = DB::table('brand_with_categories')
+                ->whereIn('brandId', $id)
+                ->pluck('brandCategoryId')
+                ->first();
+            // return $userData
+        }
+    }else{
+
+        $userData = '';
+    }
+
+    return view('welcome', compact('userData', 'brandCategory', 'offerCategory', 'brandLogos', 'posters', 'sliderPosters', 'brands', 'posters2', 'cat', 'newBrands', 'offers', 'randomBrandPortfolio', 'cities'));
 });
+Route::post('/getlocalstoragedata',[LocationController::class,'getlocalstoragedata']);
+Route::get('/search-main', [HomepageController::class, 'search_main']);
+
+// search nearby location
+// Route::post('/search-nearby-brands', [LocationController::class, 'searchNearby'])->name('search.nearby.brands');
 
 Route::get('/search', function (Request $request) {
     if ($request->ajax()) {
@@ -70,7 +158,7 @@ Route::get('/search', function (Request $request) {
         foreach ($offers as $offer) {
             $results[] = ['id' => $offer->id, 'name' => $offer->title, 'type' => 'offer'];
         }
-        
+
         return response()->json($results);
     }
 })->name('search');
@@ -86,6 +174,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('/')->group(__DIR__ . '/reseller/resellerRoute.php');
 
     Route::get('/fetch-layout', [App\Http\Controllers\HomepageController::class, 'fetchLayout'])->name('fetch-layout');
+    // routes/web.php
+    Route::post('/save-location', [LocationController::class, 'store'])
+        ->name('save.location');
+    Route::post('/find-users-by-city', [LocationController::class, 'findUsersByCity'])->name('find.users.by.city');
 });
 
 // OTP 
