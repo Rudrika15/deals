@@ -36,10 +36,12 @@ class LocationController extends Controller
     }
     // this is a session store 
     public function getlocalstoragedata(Request $request){
+
         session()->put('city', $request->input('city'));
         session()->put('latitude', $request->input('latitude'));
         session()->put('longitude', $request->input('longitude'));    
-    return response()->json(['success' => 'Location data saved successfully!']);
+        return response()->json(['success' => 'Location data saved successfully!']);
+    
     }
     public function findUsersByCity(Request $request)
     {

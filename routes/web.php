@@ -30,7 +30,7 @@ Auth::routes();
 
 Route::get('/', function (Request $request) {
     $brandCategory =null;
-
+    $userData = '';
     $offerCategory = BrandCategory::take(9)->get();
     $brandLogos = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
@@ -54,12 +54,12 @@ Route::get('/', function (Request $request) {
     $randomBrandPortfolio = User::whereHas('roles', function ($q) {
         $q->where('name', 'Brand');
     })->with('card.cardPortfolio')->get();
-
+    //check user is logged-in  
     if (Auth::user()) {
         $userId = auth()->user()->id;      // Get the logged-in user's ID
         $userLocation = DB::table('locations')
             ->where('user_id', $userId)
-            ->first(['latitude', 'longitude']); // Assuming 'city' column exists in 'locations' table
+            ->first(['latitude', 'longitude']);
 
         // return $userLocation;
         if ($userLocation) {
@@ -80,9 +80,11 @@ Route::get('/', function (Request $request) {
             ->pluck('user_id');
 
             if ($locations->isNotEmpty()) {
-                $userData = DB::table('users')
+                $userData = User::whereHas('roles', function ($q) {
+                    $q->where('name', 'Brand');
+                })
                     ->whereIn('id', $locations)
-                    ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                    ->get(['id', 'name', 'profilePhoto', 'city']); 
                 $id = $userData->pluck('id');
                 $brandCategory = DB::table('brand_with_categories')
                     ->whereIn('brandId', $id)
@@ -102,26 +104,28 @@ Route::get('/', function (Request $request) {
         $locations = DB::table('locations')
             ->select('id', 'user_id', 'latitude', 'longitude')
             ->whereRaw("
-         (6371 * acos(
-             cos(radians(?)) * cos(radians(latitude)) *
-             cos(radians(longitude) - radians(?)) +
-             sin(radians(?)) * sin(radians(latitude))
-         )) <= ?
-         ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
+        (6371 * acos(
+            cos(radians(?)) * cos(radians(latitude)) *
+            cos(radians(longitude) - radians(?)) +
+            sin(radians(?)) * sin(radians(latitude))
+        )) <= ?
+        ", [$near_latitude, $near_longitude, $near_latitude, $near_radius])
             ->pluck('user_id');
         if ($locations->isNotEmpty()) {
-            $userData = DB::table('users')
+            $userData = User::whereHas('roles', function ($q) {
+                $q->where('name', 'Brand');
+            })
                 ->whereIn('id', $locations)
-                ->get(['id', 'name', 'profilePhoto', 'city']); // Adjust column names as needed
+                ->get(['id', 'name', 'profilePhoto', 'city']);
             $id = $userData->pluck('id');
             $brandCategory = DB::table('brand_with_categories')
                 ->whereIn('brandId', $id)
                 ->pluck('brandCategoryId')
                 ->first();
+            // return $userData
         }
-
     }else{
-        
+
         $userData = '';
     }
 
